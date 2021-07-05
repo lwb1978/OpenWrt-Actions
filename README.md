@@ -1,2 +1,2 @@
-# OpenWrt-Actions
-在线编译OpenWrt
+利用github提供的actions编译openwrt官方固件
+感谢P3TERX、Lean等大神！
