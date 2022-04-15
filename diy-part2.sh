@@ -15,4 +15,5 @@
 
 #git clone https://github.com/siropboy/sirpdboy-package package/sirpdboy-package
 #git clone https://github.com/small-5/luci-app-adblock-plus package/adblock-plus
+rm -rf package/helloworld
 git clone --depth=1 https://github.com/fw876/helloworld.git package/helloworld
