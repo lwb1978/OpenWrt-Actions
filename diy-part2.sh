@@ -22,6 +22,8 @@ rm -rf lua-maxminddb
 git clone https://github.com/jerrykuku/lua-maxminddb.git
 rm -rf luci-app-vssr
 git clone https://github.com/jerrykuku/luci-app-vssr.git
+rm -rf luci-theme-argon  
+git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git
 rm -rf luci-theme-neobird
 git clone https://github.com/lwb1978/luci-theme-neobird.git
 cd ~/openwrt/
