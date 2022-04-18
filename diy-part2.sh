@@ -17,7 +17,8 @@
 #git clone https://github.com/small-5/luci-app-adblock-plus package/adblock-plus
 #rm -rf package/helloworld
 #git clone --depth=1 https://github.com/fw876/helloworld.git package/helloworld
-cd package/lean/
+cd ~
+cd /openwrt/package/lean/
 rm -rf lua-maxminddb
 git clone https://github.com/jerrykuku/lua-maxminddb.git
 rm -rf luci-app-vssr
