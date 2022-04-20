@@ -187,3 +187,8 @@ jobs:
         delete_tags: true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+    - name: 删除旧的 workflow 运行记录
+      uses: GitRML/delete-workflow-runs@main
+      with:
+        retain_days: 30  
