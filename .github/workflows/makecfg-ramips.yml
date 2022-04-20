@@ -11,7 +11,7 @@ on:
 
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
-  REPO_BRANCH: makecfg-ramips
+  REPO_BRANCH: master
   DEVICE_NAME: ramips
   FILES: ramips/files
   FEEDS_CONF: ramips/feeds.conf.default
