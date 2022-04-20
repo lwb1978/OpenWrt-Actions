@@ -10,15 +10,18 @@
 # Description: OpenWrt DIY script part 2 (After Update feeds)
 #
 
-# Modify default IP
-#sed -i 's/192.168.1.1/192.168.50.5/g' package/base-files/files/bin/config_generate
+# Modify default IP 默认IP由1.1修改为0.1
+# sed -i 's/192.168.1.1/192.168.0.1/g' package/base-files/files/bin/config_generate
 
-#git clone https://github.com/siropboy/sirpdboy-package package/sirpdboy-package
-#git clone https://github.com/small-5/luci-app-adblock-plus package/adblock-plus
-#rm -rf package/helloworld
-#git clone --depth=1 https://github.com/fw876/helloworld.git package/helloworld
-cd ~
-cd /openwrt/package/lean/
+# 最大连接数修改为65535
+sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=65535' package/base-files/files/etc/sysctl.conf
+
+# git clone https://github.com/siropboy/sirpdboy-package package/sirpdboy-package
+# git clone https://github.com/small-5/luci-app-adblock-plus package/adblock-plus
+# rm -rf package/helloworld
+# git clone --depth=1 https://github.com/fw876/helloworld.git package/helloworld
+
+cd package/lean/
 rm -rf lua-maxminddb
 git clone https://github.com/jerrykuku/lua-maxminddb.git
 rm -rf luci-app-vssr
