@@ -12,10 +12,10 @@ on:
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
-  DEVICE_NAME: ramips
+  DEVICE_NAME: XY-C5
   FILES: ramips/files
   FEEDS_CONF: ramips/feeds.conf.default
-  CONFIG_FILE: ramips/.config.lite.xy
+  CONFIG_FILE: ramips/.config.xy.lite
   DIY_P1_SH: ramips/diy-part1.sh
   DIY_P2_SH: ramips/diy-part2.sh
   TZ: Asia/Shanghai
