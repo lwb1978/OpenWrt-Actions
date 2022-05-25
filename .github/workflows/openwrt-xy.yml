@@ -20,7 +20,7 @@ env:
   REPO_BRANCH: master
   FILES: ramips/files
   FEEDS_CONF: ramips/feeds.conf.default
-  CONFIG_FILE: ramips/.config.xy.lite
+  CONFIG_FILE: ramips/.config.xy.vssr
   DIY_P1_SH: ramips/diy-part1.sh
   DIY_P2_SH: ramips/diy-part2.sh
   UPLOAD_BIN_DIR: false
