@@ -15,3 +15,6 @@
 
 # Add a feed source
 #sed -i '$a src-git lienol https://github.com/Lienol/openwrt-package' feeds.conf.default
+
+rm -rf /target/linux/ramips
+svn export https://github.com/padavanonly/openwrt/trunk/target/linux/ramips /target/linux/ramips
