@@ -19,7 +19,7 @@ env:
   REPO_URL: https://github.com/padavanonly/immortalwrt
   REPO_BRANCH: master
   FILES: ramips-hnat/files
-  FEEDS_CONF: ramips-hnat/feeds.conf.default
+  FEEDS_CONF: ramips-hnat/feeds.conf.default.bak
   CONFIG_FILE: ramips-hnat/.config.erx.hnat
   DIY_P1_SH: ramips-hnat/diy-part1.sh
   DIY_P2_SH: ramips-hnat/diy-part2.sh
@@ -183,7 +183,7 @@ jobs:
       uses: dev-drprasad/delete-older-releases@v0.1.0
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       with:
-        keep_latest: 3
+        keep_latest: 10
         delete_tags: true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
