@@ -14,8 +14,8 @@ env:
   REPO_BRANCH: master
   DEVICE_NAME: ramips
   FILES: ramips/files
-  FEEDS_CONF: ramips/feeds.conf.default
-  CONFIG_FILE: ramips/.config.erx.vssr
+  FEEDS_CONF: ramips/feeds.conf.default.bak
+  CONFIG_FILE: ramips/.config.erx
   DIY_P1_SH: ramips/diy-part1.sh
   DIY_P2_SH: ramips/diy-part2.sh
   TZ: Asia/Shanghai
