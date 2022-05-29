@@ -32,3 +32,5 @@ rm -rf luci-theme-argon
 git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git
 rm -rf luci-theme-neobird
 git clone https://github.com/lwb1978/luci-theme-neobird.git
+rm -rf luci-app-omcproxy
+git clone -b 18.06 https://github.com/lwb1978/luci-app-omcproxy.git
