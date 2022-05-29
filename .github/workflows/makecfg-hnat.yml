@@ -12,10 +12,10 @@ on:
 env:
   REPO_URL: https://github.com/padavanonly/immortalwrt
   REPO_BRANCH: master
-  DEVICE_NAME: XYC5-Hnat
+  DEVICE_NAME: Ramips-Hnat
   FILES: ramips-hnat/files
-  FEEDS_CONF: ramips-hnat/feeds.conf.default
-  CONFIG_FILE: ramips-hnat/.config.xy.hnat
+  FEEDS_CONF: ramips-hnat/feeds.conf.default.bak
+  CONFIG_FILE: ramips-hnat/.config.erx.hnat
   DIY_P1_SH: ramips-hnat/diy-part1.sh
   DIY_P2_SH: ramips-hnat/diy-part2.sh
   TZ: Asia/Shanghai
