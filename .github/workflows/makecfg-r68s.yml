@@ -13,11 +13,11 @@ env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
   DEVICE_NAME: R68S
-  FILES: armv8/files
-  FEEDS_CONF: armv8/feeds.conf.default
-  CONFIG_FILE: armv8/.config.xy.lite
-  DIY_P1_SH: armv8/diy-part1.sh
-  DIY_P2_SH: armv8/diy-part2.sh
+  FILES: arm_x86/files
+  FEEDS_CONF: arm_x86/feeds.conf.default
+  CONFIG_FILE: arm_x86/.config.r68s
+  DIY_P1_SH: arm_x86/diy-part1.sh
+  DIY_P2_SH: arm_x86/diy-part2.sh
   TZ: Asia/Shanghai
 
 jobs:
