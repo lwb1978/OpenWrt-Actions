@@ -12,6 +12,15 @@
 
 # Modify default IP 默认IP由1.1修改为0.1
 # sed -i 's/192.168.1.1/192.168.0.1/g' package/base-files/files/bin/config_generate
+sed -i 's/192.168.0.1/192.168.1.1/g' package/base-files/files/bin/config_generate
+sed -i 's/192.168.2.1/192.168.1.1/g' package/base-files/files/bin/config_generate
+sed -i 's/192.168.3.1/192.168.1.1/g' package/base-files/files/bin/config_generate
+sed -i 's/192.168.4.1/192.168.1.1/g' package/base-files/files/bin/config_generate
+sed -i 's/192.168.5.1/192.168.1.1/g' package/base-files/files/bin/config_generate
+sed -i 's/192.168.6.1/192.168.1.1/g' package/base-files/files/bin/config_generate
+sed -i 's/192.168.7.1/192.168.1.1/g' package/base-files/files/bin/config_generate
+sed -i 's/192.168.8.1/192.168.1.1/g' package/base-files/files/bin/config_generate
+sed -i 's/192.168.9.1/192.168.1.1/g' package/base-files/files/bin/config_generate
 
 # 最大连接数修改为65535
 sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=65535' package/base-files/files/etc/sysctl.conf
@@ -30,7 +39,7 @@ rm -rf luci-app-vssr
 git clone https://github.com/jerrykuku/luci-app-vssr.git
 rm -rf luci-theme-argon  
 git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git
-rm -rf luci-theme-neobird
-git clone https://github.com/lwb1978/luci-theme-neobird.git
+# rm -rf luci-theme-neobird
+# git clone https://github.com/lwb1978/luci-theme-neobird.git
 rm -rf luci-app-omcproxy
 git clone -b 18.06 https://github.com/lwb1978/luci-app-omcproxy.git
