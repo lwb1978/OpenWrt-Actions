@@ -32,8 +32,6 @@ git clone --depth=1 https://github.com/fw876/helloworld.git package/helloworld
 rm -rf package/passwall
 git clone https://github.com/xiaorouji/openwrt-passwall package/passwall
 
-git clone https://github.com/sirpdboy/netspeedtest.git package/netspeedtest
-
 cd package/lean/
 rm -rf lua-maxminddb
 git clone https://github.com/jerrykuku/lua-maxminddb.git
