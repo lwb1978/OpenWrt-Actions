@@ -43,3 +43,6 @@ rm -rf luci-theme-neobird
 git clone https://github.com/lwb1978/luci-theme-neobird.git
 rm -rf luci-app-omcproxy
 git clone -b 18.06 https://github.com/lwb1978/luci-app-omcproxy.git
+
+# Test kernel 6.0
+# sed -i 's/5.15/6.0/g' ./target/linux/rockchip/Makefile
