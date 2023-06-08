@@ -45,5 +45,5 @@ rm -rf luci-app-omcproxy
 git clone -b 18.06 https://github.com/lwb1978/luci-app-omcproxy.git
 popd
 
-# Test kernel 6.0
-# sed -i 's/5.15/6.0/g' ./target/linux/rockchip/Makefile
+# Test kernel 6.1
+sed -i 's/5.15/6.1/g' ./target/linux/rockchip/Makefile
