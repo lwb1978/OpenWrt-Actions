@@ -29,8 +29,8 @@ sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=65535' package
 # git clone https://github.com/small-5/luci-app-adblock-plus package/adblock-plus
 rm -rf package/helloworld
 git clone --depth=1 https://github.com/fw876/helloworld.git package/helloworld
-rm -rf package/passwall
-git clone https://github.com/xiaorouji/openwrt-passwall package/passwall
+# rm -rf package/passwall
+# git clone https://github.com/xiaorouji/openwrt-passwall package/passwall
 
 pushd package/lean/
 rm -rf lua-maxminddb
