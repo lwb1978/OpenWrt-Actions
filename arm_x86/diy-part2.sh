@@ -29,23 +29,28 @@ sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=65535' package
 # git clone https://github.com/small-5/luci-app-adblock-plus package/adblock-plus
 
 # SSR 翻墙
-rm -rf package/applications/helloworld
-git clone --depth=1 https://github.com/fw876/helloworld.git package/applications/helloworld
+rm -rf feeds/luci/applications/luci-app-ssrp
+git clone --depth=1 https://github.com/fw876/helloworld.git feeds/luci/applications/luci-app-ssrp
 
 # passwall 翻墙
-# rm -rf package/applications/passwall
-# rm -rf package/applications/passwall_packages
-# git clone https://github.com/xiaorouji/openwrt-passwall package/applications/passwall_packages
-# rm -rf package/applications/passwall_luci
-# git clone -b luci https://github.com/xiaorouji/openwrt-passwall package/applications/passwall_luci
+# rm -rf feeds/luci/applications/passwall_packages
+# git clone https://github.com/xiaorouji/openwrt-passwall feeds/luci/applications/passwall_packages
+# rm -rf package/applications/luci-app-passwall
+# git clone -b luci https://github.com/xiaorouji/openwrt-passwall feeds/luci/applications/luci-app-passwall
 
 # 添加 smartdns
-rm -rf package/applications/luci-app-smartdns
-git clone -b lede https://github.com/pymumu/luci-app-smartdns.git package/applications/luci-app-smartdns
+rm -rf feeds/luci/applications/luci-app-smartdns
+git clone -b lede https://github.com/pymumu/luci-app-smartdns.git feeds/luci/applications/luci-app-smartdns
 # 更新lean的内置的smartdns版本
 # sed -i 's/1.2021.35/2022.03.02/g' feeds/packages/net/smartdns/Makefile
 # sed -i 's/f50e4dd0813da9300580f7188e44ed72a27ae79c/1fd18601e7d8ac88e8557682be7de3dc56e69105/g' feeds/packages/net/smartdns/Makefile
 # sed -i 's/^PKG_MIRROR_HASH/#&/' feeds/packages/net/smartdns/Makefile
+
+# 添加主题
+# rm -rf feeds/luci/themes/luci-theme-argon
+# git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git feeds/luci/themes/luci-theme-argon
+rm -rf feeds/luci/themes/luci-theme-neobird
+git clone https://github.com/lwb1978/luci-theme-neobird.git feeds/luci/themes/luci-theme-neobird
 
 pushd package/lean/
 # helloworld 翻墙
@@ -54,10 +59,6 @@ pushd package/lean/
 # rm -rf luci-app-vssr
 # git clone https://github.com/jerrykuku/luci-app-vssr.git
 
-# rm -rf luci-theme-argon  
-# git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git
-rm -rf luci-theme-neobird
-git clone https://github.com/lwb1978/luci-theme-neobird.git
 # rm -rf luci-app-omcproxy
 # git clone -b 18.06 https://github.com/lwb1978/luci-app-omcproxy.git
 popd
