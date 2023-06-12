@@ -29,14 +29,14 @@ sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=65535' package
 # git clone https://github.com/small-5/luci-app-adblock-plus package/adblock-plus
 
 # SSR 翻墙
-rm -rf package/helloworld
-git clone --depth=1 https://github.com/fw876/helloworld.git package/helloworld
+# rm -rf package/helloworld
+# git clone --depth=1 https://github.com/fw876/helloworld.git package/helloworld
 
 # passwall 翻墙
 # rm -rf package/passwall_packages
-# git clone https://github.com/xiaorouji/openwrt-passwall package/passwall_packages
+git clone https://github.com/xiaorouji/openwrt-passwall package/passwall_packages
 # rm -rf package/passwall_luci
-# git clone -b luci https://github.com/xiaorouji/openwrt-passwall package/passwall_luci
+git clone -b luci https://github.com/xiaorouji/openwrt-passwall package/passwall_luci
 
 # 添加 smartdns
 rm -rf package/smartdns_luci
