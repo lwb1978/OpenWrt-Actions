@@ -27,10 +27,16 @@ sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=65535' package
 
 # git clone https://github.com/siropboy/sirpdboy-package package/sirpdboy-package
 # git clone https://github.com/small-5/luci-app-adblock-plus package/adblock-plus
-rm -rf package/helloworld
-git clone --depth=1 https://github.com/fw876/helloworld.git package/helloworld
-# rm -rf package/passwall
-# git clone https://github.com/xiaorouji/openwrt-passwall package/passwall
+
+# SSR 翻墙
+# rm -rf package/helloworld
+# git clone --depth=1 https://github.com/fw876/helloworld.git package/helloworld
+
+# passwall 翻墙
+# rm -rf package/passwall_packages
+git clone https://github.com/xiaorouji/openwrt-passwall package/passwall_packages
+# rm -rf package/passwall_luci
+git clone -b luci https://github.com/xiaorouji/openwrt-passwall package/passwall_luci
 
 pushd package/lean/
 # rm -rf lua-maxminddb
@@ -41,6 +47,6 @@ pushd package/lean/
 # git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git
 rm -rf luci-theme-neobird
 git clone https://github.com/lwb1978/luci-theme-neobird.git
-rm -rf luci-app-omcproxy
-git clone -b 18.06 https://github.com/lwb1978/luci-app-omcproxy.git
+# rm -rf luci-app-omcproxy
+# git clone -b 18.06 https://github.com/lwb1978/luci-app-omcproxy.git
 popd
