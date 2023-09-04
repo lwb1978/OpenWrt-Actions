@@ -62,7 +62,5 @@ git clone https://github.com/lwb1978/luci-theme-neobird.git
 popd
 
 # 替换udpxy为修改版
-pushd feeds/packages/net/udpxy/
-rm -rf Makefile
-wget -O Makefile https://raw.githubusercontent.com/lwb1978/OpenWrt-Actions/main/patch/udpxy/Makefile
-popd
+rm -rf feeds/packages/net/udpxy/Makefile
+cp ${GITHUB_WORKSPACE}/patch/udpxy/Makefile feeds/packages/net/udpxy/
