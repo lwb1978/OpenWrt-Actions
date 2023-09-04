@@ -67,7 +67,6 @@ popd
 # 替换udpxy为修改版
 rm -rf feeds/packages/net/udpxy/Makefile
 cp ${GITHUB_WORKSPACE}/patch/udpxy/Makefile feeds/packages/net/udpxy/
-chmod a+x feeds/packages/net/udpxy/Makefile
 
 # Test kernel 6.1
 # sed -i 's/5.15/6.1/g' ./target/linux/rockchip/Makefile
