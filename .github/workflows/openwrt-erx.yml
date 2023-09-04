@@ -18,7 +18,7 @@ on:
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
-  FILES: ramips/files
+  FILES: files
   FEEDS_CONF: ramips/feeds.conf.default.bak
   CONFIG_FILE: ramips/.config.erx
   DIY_P1_SH: ramips/diy-part1.sh
@@ -179,16 +179,17 @@ jobs:
         age: '1 day'
         skip-recent: 3
 
+    - name: Delete workflow runs
+      uses: GitRML/delete-workflow-runs@main
+      with:
+        retain_days: 1
+        keep_minimum_runs: 3
+
     - name: Remove old Releases
       uses: dev-drprasad/delete-older-releases@v0.1.0
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       with:
-        keep_latest: 10
+        keep_latest: 6
         delete_tags: true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      
-    - name: 删除旧的 workflow 运行记录
-      uses: GitRML/delete-workflow-runs@main
-      with:
-        retain_days: 30  
