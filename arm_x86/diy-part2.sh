@@ -63,7 +63,6 @@ git clone https://github.com/lwb1978/luci-theme-neobird.git
 # git clone -b 18.06 https://github.com/lwb1978/luci-app-omcproxy.git
 popd
 
-
 # 替换udpxy为修改版
 rm -rf feeds/packages/net/udpxy/Makefile
 cp ${GITHUB_WORKSPACE}/patch/udpxy/Makefile feeds/packages/net/udpxy/
