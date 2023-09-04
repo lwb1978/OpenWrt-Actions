@@ -18,7 +18,7 @@ on:
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
-  FILES: ramips/files
+  FILES: files
   FEEDS_CONF: ramips/feeds.conf.default
   CONFIG_FILE: ramips/.config.xy
   DIY_P1_SH: ramips/diy-part1.sh
