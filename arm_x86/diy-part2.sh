@@ -65,10 +65,9 @@ popd
 
 
 # 替换udpxy为修改版
-pushd feeds/packages/net/udpxy/
-rm -rf Makefile
-wget -O Makefile https://raw.githubusercontent.com/lwb1978/OpenWrt-Actions/main/patch/udpxy/Makefile
-popd
+rm -rf feeds/packages/net/udpxy/Makefile
+cp ${GITHUB_WORKSPACE}/patch/udpxy/Makefile feeds/packages/net/udpxy/
+chmod a+x feeds/packages/net/udpxy/Makefile
 
 # Test kernel 6.1
 # sed -i 's/5.15/6.1/g' ./target/linux/rockchip/Makefile
