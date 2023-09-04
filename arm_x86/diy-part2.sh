@@ -63,5 +63,12 @@ git clone https://github.com/lwb1978/luci-theme-neobird.git
 # git clone -b 18.06 https://github.com/lwb1978/luci-app-omcproxy.git
 popd
 
+
+# 替换udpxy为修改版
+pushd feeds/packages/net/udpxy/
+rm -rf Makefile
+wget -O Makefile https://raw.githubusercontent.com/lwb1978/OpenWrt-Actions/main/patch/udpxy/Makefile
+popd
+
 # Test kernel 6.1
 # sed -i 's/5.15/6.1/g' ./target/linux/rockchip/Makefile
