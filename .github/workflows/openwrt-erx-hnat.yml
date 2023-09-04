@@ -18,7 +18,7 @@ on:
 env:
   REPO_URL: https://github.com/padavanonly/immortalwrt
   REPO_BRANCH: master
-  FILES: ramips-hnat/files
+  FILES: files
   FEEDS_CONF: ramips-hnat/feeds.conf.default.bak
   CONFIG_FILE: ramips-hnat/.config.erx.hnat
   DIY_P1_SH: ramips-hnat/diy-part1.sh
