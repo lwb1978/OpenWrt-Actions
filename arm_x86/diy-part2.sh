@@ -72,8 +72,9 @@ rm -rf feeds/packages/net/msd_lite
 svn export https://github.com/immortalwrt/packages/trunk/net/msd_lite feeds/packages/net/msd_lite
 rm -rf feeds/luci/applications/luci-app-msd_lite
 svn export https://github.com/immortalwrt/luci/trunk/applications/luci-app-msd_lite feeds/luci/applications/luci-app-msd_lite
-./scripts/feeds update luci
-./scripts/feeds install -a -p -f luci
+
+./scripts/feeds update -a
+./scripts/feeds install -a
 
 # Test kernel 6.1
 # sed -i 's/5.15/6.1/g' ./target/linux/rockchip/Makefile
