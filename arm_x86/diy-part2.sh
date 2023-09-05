@@ -67,8 +67,11 @@ popd
 rm -rf feeds/packages/net/udpxy/Makefile
 cp ${GITHUB_WORKSPACE}/patch/udpxy/Makefile feeds/packages/net/udpxy/
 
-# 添加MSD组播转http插件
-git clone --recursive https://github.com/rozhuk-im/msd.git package/msd
+# 添加MSD组播转http插件（替换掉LEDE仓库版本）
+rm -rf feeds/packages/net/msd_lite
+svn export https://github.com/immortalwrt/packages/tree/master/net/msd_lite feeds/packages/net/msd_lite
+rm -rf feeds/luci/applications/luci-app-msd_lite
+svn export https://github.com/immortalwrt/luci/tree/master/applications/luci-app-msd_lite feeds/luci/applications/luci-app-msd_lite
 
 # Test kernel 6.1
 # sed -i 's/5.15/6.1/g' ./target/linux/rockchip/Makefile
