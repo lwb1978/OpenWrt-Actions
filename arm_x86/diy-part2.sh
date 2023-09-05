@@ -67,5 +67,8 @@ popd
 rm -rf feeds/packages/net/udpxy/Makefile
 cp ${GITHUB_WORKSPACE}/patch/udpxy/Makefile feeds/packages/net/udpxy/
 
+# 添加MSD组播转http插件
+git clone --recursive https://github.com/rozhuk-im/msd.git package/msd
+
 # Test kernel 6.1
 # sed -i 's/5.15/6.1/g' ./target/linux/rockchip/Makefile
