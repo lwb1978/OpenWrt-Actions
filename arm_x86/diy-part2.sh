@@ -48,26 +48,22 @@ git clone https://github.com/pymumu/smartdns.git package/smartdns
 # sed -i 's/f50e4dd0813da9300580f7188e44ed72a27ae79c/1fd18601e7d8ac88e8557682be7de3dc56e69105/g' feeds/packages/net/smartdns/Makefile
 # sed -i 's/^PKG_MIRROR_HASH/#&/' feeds/packages/net/smartdns/Makefile
 
-pushd package/lean/
+# pushd package/lean/
 # helloworld 翻墙
 # rm -rf lua-maxminddb
 # git clone https://github.com/jerrykuku/lua-maxminddb.git
 # rm -rf luci-app-vssr
 # git clone https://github.com/jerrykuku/luci-app-vssr.git
-# 添加主题
-# rm -rf luci-theme-argon
-# git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git
-rm -rf luci-theme-neobird
-git clone https://github.com/lwb1978/luci-theme-neobird.git
 # rm -rf luci-app-omcproxy
 # git clone -b 18.06 https://github.com/lwb1978/luci-app-omcproxy.git
-popd
+# popd
+
+# 添加主题
+git clone https://github.com/lwb1978/luci-theme-neobird.git package/luci-theme-neobird
 
 # 替换udpxy为修改版
 rm -rf feeds/packages/net/udpxy/Makefile
 cp ${GITHUB_WORKSPACE}/patch/udpxy/Makefile feeds/packages/net/udpxy/
-rm -rf package/feeds/packages/udpxy/Makefile
-cp ${GITHUB_WORKSPACE}/patch/udpxy/Makefile package/feeds/packages/udpxy/
 
 # 添加MSD组播转http插件（替换掉LEDE仓库版本）
 rm -rf feeds/packages/net/msd_lite
