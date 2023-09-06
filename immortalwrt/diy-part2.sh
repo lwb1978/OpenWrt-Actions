@@ -41,6 +41,8 @@ git clone https://github.com/lwb1978/luci-theme-neobird.git package/feeds/luci/l
 # 替换udpxy为修改版
 rm -rf feeds/packages/net/udpxy/Makefile
 cp ${GITHUB_WORKSPACE}/patch/udpxy/Makefile feeds/packages/net/udpxy/
+rm -rf package/feeds/packages/udpxy/Makefile
+cp ${GITHUB_WORKSPACE}/patch/udpxy/Makefile package/feeds/packages/udpxy/
 
 # 替换msd_lite的luci
 rm -rf package/feeds/luci/luci-app-msd_lite
