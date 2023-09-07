@@ -51,3 +51,7 @@ cp ${GITHUB_WORKSPACE}/patch/udpxy/Makefile feeds/packages/net/udpxy/
 rm -rf feeds/luci/applications/luci-app-msd_lite
 rm -rf package/feeds/luci/luci-app-msd_lite
 git clone https://github.com/ximiTech/luci-app-msd_lite.git package/luci-app-msd_lite
+
+# 卸载酸酸乳
+./scripts/feeds uninstall luci-app-ssr-plus
+
