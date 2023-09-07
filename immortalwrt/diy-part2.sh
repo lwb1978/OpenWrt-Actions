@@ -26,12 +26,14 @@ sed -i 's/192.168.9.1/192.168.1.1/g' package/base-files/files/bin/config_generat
 sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=65535' package/base-files/files/etc/sysctl.conf
 
 # 替换Passwall为smartdns版
+rm -rf feeds/luci/applications/luci-app-passwall
 rm -rf package/feeds/luci/luci-app-passwall
-git clone -b luci-smartdns-new-version https://github.com/xiaorouji/openwrt-passwall package/feeds/luci/luci-app-passwall
+git clone -b luci-smartdns-new-version https://github.com/xiaorouji/openwrt-passwall package/luci-app-passwall
 
 # 替换neobird主题为修改版
+rm -rf feeds/luci/themes/luci-theme-neobird
 rm -rf package/feeds/luci/luci-theme-neobird
-git clone https://github.com/lwb1978/luci-theme-neobird.git package/feeds/luci/luci-theme-neobird
+git clone https://github.com/lwb1978/luci-theme-neobird.git package/luci-theme-neobird
 
 # pushd package/emortal/
 # rm -rf luci-app-omcproxy
@@ -43,5 +45,6 @@ rm -rf feeds/packages/net/udpxy/Makefile
 cp ${GITHUB_WORKSPACE}/patch/udpxy/Makefile feeds/packages/net/udpxy/
 
 # 替换msd_lite的luci
+rm -rf feeds/luci/applications/luci-app-msd_lite
 rm -rf package/feeds/luci/luci-app-msd_lite
-git clone https://github.com/ximiTech/luci-app-msd_lite.git package/feeds/luci/luci-app-msd_lite
+git clone https://github.com/ximiTech/luci-app-msd_lite.git package/luci-app-msd_lite
