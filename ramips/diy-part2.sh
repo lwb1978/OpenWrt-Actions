@@ -58,7 +58,6 @@ rm -rf feeds/packages/net/udpxy/Makefile
 cp ${GITHUB_WORKSPACE}/patch/udpxy/Makefile feeds/packages/net/udpxy/
 
 # 添加MSD组播转http插件（替换掉LEDE仓库版本）
-./scripts/feeds uninstall msd_lite
 rm -rf feeds/packages/net/msd_lite
 rm -rf package/feeds/packages/msd_lite
 git clone https://github.com/ximiTech/msd_lite.git package/msd_lite
