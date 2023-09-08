@@ -51,9 +51,6 @@ git clone https://github.com/pymumu/smartdns.git package/smartdns
 # git clone -b 18.06 https://github.com/lwb1978/luci-app-omcproxy.git
 # popd
 
-# 添加主题
-git clone https://github.com/lwb1978/luci-theme-neobird.git package/luci-theme-neobird
-
 # 替换udpxy为修改版
 rm -rf feeds/packages/net/udpxy/Makefile
 cp ${GITHUB_WORKSPACE}/patch/udpxy/Makefile feeds/packages/net/udpxy/
@@ -66,6 +63,13 @@ rm -rf package/feeds/packages/msd_lite
 # svn export https://github.com/immortalwrt/luci/trunk/applications/luci-app-msd_lite feeds/luci/applications/luci-app-msd_lite
 git clone https://github.com/ximiTech/msd_lite.git package/msd_lite
 git clone https://github.com/ximiTech/luci-app-msd_lite.git package/luci-app-msd_lite
+
+# 添加主题
+git clone https://github.com/lwb1978/luci-theme-neobird.git package/luci-theme-neobird
+
+# 设置默认主题
+# default_theme='neobird'
+# sed -i "s/bootstrap/$default_theme/g" feeds/luci/modules/luci-base/root/etc/config/luci
 
 # Test kernel 6.1
 # sed -i 's/5.15/6.1/g' ./target/linux/rockchip/Makefile
