@@ -67,7 +67,7 @@ git clone https://github.com/ximiTech/luci-app-msd_lite.git package/luci-app-msd
 # 添加主题
 git clone https://github.com/lwb1978/luci-theme-neobird.git package/luci-theme-neobird
 
-# rm -rf package/feeds/luci/themes/luci-theme-argon
+# rm -rf package/feeds/themes/luci-theme-argon
 # git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon
 
 # 设置默认主题
