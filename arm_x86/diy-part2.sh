@@ -25,11 +25,8 @@ sed -i 's/192.168.9.1/192.168.0.1/g' package/base-files/files/bin/config_generat
 # 最大连接数修改为65535
 sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=65535' package/base-files/files/etc/sysctl.conf
 
-# git clone https://github.com/siropboy/sirpdboy-package package/sirpdboy-package
-# git clone https://github.com/small-5/luci-app-adblock-plus package/adblock-plus
-
-# SSR 翻墙
-# git clone --depth=1 https://github.com/fw876/helloworld.git package/helloworld
+# TTYD 自动登录
+sed -i 's#/bin/login#/bin/login -f root#g' feeds/packages/utils/ttyd/files/ttyd.config
 
 # passwall 翻墙
 git clone -b packages --single-branch https://github.com/xiaorouji/openwrt-passwall package/passwall_packages
