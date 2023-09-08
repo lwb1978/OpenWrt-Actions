@@ -32,12 +32,12 @@ sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=65535' package
 # git clone --depth=1 https://github.com/fw876/helloworld.git package/helloworld
 
 # passwall 翻墙
-git clone https://github.com/xiaorouji/openwrt-passwall package/passwall_packages
-# git clone -b luci https://github.com/xiaorouji/openwrt-passwall package/passwall_luci
-git clone -b luci-smartdns-new-version https://github.com/xiaorouji/openwrt-passwall package/passwall_luci
+git clone -b packages --single-branch https://github.com/xiaorouji/openwrt-passwall package/passwall_packages
+# git clone -b luci --single-branch https://github.com/xiaorouji/openwrt-passwall package/passwall_luci
+git clone -b luci-smartdns-new-version --single-branch https://github.com/xiaorouji/openwrt-passwall package/passwall_luci
 
 # 添加 smartdns
-git clone -b lede https://github.com/pymumu/luci-app-smartdns.git package/luci-app-smartdns
+git clone -b lede --single-branch https://github.com/pymumu/luci-app-smartdns.git package/luci-app-smartdns
 git clone https://github.com/pymumu/smartdns.git package/smartdns
 # 更新lean的内置的smartdns版本
 # sed -i 's/1.2021.35/2022.03.02/g' feeds/packages/net/smartdns/Makefile
