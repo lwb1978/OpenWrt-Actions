@@ -17,7 +17,7 @@ env:
   DEVICE_NAME: Ramips-ERX-Im
   FILES: files
   FEEDS_CONF: immortalwrt/feeds.conf.default.bak
-  CONFIG_FILE: immortalwrt/config.erx.ip
+  CONFIG_FILE: immortalwrt/.config.erx
   DIY_P1_SH: immortalwrt/diy-part1.sh
   DIY_P2_SH: immortalwrt/diy-part2.sh
   TZ: Asia/Shanghai
