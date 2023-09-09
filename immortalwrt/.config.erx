@@ -5702,11 +5702,11 @@ CONFIG_PACKAGE_vsftpd=y
 # Firewall
 #
 # CONFIG_PACKAGE_arptables-legacy is not set
-# CONFIG_PACKAGE_arptables-nft is not set
+CONFIG_PACKAGE_arptables-nft=y
 # CONFIG_PACKAGE_conntrack is not set
 # CONFIG_PACKAGE_conntrackd is not set
 # CONFIG_PACKAGE_ebtables-legacy is not set
-# CONFIG_PACKAGE_ebtables-nft is not set
+CONFIG_PACKAGE_ebtables-nft=y
 # CONFIG_PACKAGE_fwknop is not set
 # CONFIG_PACKAGE_fwknopd is not set
 # CONFIG_PACKAGE_ip6tables-extra is not set
@@ -5766,7 +5766,7 @@ CONFIG_PACKAGE_nftables-json=y
 # CONFIG_PACKAGE_snort is not set
 # CONFIG_PACKAGE_snort3 is not set
 # CONFIG_PACKAGE_xtables-legacy is not set
-# CONFIG_PACKAGE_xtables-nft is not set
+CONFIG_PACKAGE_xtables-nft=y
 # end of Firewall
 
 #
