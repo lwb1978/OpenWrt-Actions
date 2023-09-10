@@ -12,7 +12,7 @@ on:
         default: 'true'
 
 env:
-  REPO_URL: https://github.com/coolsnowwolf/lede
+  REPO_URL: https://github.com/immortalwrt/immortalwrt.git
   REPO_BRANCH: master
   DEVICE_NAME: R68S-Im
   FILES: files
