@@ -28,7 +28,10 @@ sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=65535' package
 # 替换Passwall为smartdns版
 rm -rf feeds/luci/applications/luci-app-passwall
 rm -rf package/feeds/luci/luci-app-passwall
-git clone -b luci-smartdns-new-version https://github.com/xiaorouji/openwrt-passwall package/luci-app-passwall
+git clone -b luci-smartdns-new-version --single-branch https://github.com/xiaorouji/openwrt-passwall package/passwall_luci
+git clone -b packages --single-branch https://github.com/xiaorouji/openwrt-passwall package/passwall_packages
+
+
 
 # pushd package/emortal/
 # rm -rf luci-app-omcproxy
@@ -37,7 +40,7 @@ git clone -b luci-smartdns-new-version https://github.com/xiaorouji/openwrt-pass
 
 # 替换udpxy为修改版
 rm -rf feeds/packages/net/udpxy/Makefile
-cp ${GITHUB_WORKSPACE}/patch/udpxy/Makefile feeds/packages/net/udpxy/
+cp -f ${GITHUB_WORKSPACE}/patch/udpxy/Makefile feeds/packages/net/udpxy/
 
 # 卸载酸酸乳
 # ./scripts/feeds uninstall luci-app-ssr-plus
