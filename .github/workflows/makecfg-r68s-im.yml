@@ -1,0 +1,96 @@
+# Description: 此脚本基于 P3TERX 的 Actions-OpenWrt 仓库修改而来。
+# 用于生成config配置文件
+
+name: MakeCfg-R68S-Im
+
+on:
+  workflow_dispatch:
+    inputs:
+      ssh:
+        description: 'SSH connection to Actions'
+        required: true
+        default: 'true'
+
+env:
+  REPO_URL: https://github.com/coolsnowwolf/lede
+  REPO_BRANCH: master
+  DEVICE_NAME: R68S-Im
+  FILES: files
+  FEEDS_CONF: immortalwrt/feeds.conf.default
+  CONFIG_FILE: immortalwrt/.config.r68s
+  DIY_P1_SH: immortalwrt/diy-part1.sh
+  DIY_P2_SH: immortalwrt/diy-part2.sh
+  TZ: Asia/Shanghai
+
+jobs:
+  config:
+    runs-on: ubuntu-20.04
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@main
+
+    - name: 初始化编译环境
+      env:
+        DEBIAN_FRONTEND: noninteractive
+      run: |
+        sudo rm -rf /etc/apt/sources.list.d/* /usr/share/dotnet /usr/local/lib/android /opt/ghc
+        sudo -E apt-get -qq update
+        sudo -E apt-get -yqq install $(curl -fsSL github.com/lwb1978/OpenWrt-Actions/raw/main/depends-ubuntu-2004)
+        sudo -E apt-get -yqq autoremove --purge
+        sudo -E apt-get -qq clean
+        sudo timedatectl set-timezone "$TZ"
+        sudo mkdir -p /workdir
+        sudo chown $USER:$GROUPS /workdir
+
+    - name: 克隆 openwrt 源码
+      working-directory: /workdir
+      run: |
+        df -hT $PWD
+        git clone $REPO_URL -b $REPO_BRANCH openwrt
+        ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
+
+    - name: 加载自定义 feeds.conf 文件
+      run: |
+        [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
+        chmod +x $DIY_P1_SH
+        cd openwrt
+        $GITHUB_WORKSPACE/$DIY_P1_SH
+
+    - name: 加载自定义配置文件
+      run: |
+        cd openwrt
+        ./scripts/feeds update -a
+        ./scripts/feeds install -a
+        cd ..
+        [ -e $FILES ] && mv $FILES openwrt/files
+        [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
+        chmod +x $DIY_P2_SH
+        cd openwrt
+        $GITHUB_WORKSPACE/$DIY_P2_SH
+
+    - name: SSH connection to Actions
+      uses: mxschmitt/action-tmate@v3
+
+    - name: 组织配置文件
+      run: |
+        cd openwrt
+        mkdir -p /tmp/upload
+        cp .config /tmp/upload
+
+    - name: 上传配置文件
+      uses: actions/upload-artifact@main
+      with:
+        name: OpenWrt-${{ env.DEVICE_NAME }}-Config
+        path: /tmp/upload
+
+    - name: 移除旧的 Artifacts
+      uses: c-hive/gha-remove-artifacts@v1.2.0
+      with:
+        age: '1 day'
+        skip-recent: 5
+
+    - name: 删除旧的 workflow 运行记录
+      uses: GitRML/delete-workflow-runs@main
+      with:
+        retain_days: 30
