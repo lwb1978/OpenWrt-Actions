@@ -15,11 +15,11 @@ env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
   DEVICE_NAME: R68S
-  FILES: LEDE/files
-  FEEDS_CONF: LEDE/feeds.conf.default
-  CONFIG_FILE: LEDE/config.r68s
-  DIY_P1_SH: LEDE/diy-part1.sh
-  DIY_P2_SH: LEDE/diy-part2.sh
+  FILES: lede/files
+  FEEDS_CONF: lede/feeds.conf.default
+  CONFIG_FILE: lede/config.r68s
+  DIY_P1_SH: lede/diy-part1.sh
+  DIY_P2_SH: lede/diy-part2.sh
   TZ: Asia/Shanghai
 
 jobs:
