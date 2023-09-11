@@ -28,7 +28,7 @@ sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=65535' package
 # 替换Passwall为smartdns版
 rm -rf feeds/luci/applications/luci-app-passwall
 rm -rf package/feeds/luci/luci-app-passwall
-git clone -b luci-smartdns-new-version --single-branch https://github.com/xiaorouji/openwrt-passwall package/passwall_luci
+git clone -b luci-smartdns-dev --single-branch https://github.com/xiaorouji/openwrt-passwall package/passwall_luci
 git clone -b packages --single-branch https://github.com/xiaorouji/openwrt-passwall package/passwall_packages
 
 
