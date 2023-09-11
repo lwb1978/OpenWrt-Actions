@@ -15,11 +15,11 @@ env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
   DEVICE_NAME: XY-C5
-  FILES: ramips/files
-  FEEDS_CONF: ramips/feeds.conf.default
-  CONFIG_FILE: ramips/.config.xy
-  DIY_P1_SH: ramips/diy-part1.sh
-  DIY_P2_SH: ramips/diy-part2.sh
+  FILES: lede/files
+  FEEDS_CONF: lede/feeds.conf.default
+  CONFIG_FILE: lede/.config.xy
+  DIY_P1_SH: lede/diy-part1.sh
+  DIY_P2_SH: lede/diy-part2.sh
   TZ: Asia/Shanghai
 
 jobs:
@@ -84,13 +84,8 @@ jobs:
         name: OpenWrt-${{ env.DEVICE_NAME }}-Config
         path: /tmp/upload
 
-    - name: 移除旧的 Artifacts
-      uses: c-hive/gha-remove-artifacts@v1.2.0
-      with:
-        age: '1 day'
-        skip-recent: 5
-
     - name: 删除旧的 workflow 运行记录
       uses: GitRML/delete-workflow-runs@main
       with:
-        retain_days: 30
+        retain_days: 1
+        keep_minimum_runs: 5
