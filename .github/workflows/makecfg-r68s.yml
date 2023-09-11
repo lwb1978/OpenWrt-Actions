@@ -15,11 +15,11 @@ env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
   DEVICE_NAME: R68S
-  FILES: arm_x86/files
-  FEEDS_CONF: arm_x86/feeds.conf.default
-  CONFIG_FILE: arm_x86/.config.r68s
-  DIY_P1_SH: arm_x86/diy-part1.sh
-  DIY_P2_SH: arm_x86/diy-part2.sh
+  FILES: LEDE/files
+  FEEDS_CONF: LEDE/feeds.conf.default
+  CONFIG_FILE: LEDE/config.r68s
+  DIY_P1_SH: LEDE/diy-part1.sh
+  DIY_P2_SH: LEDE/diy-part2.sh
   TZ: Asia/Shanghai
 
 jobs:
@@ -84,13 +84,8 @@ jobs:
         name: OpenWrt-${{ env.DEVICE_NAME }}-Config
         path: /tmp/upload
 
-    - name: 移除旧的 Artifacts
-      uses: c-hive/gha-remove-artifacts@v1.2.0
-      with:
-        age: '1 day'
-        skip-recent: 5
-
     - name: 删除旧的 workflow 运行记录
       uses: GitRML/delete-workflow-runs@main
       with:
-        retain_days: 30
+        retain_days: 1
+        keep_minimum_runs: 5
