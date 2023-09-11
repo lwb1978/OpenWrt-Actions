@@ -17,7 +17,7 @@ env:
   DEVICE_NAME: XY-C5
   FILES: lede/files
   FEEDS_CONF: lede/feeds.conf.default
-  CONFIG_FILE: lede/.config.xy
+  CONFIG_FILE: lede/config.xy
   DIY_P1_SH: lede/diy-part1.sh
   DIY_P2_SH: lede/diy-part2.sh
   TZ: Asia/Shanghai
