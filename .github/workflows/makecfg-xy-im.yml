@@ -15,9 +15,9 @@ env:
   REPO_URL: https://github.com/immortalwrt/immortalwrt.git
   REPO_BRANCH: master
   DEVICE_NAME: Ramips-XY-Im
-  FILES: files
+  FILES: immortalwrt/files
   FEEDS_CONF: immortalwrt/feeds.conf.default.bak
-  CONFIG_FILE: immortalwrt/config.xy.ip
+  CONFIG_FILE: immortalwrt/config.xy
   DIY_P1_SH: immortalwrt/diy-part1.sh
   DIY_P2_SH: immortalwrt/diy-part2.sh
   TZ: Asia/Shanghai
@@ -84,13 +84,8 @@ jobs:
         name: OpenWrt-${{ env.DEVICE_NAME }}-Config
         path: /tmp/upload
 
-    - name: 移除旧的 Artifacts
-      uses: c-hive/gha-remove-artifacts@v1.2.0
-      with:
-        age: '1 day'
-        skip-recent: 5
-
     - name: 删除旧的 workflow 运行记录
       uses: GitRML/delete-workflow-runs@main
       with:
-        retain_days: 30
+        retain_days: 1
+        keep_minimum_runs: 5
