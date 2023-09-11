@@ -62,8 +62,8 @@ git clone https://github.com/ximiTech/msd_lite.git package/msd_lite
 git clone https://github.com/ximiTech/luci-app-msd_lite.git package/luci-app-msd_lite
 
 # 替换zerotier luci为可控制防火墙版本
-rm -rf package/feeds/luci/luci-app-zerotier
-git clone https://github.com/lwb1978/luci-app-zerotier package/luci-app-zerotier
+# rm -rf package/feeds/luci/luci-app-zerotier
+# git clone https://github.com/lwb1978/luci-app-zerotier package/luci-app-zerotier
 
 # 添加主题
 git clone https://github.com/lwb1978/luci-theme-neobird.git package/luci-theme-neobird
