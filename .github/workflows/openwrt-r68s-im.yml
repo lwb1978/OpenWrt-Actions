@@ -39,7 +39,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@main
 
-    - name: Initialization environment
+    - name: Removing unwanted software
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
@@ -57,7 +57,6 @@ jobs:
         sudo apt-get clean
         df -h
         echo "Removing large directories"
-        sudo rm -rf /etc/apt/sources.list.d/* /opt/ghc
         sudo rm -rf /usr/share/dotnet/
         sudo rm -rf /usr/local/graalvm/
         sudo rm -rf /usr/local/.ghcup/
@@ -65,7 +64,15 @@ jobs:
         sudo rm -rf /usr/local/share/chromium
         sudo rm -rf /usr/local/lib/android
         sudo rm -rf /usr/local/lib/node_modules
+        sudo rm -rf /opt/hostedtoolcache/CodeQL
+        sudo rm -rf /etc/apt/sources.list.d/*
+        sudo rm -rf /opt/ghc
         df -h
+ 
+    - name: Initialization environment
+      env:
+        DEBIAN_FRONTEND: noninteractive
+      run: |
         sudo -E apt-get -qq update
         sudo -E apt-get -yqq install $(curl -fsSL github.com/lwb1978/OpenWrt-Actions/raw/main/depends-ubuntu-2004)
         sudo -E apt-get -yqq autoremove --purge
