@@ -39,7 +39,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@main
 
-    - name: Initialization environment
+    - name: Remove Programs
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
@@ -64,8 +64,16 @@ jobs:
         sudo rm -rf /usr/local/share/chromium
         sudo rm -rf /usr/local/lib/android
         sudo rm -rf /usr/local/lib/node_modules
-        df -h
         sudo rm -rf /etc/apt/sources.list.d/* /opt/ghc
+        df -h
+ 
+    - name: Maximize build space
+      uses: easimon/maximize-build-space@master
+
+    - name: Initialization environment
+      env:
+        DEBIAN_FRONTEND: noninteractive
+      run: |
         sudo -E apt-get -qq update
         sudo -E apt-get -yqq install $(curl -fsSL github.com/lwb1978/OpenWrt-Actions/raw/main/depends-ubuntu-2004)
         sudo -E apt-get -yqq autoremove --purge
@@ -77,5 +85,5 @@ jobs:
     - name: Clone source code
       working-directory: /workdir
       run: |
-        df -hT $PWD
+        df -h
    
