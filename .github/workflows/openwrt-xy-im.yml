@@ -42,7 +42,7 @@ jobs:
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
-        sudo rm -rf /etc/apt/sources.list.d/* /usr/share/dotnet /usr/local/lib/android /opt/ghc /etc/mysql /etc/php
+        sudo rm -rf /etc/apt/sources.list.d/* /usr/share/dotnet /usr/local/lib/android /opt/ghc
         sudo -E apt-get -qq update
         sudo -E apt-get -yqq install $(curl -fsSL github.com/lwb1978/OpenWrt-Actions/raw/main/depends-ubuntu-2004)
         sudo -E apt-get -yqq autoremove --purge
