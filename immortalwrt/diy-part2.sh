@@ -28,8 +28,17 @@ sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=65535' package
 # 替换Passwall为smartdns版
 rm -rf feeds/luci/applications/luci-app-passwall
 rm -rf package/feeds/luci/luci-app-passwall
-git clone -b luci-smartdns-dev --single-branch https://github.com/xiaorouji/openwrt-passwall package/passwall_luci
-git clone -b packages --single-branch https://github.com/xiaorouji/openwrt-passwall package/passwall_packages
+git clone -b luci-smartdns-dev --single-branch https://github.com/xiaorouji/openwrt-passwall.git package/passwall_luci
+git clone https://github.com/xiaorouji/openwrt-passwall-packages.git package/passwall_packages
+
+# 替换immortalwrt 软件仓库smartdns版本为官方最新版
+rm -rf feeds/packages/net/smartdns
+git clone https://github.com/pymumu/smartdns.git package/smartdns
+rm -rf feeds/luci/applications/luci-app-smartdns
+rm -rf package/feeds/luci/luci-app-smartdns
+git clone https://github.com/pymumu/luci-app-smartdns.git package/luci-app-smartdns
+
+
 
 # pushd package/emortal/
 # rm -rf luci-app-omcproxy
