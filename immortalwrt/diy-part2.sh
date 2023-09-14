@@ -31,9 +31,6 @@ rm -rf package/feeds/luci/luci-app-passwall
 git clone -b luci-smartdns-dev --single-branch https://github.com/xiaorouji/openwrt-passwall package/passwall_luci
 git clone -b packages --single-branch https://github.com/xiaorouji/openwrt-passwall package/passwall_packages
 
-# 添加主题
-git clone -b js https://github.com/lwb1978/luci-theme-design.git package/luci-theme-design
-
 # pushd package/emortal/
 # rm -rf luci-app-omcproxy
 # git clone -b 18.06 https://github.com/lwb1978/luci-app-omcproxy.git
