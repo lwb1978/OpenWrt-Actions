@@ -31,15 +31,6 @@ rm -rf package/feeds/luci/luci-app-passwall
 git clone -b luci-smartdns-dev --single-branch https://github.com/xiaorouji/openwrt-passwall.git package/passwall_luci
 git clone https://github.com/xiaorouji/openwrt-passwall-packages.git package/passwall_packages
 
-# 替换immortalwrt 软件仓库smartdns版本为官方最新版
-rm -rf feeds/packages/net/smartdns
-git clone https://github.com/pymumu/openwrt-smartdns.git package/smartdns
-rm -rf feeds/luci/applications/luci-app-smartdns
-rm -rf package/feeds/luci/luci-app-smartdns
-git clone https://github.com/pymumu/luci-app-smartdns.git package/luci-app-smartdns
-
-
-
 # pushd package/emortal/
 # rm -rf luci-app-omcproxy
 # git clone -b 18.06 https://github.com/lwb1978/luci-app-omcproxy.git
