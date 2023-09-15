@@ -33,7 +33,7 @@ git clone https://github.com/xiaorouji/openwrt-passwall-packages.git package/pas
 
 # 替换immortalwrt 软件仓库smartdns版本为官方最新版
 rm -rf feeds/packages/net/smartdns
-git clone https://github.com/pymumu/smartdns.git package/smartdns
+git clone https://github.com/pymumu/openwrt-smartdns.git package/smartdns
 rm -rf feeds/luci/applications/luci-app-smartdns
 rm -rf package/feeds/luci/luci-app-smartdns
 git clone https://github.com/pymumu/luci-app-smartdns.git package/luci-app-smartdns
