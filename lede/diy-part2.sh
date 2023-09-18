@@ -76,3 +76,8 @@ git clone https://github.com/lwb1978/luci-theme-neobird.git package/luci-theme-n
 
 # Test kernel 6.1
 # sed -i 's/5.15/6.1/g' ./target/linux/rockchip/Makefile
+
+# 拉取软件仓库代码备忘
+# rm -rf package/lean/luci-app-cpufreq
+# svn co https://github.com/immortalwrt/luci/trunk/applications/luci-app-cpufreq feeds/luci/applications/luci-app-cpufreq
+# ln -sf ../../../feeds/luci/applications/luci-app-cpufreq ./package/feeds/luci/luci-app-cpufreq
