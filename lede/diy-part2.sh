@@ -34,7 +34,8 @@ git clone https://github.com/xiaorouji/openwrt-passwall-packages.git package/pas
 
 # 添加 smartdns
 git clone -b lede --single-branch https://github.com/pymumu/luci-app-smartdns.git package/luci-app-smartdns
-git clone https://github.com/pymumu/smartdns.git package/smartdns
+rm -rf feeds/packages/net/smartdns
+cp -rf ${GITHUB_WORKSPACE}/patch/smartdns feeds/packages/net
 # 更新lean的内置的smartdns版本
 # sed -i 's/1.2021.35/2022.03.02/g' feeds/packages/net/smartdns/Makefile
 # sed -i 's/f50e4dd0813da9300580f7188e44ed72a27ae79c/1fd18601e7d8ac88e8557682be7de3dc56e69105/g' feeds/packages/net/smartdns/Makefile
