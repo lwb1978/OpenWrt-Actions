@@ -54,7 +54,6 @@ jobs:
     - name: Checkout
       uses: actions/checkout@main
 
-
     - name: Initialization Environment
       env:
         DEBIAN_FRONTEND: noninteractive
