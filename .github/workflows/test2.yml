@@ -43,7 +43,6 @@ jobs:
         # this might remove tools that are actually needed,
         # if set to "true" but frees about 6 GB
         tool-cache: true
-        
         # all of these default to true, but feel free to set to
         # "false" if necessary for your workflow
         android: true
@@ -60,6 +59,14 @@ jobs:
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
+        sudo rm -rf /usr/share/dotnet/
+        sudo rm -rf /usr/local/graalvm/
+        sudo rm -rf /usr/local/.ghcup/
+        sudo rm -rf /usr/local/share/powershell
+        sudo rm -rf /usr/local/share/chromium
+        sudo rm -rf /usr/local/lib/android
+        sudo rm -rf /usr/local/lib/node_modules
+        df -h
         sudo -E apt-get -qq update
         sudo -E apt-get -yqq install $(curl -fsSL github.com/lwb1978/OpenWrt-Actions/raw/main/depends-ubuntu-2004)
         sudo -E apt-get -yqq autoremove --purge
