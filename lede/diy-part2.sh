@@ -54,10 +54,6 @@ cp -f ${GITHUB_WORKSPACE}/patch/udpxy/Makefile feeds/packages/net/udpxy/
 
 # 添加MSD组播转http插件（替换掉LEDE仓库版本）
 rm -rf feeds/packages/net/msd_lite
-rm -rf package/feeds/packages/msd_lite
-# svn export https://github.com/immortalwrt/packages/trunk/net/msd_lite feeds/packages/net/msd_lite
-# rm -rf feeds/luci/applications/luci-app-msd_lite
-# svn export https://github.com/immortalwrt/luci/trunk/applications/luci-app-msd_lite feeds/luci/applications/luci-app-msd_lite
 git clone https://github.com/ximiTech/msd_lite.git package/msd_lite
 git clone https://github.com/ximiTech/luci-app-msd_lite.git package/luci-app-msd_lite
 
@@ -66,10 +62,9 @@ git clone https://github.com/ximiTech/luci-app-msd_lite.git package/luci-app-msd
 # git clone https://github.com/lwb1978/luci-app-zerotier package/luci-app-zerotier
 
 # 添加主题
-git clone https://github.com/lwb1978/luci-theme-neobird.git package/luci-theme-neobird
-
-# rm -rf package/feeds/themes/luci-theme-argon
-# git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon
+# git clone https://github.com/lwb1978/luci-theme-neobird.git package/luci-theme-neobird
+rm -rf feeds/luci/themes/luci-theme-argon
+git clone --depth=1 -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon
 
 # 设置默认主题
 # default_theme='neobird'
