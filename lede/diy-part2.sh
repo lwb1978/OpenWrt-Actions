@@ -25,6 +25,9 @@ sed -i 's/192.168.9.1/192.168.0.1/g' package/base-files/files/bin/config_generat
 # 最大连接数修改为65535
 sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=65535' package/base-files/files/etc/sysctl.conf
 
+# 修改本地时间格式
+sed -i 's/os.date()/os.date("%a %Y-%m-%d %H:%M:%S")/g' package/lean/autocore/files/*/index.htm
+
 # TTYD 自动登录
 # sed -i 's#/bin/login#/bin/login -f root#g' feeds/packages/utils/ttyd/files/ttyd.config
 
@@ -34,6 +37,7 @@ git clone https://github.com/xiaorouji/openwrt-passwall-packages.git package/pas
 
 # 添加 smartdns
 git clone -b lede --single-branch https://github.com/pymumu/luci-app-smartdns.git package/luci-app-smartdns
+# 更新lean仓库的smartdns版本到最新
 rm -rf feeds/packages/net/smartdns
 cp -rf ${GITHUB_WORKSPACE}/patch/smartdns feeds/packages/net
 # 更新lean的内置的smartdns版本
@@ -70,8 +74,8 @@ git clone --depth=1 -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git p
 # default_theme='neobird'
 # sed -i "s/bootstrap/$default_theme/g" feeds/luci/modules/luci-base/root/etc/config/luci
 
-# Test kernel 6.1
-# sed -i 's/5.15/6.1/g' ./target/linux/rockchip/Makefile
+# 修改Rockchip内核到6.1版
+sed -i 's/5.15/6.1/g' ./target/linux/rockchip/Makefile
 
 # 拉取软件仓库代码备忘
 # rm -rf package/lean/luci-app-cpufreq
