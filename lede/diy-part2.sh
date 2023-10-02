@@ -31,9 +31,9 @@ sed -i 's/os.date()/os.date("%a %Y-%m-%d %H:%M:%S")/g' package/lean/autocore/fil
 # TTYD 自动登录
 # sed -i 's#/bin/login#/bin/login -f root#g' feeds/packages/utils/ttyd/files/ttyd.config
 
-# passwall 翻墙
-git clone -b luci-smartdns-dev --single-branch https://github.com/xiaorouji/openwrt-passwall.git package/passwall_luci
-git clone https://github.com/xiaorouji/openwrt-passwall-packages.git package/passwall_packages
+# passwall 科学
+git clone -b luci-smartdns-dev --single-branch https://github.com/xiaorouji/openwrt-passwall.git package/luci-app-passwall
+git clone https://github.com/xiaorouji/openwrt-passwall-packages.git package/openwrt-passwall
 
 # 添加 smartdns
 git clone -b lede --single-branch https://github.com/pymumu/luci-app-smartdns.git package/luci-app-smartdns
@@ -62,8 +62,25 @@ git clone https://github.com/ximiTech/msd_lite.git package/msd_lite
 git clone https://github.com/ximiTech/luci-app-msd_lite.git package/luci-app-msd_lite
 
 # 替换zerotier luci为可控制防火墙版本
-# rm -rf package/feeds/luci/luci-app-zerotier
+# rm -rf feeds/luci/applications/luci-app-zerotier
 # git clone https://github.com/lwb1978/luci-app-zerotier package/luci-app-zerotier
+
+# 实时监控
+rm -rf feeds/luci/applications/luci-app-netdata
+git clone --depth=1 https://github.com/Jason6111/luci-app-netdata package/luci-app-netdata
+
+# 晶晨宝盒
+svn export https://github.com/ophub/luci-app-amlogic/trunk/luci-app-amlogic package/luci-app-amlogic
+
+# 应用商店iStore
+svn export https://github.com/linkease/istore-ui/trunk/app-store-ui package/app-store-ui
+svn export https://github.com/linkease/istore/trunk/luci package/luci-app-store
+
+# 在线用户
+svn export https://github.com/haiibo/packages/trunk/luci-app-onliner package/luci-app-onliner
+sed -i '$i uci set nlbwmon.@nlbwmon[0].refresh_interval=2s' package/lean/default-settings/files/zzz-default-settings
+sed -i '$i uci commit nlbwmon' package/lean/default-settings/files/zzz-default-settings
+chmod 755 package/luci-app-onliner/root/usr/share/onliner/setnlbw.sh
 
 # 添加主题
 # git clone https://github.com/lwb1978/luci-theme-neobird.git package/luci-theme-neobird
@@ -71,7 +88,7 @@ rm -rf feeds/luci/themes/luci-theme-argon
 git clone --depth=1 -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon
 
 # 设置默认主题
-# default_theme='neobird'
+# default_theme='Argon'
 # sed -i "s/bootstrap/$default_theme/g" feeds/luci/modules/luci-base/root/etc/config/luci
 
 # 修改Rockchip内核到6.1版
@@ -81,3 +98,6 @@ sed -i 's/5.15/6.1/g' ./target/linux/rockchip/Makefile
 # rm -rf package/lean/luci-app-cpufreq
 # svn co https://github.com/immortalwrt/luci/trunk/applications/luci-app-cpufreq feeds/luci/applications/luci-app-cpufreq
 # ln -sf ../../../feeds/luci/applications/luci-app-cpufreq ./package/feeds/luci/luci-app-cpufreq
+
+./scripts/feeds update -a
+./scripts/feeds install -a
