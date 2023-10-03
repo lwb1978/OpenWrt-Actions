@@ -24,11 +24,9 @@ sed -i 's/os.date()/os.date("%a %Y-%m-%d %H:%M:%S")/g' package/lean/autocore/fil
 
 # passwall 科学
 git clone -b luci-smartdns-dev --single-branch https://github.com/xiaorouji/openwrt-passwall.git package/luci-app-passwall
-# git clone https://github.com/xiaorouji/openwrt-passwall-packages.git package/openwrt-passwall
-svn export https://github.com/xiaorouji/openwrt-passwall-packages/trunk package/openwrt-passwall
+git clone https://github.com/xiaorouji/openwrt-passwall-packages.git package/openwrt-passwall
 # brook: fix build for go 1.21
-rm -rf package/openwrt-passwall/brook
-svn export https://github.com/immortalwrt/packages/trunk/net/brook package/openwrt-passwall/brook
+svn export https://github.com/immortalwrt/packages/trunk/net/brook/patches package/openwrt-passwall/brook/patches
 
 # 添加 smartdns
 git clone -b lede --single-branch https://github.com/pymumu/luci-app-smartdns.git package/luci-app-smartdns
