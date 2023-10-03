@@ -12,15 +12,6 @@
 
 # Modify default IP 默认IP由1.1修改为0.1
 # sed -i 's/192.168.1.1/192.168.0.1/g' package/base-files/files/bin/config_generate
-sed -i 's/192.168.1.1/192.168.0.1/g' package/base-files/files/bin/config_generate
-sed -i 's/192.168.2.1/192.168.0.1/g' package/base-files/files/bin/config_generate
-sed -i 's/192.168.3.1/192.168.0.1/g' package/base-files/files/bin/config_generate
-sed -i 's/192.168.4.1/192.168.0.1/g' package/base-files/files/bin/config_generate
-sed -i 's/192.168.5.1/192.168.0.1/g' package/base-files/files/bin/config_generate
-sed -i 's/192.168.6.1/192.168.0.1/g' package/base-files/files/bin/config_generate
-sed -i 's/192.168.7.1/192.168.0.1/g' package/base-files/files/bin/config_generate
-sed -i 's/192.168.8.1/192.168.0.1/g' package/base-files/files/bin/config_generate
-sed -i 's/192.168.9.1/192.168.0.1/g' package/base-files/files/bin/config_generate
 
 # 最大连接数修改为65535
 sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=65535' package/base-files/files/etc/sysctl.conf
@@ -34,6 +25,9 @@ sed -i 's/os.date()/os.date("%a %Y-%m-%d %H:%M:%S")/g' package/lean/autocore/fil
 # passwall 科学
 git clone -b luci-smartdns-dev --single-branch https://github.com/xiaorouji/openwrt-passwall.git package/luci-app-passwall
 git clone https://github.com/xiaorouji/openwrt-passwall-packages.git package/openwrt-passwall
+# brook: fix build for go 1.21
+rm -rf package/openwrt-passwall/brook
+svn export https://github.com/immortalwrt/packages/trunk/net/brook package/openwrt-passwall/brook
 
 # 添加 smartdns
 git clone -b lede --single-branch https://github.com/pymumu/luci-app-smartdns.git package/luci-app-smartdns
@@ -46,7 +40,7 @@ cp -rf ${GITHUB_WORKSPACE}/patch/smartdns feeds/packages/net
 # sed -i 's/^PKG_MIRROR_HASH/#&/' feeds/packages/net/smartdns/Makefile
 
 # pushd package/lean/
-# helloworld 翻墙
+# helloworld 科学
 # git clone https://github.com/jerrykuku/lua-maxminddb.git
 # git clone https://github.com/jerrykuku/luci-app-vssr.git
 # git clone -b 18.06 https://github.com/lwb1978/luci-app-omcproxy.git
@@ -60,10 +54,6 @@ cp -f ${GITHUB_WORKSPACE}/patch/udpxy/Makefile feeds/packages/net/udpxy/
 rm -rf feeds/packages/net/msd_lite
 git clone https://github.com/ximiTech/msd_lite.git package/msd_lite
 git clone https://github.com/ximiTech/luci-app-msd_lite.git package/luci-app-msd_lite
-
-# 替换zerotier luci为可控制防火墙版本
-# rm -rf feeds/luci/applications/luci-app-zerotier
-# git clone https://github.com/lwb1978/luci-app-zerotier package/luci-app-zerotier
 
 # 实时监控
 rm -rf feeds/luci/applications/luci-app-netdata
@@ -81,6 +71,9 @@ svn export https://github.com/haiibo/packages/trunk/luci-app-onliner package/luc
 sed -i '$i uci set nlbwmon.@nlbwmon[0].refresh_interval=2s' package/lean/default-settings/files/zzz-default-settings
 sed -i '$i uci commit nlbwmon' package/lean/default-settings/files/zzz-default-settings
 chmod 755 package/luci-app-onliner/root/usr/share/onliner/setnlbw.sh
+
+# eqosplus 定时限速插件
+git clone https://github.com/sirpdboy/luci-app-eqosplus package/luci-app-eqosplus
 
 # 添加主题
 # git clone https://github.com/lwb1978/luci-theme-neobird.git package/luci-theme-neobird
