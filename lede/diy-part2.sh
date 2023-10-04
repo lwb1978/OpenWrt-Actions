@@ -56,8 +56,8 @@ cp -f ${GITHUB_WORKSPACE}/patch/udpxy/Makefile feeds/packages/net/udpxy/
 
 # 添加MSD组播转http插件（替换掉LEDE仓库版本）
 rm -rf feeds/packages/net/msd_lite
-git clone https://github.com/ximiTech/msd_lite.git package/msd_lite
-git clone https://github.com/ximiTech/luci-app-msd_lite.git package/luci-app-msd_lite
+git clone https://github.com/lwb1978/msd_lite.git package/msd_lite
+git clone https://github.com/lwb1978/luci-app-msd_lite.git package/luci-app-msd_lite
 
 # 实时监控
 rm -rf feeds/luci/applications/luci-app-netdata
