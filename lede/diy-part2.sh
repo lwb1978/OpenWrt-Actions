@@ -79,7 +79,7 @@ svn export https://github.com/haiibo/packages/trunk/luci-app-onliner package/luc
 # eqosplus 定时限速插件
 git clone https://github.com/sirpdboy/luci-app-eqosplus package/luci-app-eqosplus
 # 定时设置
-git clone https://github.com/sirpdboy/luci-app-autotimeset package/luci-app-autotimeset
+# git clone https://github.com/sirpdboy/luci-app-autotimeset package/luci-app-autotimeset
 
 # 添加主题
 # git clone https://github.com/lwb1978/luci-theme-neobird.git package/luci-theme-neobird
