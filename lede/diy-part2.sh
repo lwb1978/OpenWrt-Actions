@@ -72,12 +72,14 @@ svn export https://github.com/linkease/istore/trunk/luci package/luci-app-store
 
 # 在线用户
 svn export https://github.com/haiibo/packages/trunk/luci-app-onliner package/luci-app-onliner
-sed -i '$i uci set nlbwmon.@nlbwmon[0].refresh_interval=2s' package/lean/default-settings/files/zzz-default-settings
-sed -i '$i uci commit nlbwmon' package/lean/default-settings/files/zzz-default-settings
-chmod 755 package/luci-app-onliner/root/usr/share/onliner/setnlbw.sh
+#sed -i '$i uci set nlbwmon.@nlbwmon[0].refresh_interval=2s' package/lean/default-settings/files/zzz-default-settings
+#sed -i '$i uci commit nlbwmon' package/lean/default-settings/files/zzz-default-settings
+#chmod 755 package/luci-app-onliner/root/usr/share/onliner/setnlbw.sh
 
 # eqosplus 定时限速插件
 git clone https://github.com/sirpdboy/luci-app-eqosplus package/luci-app-eqosplus
+# 定时设置
+git clone https://github.com/sirpdboy/luci-app-autotimeset package/luci-app-autotimeset
 
 # 添加主题
 # git clone https://github.com/lwb1978/luci-theme-neobird.git package/luci-theme-neobird
