@@ -1,6 +1,6 @@
 
 # 添加组播防火墙规则
-iptvid=$(uci show firewall | grep Allow-IPTV-Incoming | grep -oE '\[.*?\]' | sed 's/[][]//g')
+iptvid=$(uci show firewall | grep 'Allow-IPTV-Incoming' | grep -oE '\[.*?\]' | sed 's/[][]//g')
 #uci delete firewall.@rule["${iptvid}"]
 [ -z "${iptvid}" ] && {
 	uci add firewall rule
