@@ -64,7 +64,7 @@ rm -rf feeds/luci/applications/luci-app-netdata
 git clone --depth=1 https://github.com/Jason6111/luci-app-netdata package/luci-app-netdata
 
 # 晶晨宝盒
-svn export https://github.com/ophub/luci-app-amlogic/trunk/luci-app-amlogic package/luci-app-amlogic
+# svn export https://github.com/ophub/luci-app-amlogic/trunk/luci-app-amlogic package/luci-app-amlogic
 
 # 应用商店iStore
 svn export https://github.com/linkease/istore-ui/trunk/app-store-ui package/app-store-ui
@@ -95,6 +95,11 @@ git clone --depth=1 -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git p
 # rm -rf package/lean/luci-app-cpufreq
 # svn co https://github.com/immortalwrt/luci/trunk/applications/luci-app-cpufreq feeds/luci/applications/luci-app-cpufreq
 # ln -sf ../../../feeds/luci/applications/luci-app-cpufreq ./package/feeds/luci/luci-app-cpufreq
+
+# 自定义默认配置
+sed -i '/REDIRECT --to-ports 53/d' package/lean/default-settings/files/zzz-default-settings
+sed -i '/exit 0/d' package/lean/default-settings/files/zzz-default-settings
+cat ${GITHUB_WORKSPACE}/lede/default-settings >> package/lean/default-settings/files/zzz-default-settings
 
 ./scripts/feeds update -a
 ./scripts/feeds install -a
