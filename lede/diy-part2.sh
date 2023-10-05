@@ -26,12 +26,12 @@ sed -i 's/os.date()/os.date("%a %Y-%m-%d %H:%M:%S")/g' package/lean/autocore/fil
 git clone -b luci-smartdns-dev --single-branch https://github.com/xiaorouji/openwrt-passwall.git package/luci-app-passwall
 git clone https://github.com/xiaorouji/openwrt-passwall-packages.git package/openwrt-passwall
 # Go 1.21 updates
-rm -rf package/openwrt-passwall/brook
-rm -rf package/openwrt-passwall/v2ray-core
-svn export https://github.com/immortalwrt/packages/trunk/net/brook feeds/packages/net/brook
-ln -sf ../../../feeds/packages/net/brook ./package/feeds/packages/brook
-svn export https://github.com/immortalwrt/packages/trunk/net/v2ray-core feeds/packages/net/v2ray-core
-ln -sf ../../../feeds/packages/net/v2ray-core ./package/feeds/packages/v2ray-core
+# rm -rf package/openwrt-passwall/brook
+# rm -rf package/openwrt-passwall/v2ray-core
+# svn export https://github.com/immortalwrt/packages/trunk/net/brook feeds/packages/net/brook
+# ln -sf ../../../feeds/packages/net/brook ./package/feeds/packages/brook
+# svn export https://github.com/immortalwrt/packages/trunk/net/v2ray-core feeds/packages/net/v2ray-core
+# ln -sf ../../../feeds/packages/net/v2ray-core ./package/feeds/packages/v2ray-core
 
 # 添加 smartdns
 git clone -b lede --single-branch https://github.com/pymumu/luci-app-smartdns.git package/luci-app-smartdns
