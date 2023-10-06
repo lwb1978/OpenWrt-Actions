@@ -91,7 +91,7 @@ git clone --depth=1 -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git p
 # sed -i "s/bootstrap/$default_theme/g" feeds/luci/modules/luci-base/root/etc/config/luci
 
 # 修改Rockchip内核到6.1版
-# sed -i 's/5.15/6.1/g' ./target/linux/rockchip/Makefile
+sed -i 's/5.15/6.1/g' ./target/linux/rockchip/Makefile
 
 # 拉取软件仓库代码备忘
 # rm -rf package/lean/luci-app-cpufreq
@@ -108,6 +108,8 @@ find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/PKG_SOURCE_U
 sed -i '/REDIRECT --to-ports 53/d' package/lean/default-settings/files/zzz-default-settings
 sed -i '/exit 0/d' package/lean/default-settings/files/zzz-default-settings
 cat ${GITHUB_WORKSPACE}/lede/default-settings >> package/lean/default-settings/files/zzz-default-settings
+# 取消默认密码
+sed -i '/\/etc\/shadow/{/root/d;}' package/lean/default-settings/files/zzz-default-settings
 
 ./scripts/feeds update -a
 ./scripts/feeds install -a
