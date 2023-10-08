@@ -17,7 +17,7 @@ env:
   DEVICE_NAME: X86
   FILES: lede/files
   FEEDS_CONF: lede/feeds.conf.default
-  CONFIG_FILE: lede/config.erx
+  CONFIG_FILE: lede/config.x86
   DIY_P1_SH: lede/diy-part1.sh
   DIY_P2_SH: lede/diy-part2.sh
   TZ: Asia/Shanghai
