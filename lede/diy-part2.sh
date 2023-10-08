@@ -112,12 +112,12 @@ cat ${GITHUB_WORKSPACE}/lede/default-settings >> package/lean/default-settings/f
 sed -i '/\/etc\/shadow/{/root/d;}' package/lean/default-settings/files/zzz-default-settings
 
 # 取消一些预选的软件包
-sed -i 's/ luci-app-vsftpd//g' include/target.mk
-sed -i 's/ luci-app-ssr-plus//g' include/target.mk
-sed -i 's/ luci-app-vlmcsd//g' include/target.mk
-sed -i 's/ luci-app-accesscontrol//g' include/target.mk
-sed -i 's/ luci-app-nlbwmon//g' include/target.mk
-sed -i 's/ luci-app-turboacc//g' include/target.mk
+sed -i 's/luci-app-vsftpd //g' include/target.mk
+sed -i 's/luci-app-ssr-plus //g' include/target.mk
+sed -i 's/luci-app-vlmcsd //g' include/target.mk
+sed -i 's/luci-app-accesscontrol //g' include/target.mk
+sed -i 's/luci-app-nlbwmon //g' include/target.mk
+sed -i 's/luci-app-turboacc //g' include/target.mk
 
 ./scripts/feeds update -a
 ./scripts/feeds install -a
