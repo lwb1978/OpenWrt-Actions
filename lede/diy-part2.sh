@@ -81,6 +81,9 @@ git clone https://github.com/sirpdboy/luci-app-eqosplus package/luci-app-eqosplu
 # 定时设置
 # git clone https://github.com/sirpdboy/luci-app-autotimeset package/luci-app-autotimeset
 
+# AdGuardHome
+git clone --depth=1 https://github.com/kongfl888/luci-app-adguardhome package/luci-app-adguardhome
+
 # 添加主题
 # git clone https://github.com/lwb1978/luci-theme-neobird.git package/luci-theme-neobird
 rm -rf feeds/luci/themes/luci-theme-argon
