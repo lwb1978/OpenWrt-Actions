@@ -122,5 +122,10 @@ sed -i 's/luci-app-accesscontrol //g' include/target.mk
 sed -i 's/luci-app-nlbwmon //g' include/target.mk
 # sed -i 's/luci-app-turboacc //g' include/target.mk
 
+# 拷贝自定义文件
+if [ -n "$(ls -A "${GITHUB_WORKSPACE}/lede/diy" 2>/dev/null)" ]; then
+  cp -Rf ${GITHUB_WORKSPACE}/lede/diy/* .
+fi
+
 ./scripts/feeds update -a
 ./scripts/feeds install -a
