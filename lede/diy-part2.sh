@@ -109,7 +109,7 @@ find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/PKG_SOURCE_U
 
 # 自定义默认配置
 sed -i '/REDIRECT --to-ports 53/d' package/lean/default-settings/files/zzz-default-settings
-sed -i '/exit 0/d' package/lean/default-settings/files/zzz-default-settings
+sed -i '/exit 0$/d' package/lean/default-settings/files/zzz-default-settings
 cat ${GITHUB_WORKSPACE}/lede/default-settings >> package/lean/default-settings/files/zzz-default-settings
 # 取消默认密码
 sed -i '/\/etc\/shadow/{/root/d;}' package/lean/default-settings/files/zzz-default-settings
