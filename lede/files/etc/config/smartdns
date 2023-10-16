@@ -1,0 +1,55 @@
+
+config smartdns
+	option server_name 'smartdns'
+	option dualstack_ip_selection '1'
+	option serve_expired '1'
+	option tcp_server '0'
+	option port '6053'
+	option ipv6_server '0'
+	option cache_size '20000'
+	option auto_set_dnsmasq '1'
+	option bind_device '1'
+	option speed_check_mode 'tcp:80,ping'
+	option rr_ttl_max '86400'
+	option rr_ttl_reply_max '10'
+	option enabled '1'
+	option prefetch_domain '1'
+	option rr_ttl '3600'
+	option rr_ttl_min '300'
+	option seconddns_tcp_server '0'
+	option seconddns_port '5335'
+	option cache_persist '1'
+	option resolve_local_hostnames '1'
+	option force_https_soa '1'
+	option seconddns_no_speed_check '1'
+	option seconddns_no_dualstack_selection '1'
+	option seconddns_force_aaaa_soa '1'
+	option old_port '6053'
+	option old_enabled '1'
+	option old_auto_set_dnsmasq '1'
+
+config domain-rule
+
+config server
+	option enabled '1'
+	option name '114'
+	option ip '114.114.114.114'
+	option port '53'
+	option type 'udp'
+	option server_group 'cn'
+
+config server
+	option enabled '1'
+	option name '阿里'
+	option ip '223.5.5.5'
+	option port '53'
+	option type 'udp'
+	option server_group 'cn'
+
+config server
+	option enabled '1'
+	option name '腾讯'
+	option ip '119.29.29.29'
+	option port '53'
+	option type 'udp'
+	option server_group 'cn'
