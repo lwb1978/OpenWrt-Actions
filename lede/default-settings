@@ -21,7 +21,9 @@ echo '[ -n "$(command -v ip6tables)" ] && ip6tables -t nat -A PREROUTING -p udp 
 echo '[ -n "$(command -v ip6tables)" ] && ip6tables -t nat -A PREROUTING -p tcp --dport 53 -j REDIRECT --to-ports 53' >> /etc/firewall.user
 
 # 设置ttyd免帐号登录
-uci set ttyd.@ttyd[0].command='/bin/login -f root'
-uci commit ttyd
+[ -n "$(ls -A "../../etc/config/ttyd" 2>/dev/null)" ] && {
+	uci set ttyd.@ttyd[0].command='/bin/login -f root'
+	uci commit ttyd
+}
 
 exit 0
