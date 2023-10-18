@@ -18,6 +18,7 @@ sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=65535' package
 
 # 修改后台首页本地时间格式
 sed -i 's/os.date()/os.date("%Y-%m-%d %H:%M:%S %a")/g' package/lean/autocore/files/*/index.htm
+cat ${GITHUB_WORKSPACE}/lede/custom.po >> feeds/luci/modules/luci-base/po/zh-cn/base.po
 
 # x86 型号只显示 CPU 型号
 sed -i 's/${g}.*/${a}${b}${c}${d}${e}${f}${hydrid}/g' package/lean/autocore/files/x86/autocore
