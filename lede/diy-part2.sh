@@ -78,8 +78,11 @@ svn export https://github.com/haiibo/packages/trunk/luci-app-onliner package/luc
 
 # eqosplus 定时限速插件
 # git clone https://github.com/sirpdboy/luci-app-eqosplus package/luci-app-eqosplus
-# 定时设置
+
+# 定时设置(任务设置)
 # git clone https://github.com/sirpdboy/luci-app-autotimeset package/luci-app-autotimeset
+# sed -i '/{"admin", "control"}/d' package/luci-app-autotimeset/luasrc/controller/autotimeset.lua
+# sed -i 's/"control"/"system"/g' package/luci-app-autotimeset/luasrc/controller/autotimeset.lua
 
 # AdGuardHome
 # git clone --depth=1 https://github.com/kongfl888/luci-app-adguardhome package/luci-app-adguardhome
