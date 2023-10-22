@@ -17,6 +17,3 @@
 # sed -i '$a src-git lienol https://github.com/Lienol/openwrt-package' feeds.conf.default
 # add a feed source 2
 # echo 'src-git lienol https://github.com/Lienol/openwrt-package' >>feeds.conf.default
-
-# 设置默认主题
-# sed -i ' s/luci-theme-bootstrap/luci-theme-neobird/g ' feeds/luci/collections/luci/Makefile
