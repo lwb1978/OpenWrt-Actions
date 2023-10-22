@@ -27,13 +27,6 @@ sed -i 's/${g}.*/${a}${b}${c}${d}${e}${f}${hydrid}/g' package/lean/autocore/file
 # passwall 科学
 git clone -b luci-smartdns-dev --single-branch https://github.com/xiaorouji/openwrt-passwall.git package/luci-app-passwall
 git clone https://github.com/xiaorouji/openwrt-passwall-packages.git package/openwrt-passwall
-# Go 1.21 updates
-# rm -rf package/openwrt-passwall/brook
-# rm -rf package/openwrt-passwall/v2ray-core
-# svn export https://github.com/immortalwrt/packages/trunk/net/brook feeds/packages/net/brook
-# ln -sf ../../../feeds/packages/net/brook ./package/feeds/packages/brook
-# svn export https://github.com/immortalwrt/packages/trunk/net/v2ray-core feeds/packages/net/v2ray-core
-# ln -sf ../../../feeds/packages/net/v2ray-core ./package/feeds/packages/v2ray-core
 
 # 添加 smartdns
 git clone -b lede --single-branch https://github.com/pymumu/luci-app-smartdns.git package/luci-app-smartdns
@@ -62,8 +55,8 @@ git clone https://github.com/lwb1978/msd_lite.git package/msd_lite
 git clone https://github.com/lwb1978/luci-app-msd_lite.git package/luci-app-msd_lite
 
 # 实时监控
-rm -rf feeds/luci/applications/luci-app-netdata
-git clone --depth=1 https://github.com/Jason6111/luci-app-netdata package/luci-app-netdata
+# rm -rf feeds/luci/applications/luci-app-netdata
+# git clone --depth=1 https://github.com/Jason6111/luci-app-netdata package/luci-app-netdata
 
 # 晶晨宝盒
 # svn export https://github.com/ophub/luci-app-amlogic/trunk/luci-app-amlogic package/luci-app-amlogic
@@ -78,13 +71,15 @@ svn export https://github.com/haiibo/packages/trunk/luci-app-onliner package/luc
 #sed -i '$i uci commit nlbwmon' package/lean/default-settings/files/zzz-default-settings
 #chmod 755 package/luci-app-onliner/root/usr/share/onliner/setnlbw.sh
 
+# 家长控制
+# git clone https://github.com/sirpdboy/luci-app-parentcontrol package/luci-app-parentcontrol
 # eqosplus 定时限速插件
 # git clone https://github.com/sirpdboy/luci-app-eqosplus package/luci-app-eqosplus
-
 # 定时设置(任务设置)
 # git clone https://github.com/sirpdboy/luci-app-autotimeset package/luci-app-autotimeset
 # sed -i '/{"admin", "control"}/d' package/luci-app-autotimeset/luasrc/controller/autotimeset.lua
 # sed -i 's/"control"/"system"/g' package/luci-app-autotimeset/luasrc/controller/autotimeset.lua
+# sed -i 's/"control"/"system"/g' package/luci-app-autotimeset/luasrc/view/autotimeset/log.htm
 
 # AdGuardHome
 # git clone --depth=1 https://github.com/kongfl888/luci-app-adguardhome package/luci-app-adguardhome
@@ -93,6 +88,9 @@ svn export https://github.com/haiibo/packages/trunk/luci-app-onliner package/luc
 # git clone https://github.com/lwb1978/luci-theme-neobird.git package/luci-theme-neobird
 rm -rf feeds/luci/themes/luci-theme-argon
 git clone --depth=1 -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon
+
+# 取消自添加主题的默认设置
+# find package/luci-theme-*/* -type f -name '*luci-theme-*' -print -exec sed -i '/set luci.main.mediaurlbase/d' {} \;
 
 # 设置默认主题
 # default_theme='Argon'
