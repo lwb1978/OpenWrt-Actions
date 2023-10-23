@@ -31,8 +31,9 @@ sed -i 's/${g}.*/${a}${b}${c}${d}${e}${f}${hydrid}/g' package/lean/autocore/file
 git clone -b luci-smartdns-dev --single-branch https://github.com/xiaorouji/openwrt-passwall.git package/luci-app-passwall
 git clone https://github.com/xiaorouji/openwrt-passwall-packages.git package/openwrt-passwall
 
-# 添加 smartdns
-git clone -b lede --single-branch https://github.com/pymumu/luci-app-smartdns.git package/luci-app-smartdns
+# SmartDNS
+rm -rf feeds/luci/applications/luci-app-smartdns
+git clone -b lede --single-branch https://github.com/lwb1978/luci-app-smartdns.git package/luci-app-smartdns
 # 更新lean仓库的smartdns版本到最新
 rm -rf feeds/packages/net/smartdns
 cp -rf ${GITHUB_WORKSPACE}/patch/smartdns feeds/packages/net
