@@ -31,4 +31,7 @@ iptvid=$(uci show firewall | grep 'Allow-IPTV-Incoming' | grep -oE '\[.*?\]' | s
 # uci set ttyd.@ttyd[0].command='/bin/login -f root'
 # uci commit ttyd
 
+# 取消路由器每天跑分任务
+sed -i '/coremark/d' /etc/crontabs/root
+
 exit 0
