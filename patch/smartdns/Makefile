@@ -11,7 +11,7 @@ PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://www.github.com/pymumu/smartdns.git
-PKG_SOURCE_VERSION:=5fec5261f9c54eb3061dfb3c658169c2ab9cbae8
+PKG_SOURCE_VERSION:=950a0fba95e625c715745caf348bb19082fe5ecd
 # PKG_MIRROR_HASH:=skip
 
 PKG_MAINTAINER:=Nick Peng <pymumu@gmail.com>
