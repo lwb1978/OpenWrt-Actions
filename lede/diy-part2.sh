@@ -67,14 +67,14 @@ git clone https://github.com/lwb1978/luci-app-msd_lite.git package/luci-app-msd_
 # git clone --depth=1 https://github.com/Jason6111/luci-app-netdata package/luci-app-netdata
 
 # 晶晨宝盒
-# svn export https://github.com/ophub/luci-app-amlogic/trunk/luci-app-amlogic package/luci-app-amlogic
+# merge_package main https://github.com/ophub/luci-app-amlogic.git package luci-app-amlogic
 
 # 应用商店iStore
-svn export https://github.com/linkease/istore-ui/trunk/app-store-ui package/app-store-ui
-svn export https://github.com/linkease/istore/trunk/luci package/luci-app-store
+merge_package main https://github.com/linkease/istore-ui.git package app-store-ui
+merge_package main https://github.com/linkease/istore.git package luci/luci-app-store
 
 # 在线用户
-svn export https://github.com/haiibo/packages/trunk/luci-app-onliner package/luci-app-onliner
+merge_package main https://github.com/haiibo/packages.git package luci-app-onliner
 #sed -i '$i uci set nlbwmon.@nlbwmon[0].refresh_interval=2s' package/lean/default-settings/files/zzz-default-settings
 #sed -i '$i uci commit nlbwmon' package/lean/default-settings/files/zzz-default-settings
 #chmod 755 package/luci-app-onliner/root/usr/share/onliner/setnlbw.sh
@@ -107,7 +107,7 @@ git clone --depth=1 -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git p
 # 修改Rockchip内核到6.1版
 sed -i 's/5.15/6.1/g' ./target/linux/rockchip/Makefile
 
-# 拉取软件仓库代码备忘
+# 拉取软件仓库代码备忘（GitHub已不再支持svn命令）
 # rm -rf package/lean/luci-app-cpufreq
 # svn co https://github.com/immortalwrt/luci/trunk/applications/luci-app-cpufreq feeds/luci/applications/luci-app-cpufreq
 # ln -sf ../../../feeds/luci/applications/luci-app-cpufreq ./package/feeds/luci/luci-app-cpufreq
@@ -140,3 +140,32 @@ fi
 
 ./scripts/feeds update -a
 ./scripts/feeds install -a
+
+# 拉取仓库文件夹
+function merge_package() {
+	# 参数1是分支名,参数2是库地址,参数3是所有文件下载到指定路径。
+	# 同一个仓库下载多个文件夹直接在后面跟文件名或路径，空格分开。
+	if [[ $# -lt 3 ]]; then
+	echo "Syntax error: [$#] [$*]" >&2
+	return 1
+	fi
+	trap 'rm -rf "$tmpdir"' EXIT
+	branch="$1" curl="$2" target_dir="$3" && shift 3
+	rootdir="$PWD"
+	localdir="$target_dir"
+	[ -d "$localdir" ] || mkdir -p "$localdir"
+	tmpdir="$(mktemp -d)" || exit 1
+	git clone -b "$branch" --depth 1 --filter=blob:none --sparse "$curl" "$tmpdir"
+	cd "$tmpdir"
+	git sparse-checkout init --cone
+	git sparse-checkout set "$@"
+	# 使用循环逐个移动文件夹
+	for folder in "$@"; do
+	mv -f "$folder" "$rootdir/$localdir"
+	done
+	cd "$rootdir"
+}
+
+# 示例:
+# merge_package master https://github.com/WYC-2020/openwrt-packages package/openwrt-packages luci-app-eqos luci-app-openclash luci-app-ddnsto ddnsto 
+# merge_package master https://github.com/lisaac/luci-app-dockerman package/lean applications/luci-app-dockerman
