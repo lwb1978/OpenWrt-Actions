@@ -14,9 +14,12 @@
 function merge_package() {
 	# 参数1是分支名,参数2是库地址,参数3是所有文件下载到指定路径。
 	# 同一个仓库下载多个文件夹直接在后面跟文件名或路径，空格分开。
+	# 示例:
+	# merge_package master https://github.com/WYC-2020/openwrt-packages package/openwrt-packages luci-app-eqos luci-app-openclash luci-app-ddnsto ddnsto 
+	# merge_package master https://github.com/lisaac/luci-app-dockerman package/lean applications/luci-app-dockerman
 	if [[ $# -lt 3 ]]; then
-	echo "Syntax error: [$#] [$*]" >&2
-	return 1
+		echo "Syntax error: [$#] [$*]" >&2
+		return 1
 	fi
 	trap 'rm -rf "$tmpdir"' EXIT
 	branch="$1" curl="$2" target_dir="$3" && shift 3
@@ -30,13 +33,10 @@ function merge_package() {
 	git sparse-checkout set "$@"
 	# 使用循环逐个移动文件夹
 	for folder in "$@"; do
-	mv -f "$folder" "$rootdir/$localdir"
+		mv -f "$folder" "$rootdir/$localdir"
 	done
 	cd "$rootdir"
 }
-# 示例:
-# merge_package master https://github.com/WYC-2020/openwrt-packages package/openwrt-packages luci-app-eqos luci-app-openclash luci-app-ddnsto ddnsto 
-# merge_package master https://github.com/lisaac/luci-app-dockerman package/lean applications/luci-app-dockerman
 
 # 默认IP由1.1修改为0.1
 # sed -i 's/192.168.1.1/192.168.0.1/g' package/base-files/files/bin/config_generate
@@ -163,7 +163,7 @@ sed -i 's/luci-app-nlbwmon //g' include/target.mk
 
 # 拷贝自定义文件
 if [ -n "$(ls -A "${GITHUB_WORKSPACE}/lede/diy" 2>/dev/null)" ]; then
-  cp -Rf ${GITHUB_WORKSPACE}/lede/diy/* .
+	cp -Rf ${GITHUB_WORKSPACE}/lede/diy/* .
 fi
 
 ./scripts/feeds update -a
