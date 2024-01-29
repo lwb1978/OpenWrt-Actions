@@ -99,7 +99,8 @@ git clone https://github.com/lwb1978/luci-app-msd_lite.git package/luci-app-msd_
 
 # 应用商店iStore
 merge_package main https://github.com/linkease/istore-ui.git package app-store-ui
-merge_package main https://github.com/linkease/istore.git package luci/luci-app-store luci/luci-lib-taskd luci/luci-lib-xterm luci/taskd
+# merge_package main https://github.com/linkease/istore.git package luci/luci-app-store luci/luci-lib-taskd luci/luci-lib-xterm luci/taskd
+git clone --depth=1 https://github.com/linkease/istore.git package/istore
 
 # 在线用户
 merge_package main https://github.com/haiibo/packages.git package luci-app-onliner
