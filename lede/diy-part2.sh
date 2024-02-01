@@ -135,6 +135,10 @@ git clone --depth=1 -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git p
 # 修改Rockchip内核到6.1版
 sed -i 's/5.15/6.1/g' ./target/linux/rockchip/Makefile
 
+# coremark
+rm -rf feeds/packages/utils/coremark
+merge_package main https://github.com/sbwml/openwrt_pkgs.git feeds/packages/utils coremark
+
 # unzip
 rm -rf feeds/packages/utils/unzip
 git clone https://github.com/sbwml/feeds_packages_utils_unzip feeds/packages/utils/unzip
