@@ -135,6 +135,10 @@ git clone --depth=1 -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git p
 # 修改Rockchip内核到6.1版
 sed -i 's/5.15/6.1/g' ./target/linux/rockchip/Makefile
 
+# unzip
+rm -rf feeds/packages/utils/unzip
+git clone https://github.com/sbwml/feeds_packages_utils_unzip feeds/packages/utils/unzip
+
 # 拉取软件仓库代码备忘（GitHub已不再支持svn命令）
 # rm -rf package/lean/luci-app-cpufreq
 # svn co https://github.com/immortalwrt/luci/trunk/applications/luci-app-cpufreq feeds/luci/applications/luci-app-cpufreq
