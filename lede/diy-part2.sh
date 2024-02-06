@@ -116,6 +116,12 @@ git clone https://github.com/lwb1978/luci-app-msd_lite.git package/luci-app-msd_
 # sed -i '/{"admin", "control"}/d' package/luci-app-autotimeset/luasrc/controller/autotimeset.lua
 # sed -i 's/"control"/"system"/g' package/luci-app-autotimeset/luasrc/controller/autotimeset.lua
 # sed -i 's/"control"/"system"/g' package/luci-app-autotimeset/luasrc/view/autotimeset/log.htm
+# ddns-go动态域名
+# git clone https://github.com/sirpdboy/luci-app-ddns-go.git package/ddns-go
+# lukcy大吉
+# git clone https://github.com/sirpdboy/luci-app-lucky.git package/lucky
+# 分区扩容
+# git clone https://github.com/sirpdboy/luci-app-partexp.git package/luci-app-partexp
 
 # AdGuardHome
 # git clone --depth=1 https://github.com/kongfl888/luci-app-adguardhome package/luci-app-adguardhome
