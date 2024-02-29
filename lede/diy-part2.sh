@@ -155,7 +155,7 @@ git clone https://github.com/sbwml/feeds_packages_net_curl feeds/packages/net/cu
 
 # golang 1.22
 rm -rf feeds/packages/lang/golang
-git clone -b 22.x https://github.com/sbwml/packages_lang_golang feeds/packages/lang/golang
+git clone --depth=1 https://github.com/sbwml/packages_lang_golang feeds/packages/lang/golang
 
 # 拉取软件仓库代码备忘（GitHub已不再支持svn命令）
 # rm -rf package/lean/luci-app-cpufreq
