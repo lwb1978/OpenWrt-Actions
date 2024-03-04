@@ -157,6 +157,9 @@ git clone https://github.com/sbwml/feeds_packages_utils_unzip feeds/packages/uti
 rm -rf feeds/packages/lang/golang
 git clone --depth=1 https://github.com/sbwml/packages_lang_golang feeds/packages/lang/golang
 
+# 优化socat中英翻译
+sed -i 's/仅IPv6/仅 IPv6/g' package/feeds/luci/luci-app-socat/po/zh-cn/socat.po
+
 # 拉取软件仓库代码备忘（GitHub已不再支持svn命令）
 # rm -rf package/lean/luci-app-cpufreq
 # svn co https://github.com/immortalwrt/luci/trunk/applications/luci-app-cpufreq feeds/luci/applications/luci-app-cpufreq
