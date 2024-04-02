@@ -65,7 +65,7 @@ rm -rf feeds/packages/net/{xray-core,v2ray-core,v2ray-geodata,sing-box}
 git clone --depth=1 https://github.com/sbwml/openwrt_helloworld package/openwrt-passwall
 rm -rf package/openwrt-passwall/{luci-app-passwall,luci-app-passwall2,luci-app-ssr-plus}
 # 拉取xiaorouji仓库app
-git clone -b luci-smartdns-dev --single-branch https://github.com/xiaorouji/openwrt-passwall package/luci-app-passwall
+git clone -b luci-smartdns-dev --single-branch https://github.com/lwb1978/openwrt-passwall package/luci-app-passwall
 # git clone https://github.com/xiaorouji/openwrt-passwall package/luci-app-passwall
 # git clone https://github.com/xiaorouji/openwrt-passwall-packages package/openwrt-passwall
 # ------------------------------------------------------------
@@ -147,6 +147,8 @@ git clone --depth=1 -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git p
 
 # 修改Rockchip内核到6.1版
 sed -i 's/5.15/6.1/g' ./target/linux/rockchip/Makefile
+# 修改x86内核到6.6版
+sed -i 's/6.1/6.6/g' ./target/linux/x86/Makefile
 
 # coremark
 rm -rf feeds/packages/utils/coremark
