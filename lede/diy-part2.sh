@@ -72,7 +72,7 @@ git clone -b luci-smartdns-dev --single-branch https://github.com/lwb1978/openwr
 
 # SmartDNS
 rm -rf feeds/luci/applications/luci-app-smartdns
-git clone -b lede --single-branch https://github.com/lwb1978/luci-app-smartdns.git package/luci-app-smartdns
+git clone -b lede --single-branch https://github.com/lwb1978/luci-app-smartdns package/luci-app-smartdns
 # 更新lean仓库的smartdns版本到最新
 rm -rf feeds/packages/net/smartdns
 cp -rf ${GITHUB_WORKSPACE}/patch/smartdns feeds/packages/net
@@ -83,9 +83,9 @@ cp -rf ${GITHUB_WORKSPACE}/patch/smartdns feeds/packages/net
 
 # pushd package/lean/
 # helloworld 科学
-# git clone https://github.com/jerrykuku/lua-maxminddb.git
-# git clone https://github.com/jerrykuku/luci-app-vssr.git
-# git clone -b 18.06 https://github.com/lwb1978/luci-app-omcproxy.git
+# git clone https://github.com/jerrykuku/lua-maxminddb
+# git clone https://github.com/jerrykuku/luci-app-vssr
+# git clone -b 18.06 https://github.com/lwb1978/luci-app-omcproxy
 # popd
 
 # 替换udpxy为修改版
@@ -94,19 +94,19 @@ cp -f ${GITHUB_WORKSPACE}/patch/udpxy/Makefile feeds/packages/net/udpxy/
 
 # 添加MSD组播转http插件（替换掉LEDE仓库版本）
 rm -rf feeds/packages/net/msd_lite
-git clone https://github.com/lwb1978/msd_lite.git package/msd_lite
-git clone https://github.com/lwb1978/luci-app-msd_lite.git package/luci-app-msd_lite
+merge_package master https://github.com/immortalwrt/packages feeds/packages/net net/msd_lite
+git clone https://github.com/lwb1978/luci-app-msd_lite package/luci-app-msd_lite
 
 # 实时监控
 # rm -rf feeds/luci/applications/luci-app-netdata
 # git clone --depth=1 https://github.com/Jason6111/luci-app-netdata package/luci-app-netdata
 
 # 晶晨宝盒
-# merge_package main https://github.com/ophub/luci-app-amlogic.git package luci-app-amlogic
+# merge_package main https://github.com/ophub/luci-app-amlogic package luci-app-amlogic
 
 # 应用商店iStore
-# merge_package main https://github.com/linkease/istore-ui.git package app-store-ui
-# git clone --depth=1 https://github.com/linkease/istore.git package/istore
+# merge_package main https://github.com/linkease/istore-ui package app-store-ui
+# git clone --depth=1 https://github.com/linkease/istore package/istore
 
 # 在线用户
 # merge_package main https://github.com/haiibo/packages.git package luci-app-onliner
@@ -124,19 +124,19 @@ git clone https://github.com/lwb1978/luci-app-msd_lite.git package/luci-app-msd_
 # sed -i 's/"control"/"system"/g' package/luci-app-autotimeset/luasrc/controller/autotimeset.lua
 # sed -i 's/"control"/"system"/g' package/luci-app-autotimeset/luasrc/view/autotimeset/log.htm
 # ddns-go动态域名
-# git clone https://github.com/sirpdboy/luci-app-ddns-go.git package/ddns-go
+# git clone https://github.com/sirpdboy/luci-app-ddns-go package/ddns-go
 # lukcy大吉
-# git clone https://github.com/sirpdboy/luci-app-lucky.git package/lucky
+# git clone https://github.com/sirpdboy/luci-app-lucky package/lucky
 # 分区扩容
-# git clone https://github.com/sirpdboy/luci-app-partexp.git package/luci-app-partexp
+# git clone https://github.com/sirpdboy/luci-app-partexp package/luci-app-partexp
 
 # AdGuardHome
 # git clone --depth=1 https://github.com/kongfl888/luci-app-adguardhome package/luci-app-adguardhome
 
 # 添加主题
-# git clone https://github.com/lwb1978/luci-theme-neobird.git package/luci-theme-neobird
+# git clone https://github.com/lwb1978/luci-theme-neobird package/luci-theme-neobird
 rm -rf feeds/luci/themes/luci-theme-argon
-git clone --depth=1 -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon
+git clone --depth=1 -b 18.06 https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
 
 # 取消自添加主题的默认设置
 # find package/luci-theme-*/* -type f -name '*luci-theme-*' -print -exec sed -i '/set luci.main.mediaurlbase/d' {} \;
@@ -152,7 +152,7 @@ sed -i 's/6.1/6.6/g' ./target/linux/x86/Makefile
 
 # coremark
 rm -rf feeds/packages/utils/coremark
-merge_package main https://github.com/sbwml/openwrt_pkgs.git feeds/packages/utils coremark
+merge_package main https://github.com/sbwml/openwrt_pkgs feeds/packages/utils coremark
 
 # unzip
 rm -rf feeds/packages/utils/unzip
