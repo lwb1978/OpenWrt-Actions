@@ -68,10 +68,14 @@ rm -rf package/openwrt-passwall/{luci-app-passwall,luci-app-passwall2,luci-app-s
 git clone -b luci-smartdns-dev --single-branch https://github.com/lwb1978/openwrt-passwall package/luci-app-passwall
 # git clone https://github.com/xiaorouji/openwrt-passwall package/luci-app-passwall
 # git clone https://github.com/xiaorouji/openwrt-passwall-packages package/openwrt-passwall
-# 拉取immortalwrt仓库haproxy
-rm -rf feeds/packages/net/haproxy
-merge_package master https://github.com/immortalwrt/packages feeds/packages/net net/haproxy
 # ------------------------------------------------------------
+
+# 拉取immortalwrt仓库组件
+rm -rf feeds/packages/net/{haproxy,msd_lite,curl}
+merge_package master https://github.com/immortalwrt/packages feeds/packages/net net/haproxy net/msd_lite net/curl
+
+# MSD组播转http插件
+git clone https://github.com/lwb1978/luci-app-msd_lite package/luci-app-msd_lite
 
 # SmartDNS
 rm -rf feeds/luci/applications/luci-app-smartdns
@@ -87,11 +91,6 @@ cp -rf ${GITHUB_WORKSPACE}/patch/smartdns feeds/packages/net
 # 替换udpxy为修改版
 rm -rf feeds/packages/net/udpxy/Makefile
 cp -f ${GITHUB_WORKSPACE}/patch/udpxy/Makefile feeds/packages/net/udpxy/
-
-# 添加MSD组播转http插件（替换掉LEDE仓库版本）
-rm -rf feeds/packages/net/msd_lite
-merge_package master https://github.com/immortalwrt/packages feeds/packages/net net/msd_lite
-git clone https://github.com/lwb1978/luci-app-msd_lite package/luci-app-msd_lite
 
 # 实时监控
 # rm -rf feeds/luci/applications/luci-app-netdata
@@ -153,10 +152,6 @@ merge_package main https://github.com/sbwml/openwrt_pkgs feeds/packages/utils co
 # unzip
 rm -rf feeds/packages/utils/unzip
 git clone https://github.com/sbwml/feeds_packages_utils_unzip feeds/packages/utils/unzip
-
-# 更新curl版本
-rm -rf feeds/packages/net/curl
-git clone https://github.com/sbwml/feeds_packages_net_curl feeds/packages/net/curl
 
 # golang 1.22
 rm -rf feeds/packages/lang/golang
