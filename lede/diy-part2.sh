@@ -68,6 +68,9 @@ rm -rf package/openwrt-passwall/{luci-app-passwall,luci-app-passwall2,luci-app-s
 git clone -b luci-smartdns-dev --single-branch https://github.com/lwb1978/openwrt-passwall package/luci-app-passwall
 # git clone https://github.com/xiaorouji/openwrt-passwall package/luci-app-passwall
 # git clone https://github.com/xiaorouji/openwrt-passwall-packages package/openwrt-passwall
+# 拉取immortalwrt仓库haproxy
+rm -rf feeds/packages/net/haproxy
+merge_package master https://github.com/immortalwrt/packages feeds/packages/net net/haproxy
 # ------------------------------------------------------------
 
 # SmartDNS
@@ -80,13 +83,6 @@ cp -rf ${GITHUB_WORKSPACE}/patch/smartdns feeds/packages/net
 # sed -i 's/1.2021.35/2022.03.02/g' feeds/packages/net/smartdns/Makefile
 # sed -i 's/f50e4dd0813da9300580f7188e44ed72a27ae79c/1fd18601e7d8ac88e8557682be7de3dc56e69105/g' feeds/packages/net/smartdns/Makefile
 # sed -i 's/^PKG_MIRROR_HASH/#&/' feeds/packages/net/smartdns/Makefile
-
-# pushd package/lean/
-# helloworld 科学
-# git clone https://github.com/jerrykuku/lua-maxminddb
-# git clone https://github.com/jerrykuku/luci-app-vssr
-# git clone -b 18.06 https://github.com/lwb1978/luci-app-omcproxy
-# popd
 
 # 替换udpxy为修改版
 rm -rf feeds/packages/net/udpxy/Makefile
