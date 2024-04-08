@@ -154,9 +154,9 @@ merge_package main https://github.com/sbwml/openwrt_pkgs feeds/packages/utils co
 rm -rf feeds/packages/utils/unzip
 git clone https://github.com/sbwml/feeds_packages_utils_unzip feeds/packages/utils/unzip
 
-# 替换curl版本回到8.5.0 - 修复 passwall 百度连通性测试失败
-# rm -rf feeds/packages/net/curl
-# git clone https://github.com/sbwml/feeds_packages_net_curl feeds/packages/net/curl
+# 更新curl版本
+rm -rf feeds/packages/net/curl
+git clone https://github.com/sbwml/feeds_packages_net_curl feeds/packages/net/curl
 
 # golang 1.22
 rm -rf feeds/packages/lang/golang
