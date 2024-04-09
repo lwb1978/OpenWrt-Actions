@@ -71,11 +71,14 @@ git clone -b luci-smartdns-dev --single-branch https://github.com/lwb1978/openwr
 # ------------------------------------------------------------
 
 # 拉取immortalwrt仓库组件
-rm -rf feeds/packages/net/{haproxy,msd_lite}
-merge_package master https://github.com/immortalwrt/packages feeds/packages/net net/haproxy net/msd_lite
+rm -rf feeds/packages/net/{haproxy,msd_lite,curl}
+merge_package master https://github.com/immortalwrt/packages feeds/packages/net net/haproxy net/msd_lite net/curl
 
 # MSD组播转http插件
 git clone https://github.com/lwb1978/luci-app-msd_lite package/luci-app-msd_lite
+
+# libnghttp3 libngtcp2
+merge_package master https://github.com/openwrt/packages feeds/packages/libs libs/nghttp3 libs/ngtcp2
 
 # SmartDNS
 rm -rf feeds/luci/applications/luci-app-smartdns
@@ -141,9 +144,9 @@ git clone --depth=1 -b 18.06 https://github.com/jerrykuku/luci-theme-argon packa
 # sed -i "s/bootstrap/$default_theme/g" feeds/luci/modules/luci-base/root/etc/config/luci
 
 # 修改Rockchip内核到6.6版
-sed -i 's/6.1/6.6/g' ./target/linux/rockchip/Makefile
+sed -i 's/KERNEL_PATCHVER:=.*/KERNEL_PATCHVER:=6.6/g' ./target/linux/rockchip/Makefile
 # 修改x86内核到6.6版
-sed -i 's/6.1/6.6/g' ./target/linux/x86/Makefile
+sed -i 's/KERNEL_PATCHVER:=.*/KERNEL_PATCHVER:=6.6/g' ./target/linux/x86/Makefile
 
 # coremark
 rm -rf feeds/packages/utils/coremark
