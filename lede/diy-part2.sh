@@ -71,8 +71,8 @@ git clone -b luci-smartdns-dev --single-branch https://github.com/lwb1978/openwr
 # ------------------------------------------------------------
 
 # 拉取immortalwrt仓库组件
-rm -rf feeds/packages/net/{haproxy,msd_lite,curl}
-merge_package master https://github.com/immortalwrt/packages feeds/packages/net net/haproxy net/msd_lite net/curl
+rm -rf feeds/packages/net/{haproxy,msd_lite}
+merge_package master https://github.com/immortalwrt/packages feeds/packages/net net/haproxy net/msd_lite
 
 # MSD组播转http插件
 git clone https://github.com/lwb1978/luci-app-msd_lite package/luci-app-msd_lite
