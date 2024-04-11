@@ -10,6 +10,7 @@
 # Description: OpenWrt DIY script part 2 (After Update feeds)
 #
 
+chmod +x ./subscript.sh
 source ./subscript.sh
 
 # 默认IP由1.1修改为0.1
