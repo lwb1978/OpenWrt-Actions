@@ -27,3 +27,12 @@ function merge_package() {
 	done
 	cd "$rootdir"
 }
+
+function drop_package(){
+    find package/ -follow -name $1 -not -path "package/custom/*" | xargs -rt rm -rf
+}
+
+function merge_feed(){
+    ./scripts/feeds update $1
+    ./scripts/feeds install -a -p $1
+}
