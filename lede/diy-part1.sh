@@ -20,7 +20,8 @@
 
 mkdir custom-feed
 pushd custom-feed
-sed -i '/src-link custom/d' feeds.conf.default
-echo "src-link custom $(pwd)" >> feeds.conf.default
+export custom_feed="$(pwd)"
 popd
+sed -i '/src-link custom/d' feeds.conf.default
+echo "src-link custom $custom_feed" >> feeds.conf.default
 
