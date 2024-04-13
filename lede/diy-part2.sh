@@ -10,8 +10,8 @@
 # Description: OpenWrt DIY script part 2 (After Update feeds)
 #
 
-chmod +x ./subscript.sh
-source ./subscript.sh
+chmod +x ${GITHUB_WORKSPACE}/lede/subscript.sh
+source ${GITHUB_WORKSPACE}/lede/subscript.sh
 
 # 默认IP由1.1修改为0.1
 # sed -i 's/192.168.1.1/192.168.0.1/g' package/base-files/files/bin/config_generate
