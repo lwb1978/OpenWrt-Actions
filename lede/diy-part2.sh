@@ -171,5 +171,5 @@ if [ -n "$(ls -A "${GITHUB_WORKSPACE}/lede/diy" 2>/dev/null)" ]; then
 	cp -Rf ${GITHUB_WORKSPACE}/lede/diy/* .
 fi
 
-./scripts/feeds update -a
+./scripts/feeds update -i
 ./scripts/feeds install -a
