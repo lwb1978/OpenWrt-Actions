@@ -54,8 +54,6 @@ git clone https://github.com/lwb1978/luci-app-msd_lite package/luci-app-msd_lite
 
 # 添加新版curl依赖：libnghttp3 libngtcp2
 merge_package master https://github.com/openwrt/packages feeds/packages/libs libs/nghttp3 libs/ngtcp2
-merge_feed libnghttp3
-merge_feed libngtcp2
 
 # SmartDNS
 rm -rf feeds/luci/applications/luci-app-smartdns
