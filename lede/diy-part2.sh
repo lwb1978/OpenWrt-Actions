@@ -9,9 +9,16 @@
 # File name: diy-part2.sh
 # Description: OpenWrt DIY script part 2 (After Update feeds)
 #
+echo "开始 DIY2 配置……"
+echo "========================="
 
 chmod +x ${GITHUB_WORKSPACE}/lede/subscript.sh
 source ${GITHUB_WORKSPACE}/lede/subscript.sh
+
+# 修改Rockchip内核到6.6版
+sed -i 's/KERNEL_PATCHVER:=.*/KERNEL_PATCHVER:=6.6/g' ./target/linux/rockchip/Makefile
+# 修改x86内核到6.6版
+sed -i 's/KERNEL_PATCHVER:=.*/KERNEL_PATCHVER:=6.6/g' ./target/linux/x86/Makefile
 
 # 默认IP由1.1修改为0.1
 # sed -i 's/192.168.1.1/192.168.0.1/g' package/base-files/files/bin/config_generate
@@ -45,15 +52,16 @@ git clone -b luci-smartdns-dev --single-branch https://github.com/lwb1978/openwr
 # git clone https://github.com/xiaorouji/openwrt-passwall-packages package/openwrt-passwall
 # ------------------------------------------------------------
 
+# libnghttp3 libngtcp2
+rm -rf feeds/packages/libs/{nghttp2,nghttp3,ngtcp2}
+merge_package master https://github.com/immortalwrt/packages feeds/packages/libs libs/nghttp2 libs/nghttp3 libs/ngtcp2
+
 # 拉取immortalwrt仓库组件
 rm -rf feeds/packages/net/{haproxy,msd_lite,curl}
 merge_package master https://github.com/immortalwrt/packages feeds/packages/net net/haproxy net/msd_lite net/curl
 
 # MSD组播转http插件
 git clone https://github.com/lwb1978/luci-app-msd_lite package/luci-app-msd_lite
-
-# 添加新版curl依赖：libnghttp3 libngtcp2
-merge_package master https://github.com/openwrt/packages feeds/packages/libs libs/nghttp3 libs/ngtcp2
 
 # SmartDNS
 rm -rf feeds/luci/applications/luci-app-smartdns
@@ -69,6 +77,10 @@ cp -rf ${GITHUB_WORKSPACE}/patch/smartdns feeds/packages/net
 # 替换udpxy为修改版
 rm -rf feeds/packages/net/udpxy/Makefile
 cp -f ${GITHUB_WORKSPACE}/patch/udpxy/Makefile feeds/packages/net/udpxy/
+
+# socat
+sed -i 's/PKG_VERSION:=.*/PKG_VERSION:=1.8.0.0/g' feeds/packages/net/socat/Makefile
+sed -i 's/PKG_HASH:=.*/PKG_HASH:=e1de683dd22ee0e3a6c6bbff269abe18ab0c9d7eb650204f125155b9005faca7/g' feeds/packages/net/socat/Makefile
 
 # 实时监控
 # rm -rf feeds/luci/applications/luci-app-netdata
@@ -118,11 +130,6 @@ git clone --depth=1 -b 18.06 https://github.com/jerrykuku/luci-theme-argon packa
 # default_theme='Argon'
 # sed -i "s/bootstrap/$default_theme/g" feeds/luci/modules/luci-base/root/etc/config/luci
 
-# 修改Rockchip内核到6.6版
-sed -i 's/KERNEL_PATCHVER:=.*/KERNEL_PATCHVER:=6.6/g' ./target/linux/rockchip/Makefile
-# 修改x86内核到6.6版
-sed -i 's/KERNEL_PATCHVER:=.*/KERNEL_PATCHVER:=6.6/g' ./target/linux/x86/Makefile
-
 # coremark
 rm -rf feeds/packages/utils/coremark
 merge_package main https://github.com/sbwml/openwrt_pkgs feeds/packages/utils coremark
@@ -169,5 +176,9 @@ if [ -n "$(ls -A "${GITHUB_WORKSPACE}/lede/diy" 2>/dev/null)" ]; then
 	cp -Rf ${GITHUB_WORKSPACE}/lede/diy/* .
 fi
 
-./scripts/feeds update -i
+./scripts/feeds update -a
 ./scripts/feeds install -a
+
+echo "========================="
+echo " DIY2 配置完成……"
+
