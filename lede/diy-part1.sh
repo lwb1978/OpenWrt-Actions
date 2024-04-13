@@ -17,3 +17,10 @@
 # sed -i '$a src-git lienol https://github.com/Lienol/openwrt-package' feeds.conf.default
 # add a feed source 2
 # echo 'src-git lienol https://github.com/Lienol/openwrt-package' >>feeds.conf.default
+
+mkdir custom-feed
+pushd custom-feed
+sed -i '/src-link custom/d' feeds.conf.default
+echo "src-link custom $(pwd)" >> feeds.conf.default
+popd
+
