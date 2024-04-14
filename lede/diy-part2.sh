@@ -41,15 +41,15 @@ sed -i 's/os.date("%c")/os.date("%Y-%m-%d %H:%M:%S")/g' package/feeds/luci/luci-
 sed -i 's/${g}.*/${a}${b}${c}${d}${e}${f}${hydrid}/g' package/lean/autocore/files/x86/autocore
 
 # ------------------PassWall 科学上网--------------------------
-# 移除 openwrt feeds 自带的核心包
+# 移除 openwrt feeds 自带的核心库
 rm -rf feeds/packages/net/{xray-core,v2ray-core,v2ray-geodata,sing-box,pdnsd-alt}
-# 拉取sbwml的组件库并只保留核心包
-git clone --depth=1 https://github.com/sbwml/openwrt_helloworld package/openwrt-passwall
-rm -rf package/openwrt-passwall/{luci-app-passwall,luci-app-passwall2,luci-app-ssr-plus}
-# 拉取xiaorouji仓库app
-git clone -b luci-smartdns-dev --single-branch https://github.com/lwb1978/openwrt-passwall package/luci-app-passwall
-# git clone https://github.com/xiaorouji/openwrt-passwall package/luci-app-passwall
-# git clone https://github.com/xiaorouji/openwrt-passwall-packages package/openwrt-passwall
+# 核心库
+git clone https://github.com/xiaorouji/openwrt-passwall-packages package/openwrt-passwall
+rm -rf package/openwrt-passwall/{chinadns-ng,naiveproxy,shadowsocks-rust}
+merge_package v5 https://github.com/sbwml/openwrt_helloworld package/openwrt-passwall chinadns-ng naiveproxy shadowsocks-rust
+# app
+git clone -b luci-smartdns-dev --single-branch https://github.com/lwb1978/openwrt-passwall package/openwrt-passwall
+# git clone https://github.com/xiaorouji/openwrt-passwall package/openwrt-passwall
 # ------------------------------------------------------------
 
 # nghttp2
