@@ -43,9 +43,9 @@ sed -i 's/${g}.*/${a}${b}${c}${d}${e}${f}${hydrid}/g' package/lean/autocore/file
 # ------------------PassWall 科学上网--------------------------
 # 移除 openwrt feeds 自带的核心包
 rm -rf feeds/packages/net/{xray-core,v2ray-core,v2ray-geodata,sing-box}
-# 拉取sbwml大佬的组件库并只保留核心包
+# 拉取sbwml的组件库并只保留核心包
 git clone --depth=1 https://github.com/sbwml/openwrt_helloworld package/openwrt-passwall
-rm -rf package/openwrt-passwall/{luci-app-passwall,luci-app-passwall2,luci-app-ssr-plus}
+rm -rf package/openwrt-passwall/{luci-app-passwall,luci-app-passwall2,luci-app-ssr-plus,pdnsd}
 # 拉取xiaorouji仓库app
 git clone -b luci-smartdns-dev --single-branch https://github.com/lwb1978/openwrt-passwall package/luci-app-passwall
 # git clone https://github.com/xiaorouji/openwrt-passwall package/luci-app-passwall
@@ -88,6 +88,12 @@ sed -i 's/PKG_VERSION:=.*/PKG_VERSION:=1.8.0.0/g' feeds/packages/net/socat/Makef
 sed -i 's/PKG_HASH:=.*/PKG_HASH:=e1de683dd22ee0e3a6c6bbff269abe18ab0c9d7eb650204f125155b9005faca7/g' feeds/packages/net/socat/Makefile
 # 优化socat中英翻译
 sed -i 's/仅IPv6/仅 IPv6/g' package/feeds/luci/luci-app-socat/po/zh-cn/socat.po
+
+# ttyd
+sed -i 's/PKG_VERSION:=.*/PKG_VERSION:=1.7.3/g' feeds/packages/utils/ttyd/Makefile
+sed -i 's/PKG_RELEASE:=.*/PKG_RELEASE:=1/g' feeds/packages/utils/ttyd/Makefile
+sed -i 's/PKG_HASH:=.*/PKG_HASH:=c9cf5eece52d27c5d728000f11315d36cb400c6948d1964a34a7eae74b454099/g' feeds/packages/utils/ttyd/Makefile
+rm -f feeds/packages/utils/ttyd/patches/090*.patch
 
 # 实时监控
 # rm -rf feeds/luci/applications/luci-app-netdata
