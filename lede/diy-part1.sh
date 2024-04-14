@@ -10,6 +10,9 @@
 # Description: OpenWrt DIY script part 1 (Before Update feeds)
 #
 
+chmod +x ${GITHUB_WORKSPACE}/lede/subscript.sh
+source ${GITHUB_WORKSPACE}/lede/subscript.sh
+
 # Uncomment a feed source
 # sed -i 's/^#\(.*helloworld\)/\1/' feeds.conf.default
 
@@ -20,8 +23,10 @@
 
 mkdir custom-feed
 pushd custom-feed
-export custom_feed="$(pwd)"
+  export custom_feed="$(pwd)"
 popd
 sed -i '/src-link custom/d' feeds.conf.default
 echo "src-link custom $custom_feed" >> feeds.conf.default
 
+# 添加 libnghttp3 libngtcp2 修复新版curl报缺少依赖
+merge_package master https://github.com/immortalwrt/packages custom-feed/libs libs/nghttp3 libs/ngtcp2
