@@ -57,8 +57,8 @@ sed -i 's/PKG_VERSION:=.*/PKG_VERSION:=1.57.0/g' feeds/packages/libs/nghttp2/Mak
 sed -i 's/PKG_HASH:=.*/PKG_HASH:=9210b0113109f43be526ac5835d58a701411821a4d39e155c40d67c40f47a958/g' feeds/packages/libs/nghttp2/Makefile
 
 # 拉取immortalwrt仓库组件
-rm -rf feeds/packages/net/{haproxy,msd_lite,curl}
-merge_package master https://github.com/immortalwrt/packages feeds/packages/net net/haproxy net/msd_lite net/curl
+rm -rf feeds/packages/net/{haproxy,msd_lite}
+merge_package master https://github.com/immortalwrt/packages feeds/packages/net net/haproxy net/msd_lite
 
 # MSD组播转http插件
 git clone https://github.com/lwb1978/luci-app-msd_lite package/luci-app-msd_lite
