@@ -45,8 +45,8 @@ sed -i 's/${g}.*/${a}${b}${c}${d}${e}${f}${hydrid}/g' package/lean/autocore/file
 rm -rf feeds/packages/net/{xray-core,v2ray-core,v2ray-geodata,sing-box,pdnsd-alt}
 # 核心库
 git clone https://github.com/xiaorouji/openwrt-passwall-packages package/openwrt-passwall
-rm -rf package/openwrt-passwall/{chinadns-ng,naiveproxy,shadowsocks-rust}
-merge_package v5 https://github.com/sbwml/openwrt_helloworld package/openwrt-passwall chinadns-ng naiveproxy shadowsocks-rust
+rm -rf package/openwrt-passwall/{chinadns-ng,naiveproxy,shadowsocks-rust,v2ray-geodata}
+merge_package v5 https://github.com/sbwml/openwrt_helloworld package/openwrt-passwall chinadns-ng naiveproxy shadowsocks-rust v2ray-geodata
 # app
 git clone -b luci-smartdns-dev --single-branch https://github.com/lwb1978/openwrt-passwall package/openwrt-passwall
 # git clone https://github.com/xiaorouji/openwrt-passwall package/openwrt-passwall
