@@ -56,11 +56,6 @@ git clone -b luci-smartdns-dev --single-branch https://github.com/lwb1978/openwr
 sed -i 's/PKG_VERSION:=.*/PKG_VERSION:=1.57.0/g' feeds/packages/libs/nghttp2/Makefile
 sed -i 's/PKG_HASH:=.*/PKG_HASH:=9210b0113109f43be526ac5835d58a701411821a4d39e155c40d67c40f47a958/g' feeds/packages/libs/nghttp2/Makefile
 
-# libnghttp3 libngtcp2
-merge_package master https://github.com/immortalwrt/packages custom-feed/libs libs/nghttp3 libs/ngtcp2
-./scripts/feeds update custom
-./scripts/feeds install -a -p custom
-
 # 拉取immortalwrt仓库组件
 rm -rf feeds/packages/net/{haproxy,msd_lite,curl}
 merge_package master https://github.com/immortalwrt/packages feeds/packages/net net/haproxy net/msd_lite net/curl
