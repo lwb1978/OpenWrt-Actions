@@ -95,6 +95,15 @@ sed -i 's/PKG_RELEASE:=.*/PKG_RELEASE:=1/g' feeds/packages/utils/ttyd/Makefile
 sed -i 's/PKG_HASH:=.*/PKG_HASH:=c9cf5eece52d27c5d728000f11315d36cb400c6948d1964a34a7eae74b454099/g' feeds/packages/utils/ttyd/Makefile
 rm -f feeds/packages/utils/ttyd/patches/090*.patch
 
+# samba4
+rm -rf feeds/packages/net/samba4
+git clone https://github.com/sbwml/feeds_packages_net_samba4 feeds/packages/net/samba4
+# enable multi-channel
+sed -i '/workgroup/a \\n\t## enable multi-channel' feeds/packages/net/samba4/files/smb.conf.template
+sed -i '/enable multi-channel/a \\tserver multi channel support = yes' feeds/packages/net/samba4/files/smb.conf.template
+sed -i 's/#aio read size = 0/aio read size = 1/g' feeds/packages/net/samba4/files/smb.conf.template
+sed -i 's/#aio write size = 0/aio write size = 1/g' feeds/packages/net/samba4/files/smb.conf.template
+
 # 实时监控
 # rm -rf feeds/luci/applications/luci-app-netdata
 # git clone --depth=1 https://github.com/Jason6111/luci-app-netdata package/luci-app-netdata
