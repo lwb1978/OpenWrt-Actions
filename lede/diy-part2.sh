@@ -71,7 +71,7 @@ rm -rf feeds/luci/applications/luci-app-smartdns
 git clone -b lede --single-branch https://github.com/lwb1978/luci-app-smartdns package/luci-app-smartdns
 # 更新lean仓库的smartdns版本到最新
 rm -rf feeds/packages/net/smartdns
-cp -rf ${GITHUB_WORKSPACE}/patch/smartdns feeds/packages/net/smartdns
+cp -rf ${GITHUB_WORKSPACE}/patch/smartdns feeds/packages/net
 # 更新lean的内置的smartdns版本
 # sed -i 's/1.2021.35/2022.03.02/g' feeds/packages/net/smartdns/Makefile
 # sed -i 's/f50e4dd0813da9300580f7188e44ed72a27ae79c/1fd18601e7d8ac88e8557682be7de3dc56e69105/g' feeds/packages/net/smartdns/Makefile
@@ -157,6 +157,13 @@ git clone https://github.com/sbwml/feeds_packages_utils_unzip feeds/packages/uti
 # golang 1.22
 rm -rf feeds/packages/lang/golang
 git clone --depth=1 https://github.com/sbwml/packages_lang_golang feeds/packages/lang/golang
+
+# shell解释器换成bash
+prebuilt="x86_64 aarch64_generic"
+if [[ "$prebuilt" =~ "$platform" ]]; then
+	sed -i 's#ash#bash#g' package/base-files/files/etc/passwd
+fi
+sed -i 's#\\u@\\h:\\w\\\$#\\[\\e[32;1m\\][\\u@\\h\\[\\e[0m\\] \\[\\033[01;34m\\]\\W\\[\\033[00m\\]\\[\\e[32;1m\\]]\\[\\e[0m\\]\\\$#g' package/base-files/files/etc/profile
 
 # 拉取软件仓库代码备忘（GitHub已不再支持svn命令）
 # rm -rf package/lean/luci-app-cpufreq
