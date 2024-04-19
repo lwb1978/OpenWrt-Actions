@@ -81,6 +81,14 @@ cp -rf ${GITHUB_WORKSPACE}/patch/smartdns feeds/packages/net
 rm -rf feeds/packages/net/udpxy/Makefile
 cp -f ${GITHUB_WORKSPACE}/patch/udpxy/Makefile feeds/packages/net/udpxy/
 
+# 更新curl
+curl_ver=$(cat feeds/packages/net/curl/Makefile | grep -i "PKG_VERSION:=" | awk 'BEGIN{FS="="};{print $2}' | awk 'BEGIN{FS=".";OFS="."};{print $1,$2}')
+if [ $curl_ver \< 8.7 ]; then
+	echo "替换curl版本"
+	rm -rf feeds/packages/net/curl
+	cp -rf ${GITHUB_WORKSPACE}/patch/curl-lede feeds/packages/net/curl
+fi
+
 # samba4
 rm -rf feeds/packages/net/samba4
 git clone https://github.com/sbwml/feeds_packages_net_samba4 feeds/packages/net/samba4
