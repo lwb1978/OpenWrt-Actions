@@ -52,16 +52,19 @@ git clone -b luci-smartdns-dev --single-branch https://github.com/lwb1978/openwr
 # git clone https://github.com/xiaorouji/openwrt-passwall package/passwall-luci
 # ------------------------------------------------------------
 
-# nghttp2
-sed -i 's/PKG_VERSION:=.*/PKG_VERSION:=1.57.0/g' feeds/packages/libs/nghttp2/Makefile
-sed -i 's/PKG_HASH:=.*/PKG_HASH:=9210b0113109f43be526ac5835d58a701411821a4d39e155c40d67c40f47a958/g' feeds/packages/libs/nghttp2/Makefile
-
 # 拉取immortalwrt仓库组件
-rm -rf feeds/packages/net/{haproxy,msd_lite}
-merge_package master https://github.com/immortalwrt/packages feeds/packages/net net/haproxy net/msd_lite
+rm -rf feeds/packages/net/{haproxy,msd_lite,socat}
+merge_package master https://github.com/immortalwrt/packages feeds/packages/net net/haproxy net/msd_lite net/socat
+rm -rf feeds/packages/libs/nghttp2
+merge_package master https://github.com/immortalwrt/packages feeds/packages/libs libs/nghttp2
+rm -rf feeds/packages/utils/ttyd
+merge_package master https://github.com/immortalwrt/packages feeds/packages/utils utils/ttyd
 
-# MSD组播转http插件
+# MSD组播转换luci
 git clone https://github.com/lwb1978/luci-app-msd_lite package/luci-app-msd_lite
+
+# 优化socat中英翻译
+sed -i 's/仅IPv6/仅 IPv6/g' package/feeds/luci/luci-app-socat/po/zh-cn/socat.po
 
 # SmartDNS
 rm -rf feeds/luci/applications/luci-app-smartdns
@@ -77,18 +80,6 @@ cp -rf ${GITHUB_WORKSPACE}/patch/smartdns feeds/packages/net
 # 替换udpxy为修改版
 rm -rf feeds/packages/net/udpxy/Makefile
 cp -f ${GITHUB_WORKSPACE}/patch/udpxy/Makefile feeds/packages/net/udpxy/
-
-# socat
-sed -i 's/PKG_VERSION:=.*/PKG_VERSION:=1.8.0.0/g' feeds/packages/net/socat/Makefile
-sed -i 's/PKG_HASH:=.*/PKG_HASH:=e1de683dd22ee0e3a6c6bbff269abe18ab0c9d7eb650204f125155b9005faca7/g' feeds/packages/net/socat/Makefile
-# 优化socat中英翻译
-sed -i 's/仅IPv6/仅 IPv6/g' package/feeds/luci/luci-app-socat/po/zh-cn/socat.po
-
-# ttyd
-sed -i 's/PKG_VERSION:=.*/PKG_VERSION:=1.7.3/g' feeds/packages/utils/ttyd/Makefile
-sed -i 's/PKG_RELEASE:=.*/PKG_RELEASE:=1/g' feeds/packages/utils/ttyd/Makefile
-sed -i 's/PKG_HASH:=.*/PKG_HASH:=c9cf5eece52d27c5d728000f11315d36cb400c6948d1964a34a7eae74b454099/g' feeds/packages/utils/ttyd/Makefile
-rm -f feeds/packages/utils/ttyd/patches/090*.patch
 
 # samba4
 rm -rf feeds/packages/net/samba4
