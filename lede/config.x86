@@ -6892,22 +6892,22 @@ CONFIG_PACKAGE_coreutils=y
 CONFIG_PACKAGE_coreutils-base64=y
 # CONFIG_PACKAGE_coreutils-basename is not set
 # CONFIG_PACKAGE_coreutils-basenc is not set
-# CONFIG_PACKAGE_coreutils-cat is not set
+CONFIG_PACKAGE_coreutils-cat=y
 # CONFIG_PACKAGE_coreutils-chcon is not set
 # CONFIG_PACKAGE_coreutils-chgrp is not set
-# CONFIG_PACKAGE_coreutils-chmod is not set
-# CONFIG_PACKAGE_coreutils-chown is not set
-# CONFIG_PACKAGE_coreutils-chroot is not set
+CONFIG_PACKAGE_coreutils-chmod=y
+CONFIG_PACKAGE_coreutils-chown=y
+CONFIG_PACKAGE_coreutils-chroot=y
 # CONFIG_PACKAGE_coreutils-cksum is not set
 # CONFIG_PACKAGE_coreutils-comm is not set
-# CONFIG_PACKAGE_coreutils-cp is not set
+CONFIG_PACKAGE_coreutils-cp=y
 # CONFIG_PACKAGE_coreutils-csplit is not set
 # CONFIG_PACKAGE_coreutils-cut is not set
-# CONFIG_PACKAGE_coreutils-date is not set
-# CONFIG_PACKAGE_coreutils-dd is not set
+CONFIG_PACKAGE_coreutils-date=y
+CONFIG_PACKAGE_coreutils-dd=y
 # CONFIG_PACKAGE_coreutils-df is not set
 # CONFIG_PACKAGE_coreutils-dir is not set
-# CONFIG_PACKAGE_coreutils-dircolors is not set
+CONFIG_PACKAGE_coreutils-dircolors=y
 # CONFIG_PACKAGE_coreutils-dirname is not set
 # CONFIG_PACKAGE_coreutils-du is not set
 # CONFIG_PACKAGE_coreutils-echo is not set
@@ -6928,17 +6928,17 @@ CONFIG_PACKAGE_coreutils-base64=y
 # CONFIG_PACKAGE_coreutils-link is not set
 # CONFIG_PACKAGE_coreutils-ln is not set
 # CONFIG_PACKAGE_coreutils-logname is not set
-# CONFIG_PACKAGE_coreutils-ls is not set
+CONFIG_PACKAGE_coreutils-ls=y
 # CONFIG_PACKAGE_coreutils-md5sum is not set
-# CONFIG_PACKAGE_coreutils-mkdir is not set
+CONFIG_PACKAGE_coreutils-mkdir=y
 # CONFIG_PACKAGE_coreutils-mkfifo is not set
 # CONFIG_PACKAGE_coreutils-mknod is not set
 # CONFIG_PACKAGE_coreutils-mktemp is not set
-# CONFIG_PACKAGE_coreutils-mv is not set
+CONFIG_PACKAGE_coreutils-mv=y
 # CONFIG_PACKAGE_coreutils-nice is not set
 # CONFIG_PACKAGE_coreutils-nl is not set
 CONFIG_PACKAGE_coreutils-nohup=y
-# CONFIG_PACKAGE_coreutils-nproc is not set
+CONFIG_PACKAGE_coreutils-nproc=y
 # CONFIG_PACKAGE_coreutils-numfmt is not set
 # CONFIG_PACKAGE_coreutils-od is not set
 # CONFIG_PACKAGE_coreutils-paste is not set
@@ -6951,18 +6951,18 @@ CONFIG_PACKAGE_coreutils-nohup=y
 # CONFIG_PACKAGE_coreutils-pwd is not set
 # CONFIG_PACKAGE_coreutils-readlink is not set
 # CONFIG_PACKAGE_coreutils-realpath is not set
-# CONFIG_PACKAGE_coreutils-rm is not set
+CONFIG_PACKAGE_coreutils-rm=y
 # CONFIG_PACKAGE_coreutils-rmdir is not set
 # CONFIG_PACKAGE_coreutils-runcon is not set
 # CONFIG_PACKAGE_coreutils-seq is not set
-# CONFIG_PACKAGE_coreutils-sha1sum is not set
+CONFIG_PACKAGE_coreutils-sha1sum=y
 # CONFIG_PACKAGE_coreutils-sha224sum is not set
 # CONFIG_PACKAGE_coreutils-sha256sum is not set
 # CONFIG_PACKAGE_coreutils-sha384sum is not set
-# CONFIG_PACKAGE_coreutils-sha512sum is not set
+CONFIG_PACKAGE_coreutils-sha512sum=y
 # CONFIG_PACKAGE_coreutils-shred is not set
 # CONFIG_PACKAGE_coreutils-shuf is not set
-# CONFIG_PACKAGE_coreutils-sleep is not set
+CONFIG_PACKAGE_coreutils-sleep=y
 # CONFIG_PACKAGE_coreutils-sort is not set
 # CONFIG_PACKAGE_coreutils-split is not set
 # CONFIG_PACKAGE_coreutils-stat is not set
@@ -6974,11 +6974,11 @@ CONFIG_PACKAGE_coreutils-nohup=y
 # CONFIG_PACKAGE_coreutils-tail is not set
 # CONFIG_PACKAGE_coreutils-tee is not set
 # CONFIG_PACKAGE_coreutils-test is not set
-# CONFIG_PACKAGE_coreutils-timeout is not set
+CONFIG_PACKAGE_coreutils-timeout=y
 # CONFIG_PACKAGE_coreutils-touch is not set
 # CONFIG_PACKAGE_coreutils-tr is not set
 # CONFIG_PACKAGE_coreutils-true is not set
-# CONFIG_PACKAGE_coreutils-truncate is not set
+CONFIG_PACKAGE_coreutils-truncate=y
 # CONFIG_PACKAGE_coreutils-tsort is not set
 # CONFIG_PACKAGE_coreutils-tty is not set
 # CONFIG_PACKAGE_coreutils-uname is not set
