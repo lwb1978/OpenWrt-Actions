@@ -160,7 +160,7 @@ git clone --depth=1 https://github.com/sbwml/packages_lang_golang feeds/packages
 
 # shell解释器换成bash
 prebuilt="x86_64 aarch64_generic"
-if [[ "$prebuilt" =~ "$platform" ]]; then
+if [[ $(expr match "$prebuilt" ".*\($platform\)") ]]; then
 	sed -i 's#ash#bash#g' package/base-files/files/etc/passwd
 fi
 sed -i 's#\\u@\\h:\\w\\\$#\\[\\e[32;1m\\][\\u@\\h\\[\\e[0m\\] \\[\\033[01;34m\\]\\W\\[\\033[00m\\]\\[\\e[32;1m\\]]\\[\\e[0m\\]\\\$#g' package/base-files/files/etc/profile
