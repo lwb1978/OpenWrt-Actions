@@ -164,6 +164,7 @@ if [[ $(expr match "$prebuilt" ".*\($platform\)") ]]; then
 	sed -i 's#ash#bash#g' package/base-files/files/etc/passwd
 fi
 sed -i 's#\\u@\\h:\\w\\\$#\\[\\e[32;1m\\][\\u@\\h\\[\\e[0m\\] \\[\\033[01;34m\\]\\W\\[\\033[00m\\]\\[\\e[32;1m\\]]\\[\\e[0m\\]\\\$#g' package/base-files/files/etc/profile
+sed -i '\#export ENV=/etc/shinit#a export HISTCONTROL=ignoredups' package/base-files/files/etc/profile
 echo "目标系统架构："
 echo $platform
 
