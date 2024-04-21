@@ -45,4 +45,18 @@ iptvid=$(uci show firewall | grep 'Allow-IPTV-igmpproxy' | grep -oE '\[.*?\]' | 
 # uci set ttyd.@ttyd[0].command='/bin/login -f root'
 # uci commit ttyd
 
+# shell解释器换成bash、修改profile
+[ -e /bin/bash ] && {
+	sed -i 's#ash#bash#g' /etc/passwd
+	[ "$(grep -c 'bash' /etc/shells)" = "0" ] && {
+		echo "/bin/bash" >> /etc/shells
+		echo "/bin/rbash" >> /etc/shells
+	}
+}
+sed -i 's#\\u@\\h:\\w\\\$#\\[\\e[32;1m\\][\\u@\\h\\[\\e[0m\\] \\[\\033[01;34m\\]\\W\\[\\033[00m\\]\\[\\e[32;1m\\]]\\[\\e[0m\\]\\\$#g' /etc/profile
+[ "$(grep -c 'ignoredups' /etc/profile)" = "0" ] && {
+	sed -i '\#export ENV=/etc/shinit#a export HISTCONTROL=ignoredups' /etc/profile
+}
+# sed -ri 's/(export PATH=")[^"]*/\1%PATH%:\/bin:\/sbin:\/usr\/bin:\/usr\/sbin/' /etc/profile
+
 exit 0
