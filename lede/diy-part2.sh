@@ -192,7 +192,7 @@ sed -i 's/luci-app-ssr-plus //g' include/target.mk
 sed -i 's/luci-app-vlmcsd //g' include/target.mk
 sed -i 's/luci-app-accesscontrol //g' include/target.mk
 sed -i 's/luci-app-nlbwmon //g' include/target.mk
-# sed -i 's/luci-app-turboacc //g' include/target.mk
+sed -i 's/luci-app-turboacc //g' include/target.mk
 
 # 拷贝自定义文件
 if [ -n "$(ls -A "${GITHUB_WORKSPACE}/lede/diy" 2>/dev/null)" ]; then
