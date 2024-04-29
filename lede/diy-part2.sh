@@ -134,7 +134,8 @@ sed -i 's/#aio write size = 0/aio write size = 1/g' feeds/packages/net/samba4/fi
 # 添加主题
 # git clone https://github.com/lwb1978/luci-theme-neobird package/luci-theme-neobird
 rm -rf feeds/luci/themes/luci-theme-argon
-git clone --depth=1 -b 18.06 https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
+# git clone --depth=1 -b 18.06 https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
+git clone --depth=1 -b 18.06 https://github.com/SpeedPartner/luci-theme-argon-18.06-patch package/luci-theme-argon
 
 # 取消自添加主题的默认设置
 # find package/luci-theme-*/* -type f -name '*luci-theme-*' -print -exec sed -i '/set luci.main.mediaurlbase/d' {} \;
