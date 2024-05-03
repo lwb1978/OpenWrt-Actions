@@ -1,0 +1,70 @@
+
+# 添加组播防火墙规则
+fw_iptv_id=$(uci show firewall | grep 'Allow-IPTV-Incoming' | grep -oE '\[.*?\]' | sed 's/[][]//g')
+#uci delete firewall.@rule["${fw_iptv_id}"]
+[ -z "${fw_iptv_id}" ] && {
+	uci add firewall rule
+	uci set firewall.@rule[-1].name='Allow-IPTV-Incoming'
+	uci set firewall.@rule[-1].target='ACCEPT'
+	uci set firewall.@rule[-1].src='wan'
+	uci set firewall.@rule[-1].family='ipv4'
+	uci set firewall.@rule[-1].proto='udp'
+	uci set firewall.@rule[-1].dest_ip='224.0.0.0/4'
+	uci commit firewall
+}
+
+fw_iptv_id=$(uci show firewall | grep 'Allow-IPTV-igmpproxy' | grep -oE '\[.*?\]' | sed 's/[][]//g')
+#uci delete firewall.@rule["${fw_iptv_id}"]
+[ -z "${fw_iptv_id}" ] && {
+	uci add firewall rule
+	uci set firewall.@rule[-1].name='Allow-IPTV-igmpproxy'
+	uci set firewall.@rule[-1].target='ACCEPT'
+	uci set firewall.@rule[-1].src='wan'
+	uci set firewall.@rule[-1].family='ipv4'
+	uci set firewall.@rule[-1].proto='udp'
+	uci set firewall.@rule[-1].dest='lan'
+	uci set firewall.@rule[-1].dest_ip='224.0.0.0/4'
+	uci commit firewall
+}
+
+# 添加防火墙自定义规则
+fw_user_id=$(uci show firewall | grep '/etc/firewall.user' | grep -oE '\[.*?\]' | sed 's/[][]//g')
+[ -z "${fw_user_id}" ] && {
+	uci add firewall include
+	uci set firewall.@include[-1].enabled=1
+	uci set firewall.@include[-1].type='script'
+	uci set firewall.@include[-1].path='/etc/firewall.user'
+	uci set firewall.@include[-1].fw4_compatible=1
+	uci commit firewall
+}
+
+# 劫持DNS端口到路由（已存在相关设置则不修改）
+[ "$(grep -c 'nft add rule inet fw4 dstnat tcp dport 53' /etc/firewall.user)" = "0" ] && {
+	echo 'nft add rule inet fw4 dstnat tcp dport 53 counter redirect to :53' >> /etc/firewall.user
+}
+[ "$(grep -c 'nft add rule inet fw4 dstnat udp dport 53' /etc/firewall.user)" = "0" ] && {
+	echo 'nft add rule inet fw4 dstnat udp dport 53 counter redirect to :53' >> /etc/firewall.user
+}
+
+# 设置ttyd免帐号登录
+# uci set ttyd.@ttyd[0].command='/bin/login -f root'
+# uci commit ttyd
+
+# shell解释器换成bash、修改profile
+if [ -f /bin/bash ]; then
+	sed -i 's#\/ash#\/bash#g' /etc/passwd
+	[ "$(grep -c 'bash' /etc/shells)" = "0" ] && {
+		echo "/bin/bash" >> /etc/shells
+		echo "/bin/rbash" >> /etc/shells
+	}
+	[ "$(grep -c 'ignoredups' /etc/profile)" = "0" ] && {
+		sed -i '\#export ENV=/etc/shinit#a export HISTCONTROL=ignoredups' /etc/profile
+	}
+else
+	rm -f /root/.bash_profile
+	rm -f /root/.bashrc
+fi
+sed -i 's#\\u@\\h:\\w\\\$#\\[\\e[32;1m\\][\\u@\\h\\[\\e[0m\\] \\[\\033[01;34m\\]\\W\\[\\033[00m\\]\\[\\e[32;1m\\]]\\[\\e[0m\\]\\\$#g' /etc/profile
+# sed -ri 's/(export PATH=")[^"]*/\1%PATH%:\/bin:\/sbin:\/usr\/bin:\/usr\/sbin/' /etc/profile
+
+exit 0
