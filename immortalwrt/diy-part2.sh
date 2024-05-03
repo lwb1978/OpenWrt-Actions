@@ -76,6 +76,10 @@ git clone https://github.com/sbwml/package_network_services_ppp package/network/
 sed -i 's/procd_set_param stdout 1/procd_set_param stdout 0/g' feeds/packages/utils/ttyd/files/ttyd.init
 sed -i 's/procd_set_param stderr 1/procd_set_param stderr 0/g' feeds/packages/utils/ttyd/files/ttyd.init
 
+# 同步 openwrt 仓库 openssl
+rm -rf package/libs/openssl
+merge_package openwrt-23.05 https://github.com/openwrt/openwrt package/libs package/libs/openssl
+
 # openssl - quictls
 export mirror=raw.githubusercontent.com/sbwml/r4s_build_script/master
 pushd package/libs/openssl/patches
