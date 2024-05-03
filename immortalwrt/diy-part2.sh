@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright (c) 2019-2020 P3TERX <https://p3terx.com>
+# Copyright (c) 2019-2024 P3TERX <https://p3terx.com>
 #
 # This is free software, licensed under the MIT License.
 # See /LICENSE for more information.
@@ -16,17 +16,8 @@ echo "========================="
 chmod +x ${GITHUB_WORKSPACE}/immortalwrt/subscript.sh
 source ${GITHUB_WORKSPACE}/immortalwrt/subscript.sh
 
-# Modify default IP 默认IP由1.1修改为0.1
+# 默认IP由1.1修改为0.1
 # sed -i 's/192.168.1.1/192.168.0.1/g' package/base-files/files/bin/config_generate
-sed -i 's/192.168.0.1/192.168.1.1/g' package/base-files/files/bin/config_generate
-sed -i 's/192.168.2.1/192.168.1.1/g' package/base-files/files/bin/config_generate
-sed -i 's/192.168.3.1/192.168.1.1/g' package/base-files/files/bin/config_generate
-sed -i 's/192.168.4.1/192.168.1.1/g' package/base-files/files/bin/config_generate
-sed -i 's/192.168.5.1/192.168.1.1/g' package/base-files/files/bin/config_generate
-sed -i 's/192.168.6.1/192.168.1.1/g' package/base-files/files/bin/config_generate
-sed -i 's/192.168.7.1/192.168.1.1/g' package/base-files/files/bin/config_generate
-sed -i 's/192.168.8.1/192.168.1.1/g' package/base-files/files/bin/config_generate
-sed -i 's/192.168.9.1/192.168.1.1/g' package/base-files/files/bin/config_generate
 
 # 最大连接数修改为65535
 sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=65535' package/base-files/files/etc/sysctl.conf
@@ -71,26 +62,17 @@ cp -rf ${GITHUB_WORKSPACE}/patch/udpxy/Makefile feeds/packages/net/udpxy/
 rm -rf feeds/luci/themes/luci-theme-argon
 git clone --depth=1 https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
 
-# coremark
-rm -rf feeds/packages/utils/coremark
-merge_package main https://github.com/sbwml/openwrt_pkgs feeds/packages/utils coremark
-
 # unzip
 rm -rf feeds/packages/utils/unzip
 git clone https://github.com/sbwml/feeds_packages_utils_unzip feeds/packages/utils/unzip
 
 # golang 1.22
-rm -rf feeds/packages/lang/golang
-git clone --depth=1 https://github.com/sbwml/packages_lang_golang feeds/packages/lang/golang
+# rm -rf feeds/packages/lang/golang
+# git clone --depth=1 https://github.com/sbwml/packages_lang_golang feeds/packages/lang/golang
 
 # ppp - 2.5.0
 rm -rf package/network/services/ppp
 git clone https://github.com/sbwml/package_network_services_ppp package/network/services/ppp
-
-# zlib - 1.3
-ZLIB_VERSION=1.3.1
-ZLIB_HASH=38ef96b8dfe510d42707d9c781877914792541133e1870841463bfa73f883e32
-sed -ri "s/(PKG_VERSION:=)[^\"]*/\1$ZLIB_VERSION/;s/(PKG_HASH:=)[^\"]*/\1$ZLIB_HASH/" package/libs/zlib/Makefile
 
 # TTYD设置
 sed -i 's/procd_set_param stdout 1/procd_set_param stdout 0/g' feeds/packages/utils/ttyd/files/ttyd.init
@@ -102,6 +84,10 @@ find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/..\/..\/luci
 find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/..\/..\/lang\/golang\/golang-package.mk/$(TOPDIR)\/feeds\/packages\/lang\/golang\/golang-package.mk/g' {}
 find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/PKG_SOURCE_URL:=@GHREPO/PKG_SOURCE_URL:=https:\/\/github.com/g' {}
 find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/PKG_SOURCE_URL:=@GHCODELOAD/PKG_SOURCE_URL:=https:\/\/codeload.github.com/g' {}
+
+# 自定义默认配置
+sed -i '/exit 0$/d' package/emortal/default-settings/files/99-default-settings
+cat ${GITHUB_WORKSPACE}/immortalwrt/default-settings >> package/emortal/default-settings/files/99-default-settings
 
 # 拷贝自定义文件
 if [ -n "$(ls -A "${GITHUB_WORKSPACE}/immortalwrt/diy" 2>/dev/null)" ]; then
