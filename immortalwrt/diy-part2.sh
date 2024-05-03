@@ -13,8 +13,8 @@
 echo "开始 DIY2 配置……"
 echo "========================="
 
-chmod +x ${GITHUB_WORKSPACE}/lede/subscript.sh
-source ${GITHUB_WORKSPACE}/lede/subscript.sh
+chmod +x ${GITHUB_WORKSPACE}/immortalwrt/subscript.sh
+source ${GITHUB_WORKSPACE}/immortalwrt/subscript.sh
 
 # Modify default IP 默认IP由1.1修改为0.1
 # sed -i 's/192.168.1.1/192.168.0.1/g' package/base-files/files/bin/config_generate
@@ -104,8 +104,8 @@ find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/PKG_SOURCE_U
 find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/PKG_SOURCE_URL:=@GHCODELOAD/PKG_SOURCE_URL:=https:\/\/codeload.github.com/g' {}
 
 # 拷贝自定义文件
-if [ -n "$(ls -A "${GITHUB_WORKSPACE}/lede/diy" 2>/dev/null)" ]; then
-	cp -Rf ${GITHUB_WORKSPACE}/lede/diy/* .
+if [ -n "$(ls -A "${GITHUB_WORKSPACE}/immortalwrt/diy" 2>/dev/null)" ]; then
+	cp -Rf ${GITHUB_WORKSPACE}/immortalwrt/diy/* .
 fi
 
 ./scripts/feeds update -a
