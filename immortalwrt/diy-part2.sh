@@ -125,6 +125,10 @@ pushd package/libs/openssl/patches
     curl -sO https://$mirror/openwrt/patch/openssl/quic/0044-QUIC-Update-metadata-version.patch
 popd
 
+# openssl 3.2
+# rm -rf package/libs/openssl
+# git clone https://github.com/sbwml/package_libs_openssl -b openssl-3.2 package/libs/openssl
+	  
 # openssl -Ofast
 sed -i "s/-O3/-Ofast/g" package/libs/openssl/Makefile
 
