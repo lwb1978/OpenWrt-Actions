@@ -2,7 +2,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: OpenWrt R68S
+name: OpenWrt R68s
 
 on:
   repository_dispatch:
@@ -18,7 +18,7 @@ on:
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
-  DEVICE_NAME: R68S
+  DEVICE_NAME: R68s
   FILES: lede/files
   FEEDS_CONF: lede/feeds.conf.default
   CONFIG_FILE: lede/config.r68s
