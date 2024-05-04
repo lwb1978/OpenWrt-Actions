@@ -1,7 +1,7 @@
 # Description: 此脚本基于 P3TERX 的 Actions-OpenWrt 仓库修改而来。
 # 用于生成config配置文件
 
-name: MakeCfg-R68S
+name: MakeCfg-R68s
 
 on:
   workflow_dispatch:
@@ -14,7 +14,7 @@ on:
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
-  DEVICE_NAME: R68S
+  DEVICE_NAME: R68s
   FILES: lede/files
   FEEDS_CONF: lede/feeds.conf.default
   CONFIG_FILE: lede/config.r68s
