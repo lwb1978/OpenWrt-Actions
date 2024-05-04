@@ -1,7 +1,7 @@
 # Description: 此脚本基于 P3TERX 的 Actions-OpenWrt 仓库修改而来。
 # 用于生成config配置文件
 
-name: MakeCfg-R68S-Im
+name: MakeCfg-R68s-Im
 
 on:
   workflow_dispatch:
@@ -13,8 +13,8 @@ on:
 
 env:
   REPO_URL: https://github.com/immortalwrt/immortalwrt.git
-  REPO_BRANCH: master
-  DEVICE_NAME: R68S-Im
+  REPO_BRANCH: openwrt-23.05
+  DEVICE_NAME: R68s-Im
   FILES: immortalwrt/files
   FEEDS_CONF: immortalwrt/feeds.conf.default
   CONFIG_FILE: immortalwrt/config.r68s
