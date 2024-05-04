@@ -25,6 +25,7 @@ CONFIG_PACKAGE_kmod-ata-core=y
 CONFIG_PACKAGE_kmod-nvme=y
 CONFIG_PACKAGE_kmod-scsi-core=y
 CONFIG_PACKAGE_kmod-scsi-generic=y
+CONFIG_PACKAGE_kmod-loop=y
 
 ### Curl
 CONFIG_PACKAGE_curl=y
