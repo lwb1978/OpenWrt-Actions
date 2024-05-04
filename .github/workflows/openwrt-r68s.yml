@@ -171,9 +171,7 @@ jobs:
         rm -rf sha256sums
         rm -rf version.buildinfo
         rm -rf profiles.json
-        rm -rf openwrt-x86-64-generic-kernel.bin
-        rm -rf openwrt-x86-64-generic.manifest
-        rm -rf openwrt-x86-64-generic-squashfs-rootfs.img.gz
+        rm -rf *.manifest
         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
         echo "status=success" >> $GITHUB_OUTPUT
 
