@@ -19,6 +19,13 @@ CONFIG_TARGET_ROOTFS_SQUASHFS=y
 # CONFIG_TARGET_ROOTFS_TARGZ is not set
 # CONFIG_VMDK_IMAGES is not set
 
+# Block Devices
+CONFIG_PACKAGE_kmod-ata-ahci=y
+CONFIG_PACKAGE_kmod-ata-core=y
+CONFIG_PACKAGE_kmod-nvme=y
+CONFIG_PACKAGE_kmod-scsi-core=y
+CONFIG_PACKAGE_kmod-scsi-generic=y
+
 ### Curl
 CONFIG_PACKAGE_curl=y
 CONFIG_PACKAGE_libcurl=y
