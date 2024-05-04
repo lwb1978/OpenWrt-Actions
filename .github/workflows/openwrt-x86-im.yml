@@ -17,7 +17,7 @@ on:
 
 env:
   REPO_URL: https://github.com/immortalwrt/immortalwrt.git
-  REPO_BRANCH: master
+  REPO_BRANCH: openwrt-23.05
   DEVICE_NAME: X86-Im
   FILES: immortalwrt/files
   FEEDS_CONF: immortalwrt/feeds.conf.default
@@ -171,9 +171,9 @@ jobs:
         rm -rf sha256sums
         rm -rf version.buildinfo
         rm -rf profiles.json
-        rm -rf immortalwrt-x86-64-generic-kernel.bin
-        rm -rf immortalwrt-x86-64-generic.manifest
-        rm -rf immortalwrt-x86-64-generic-squashfs-rootfs.img.gz
+        rm -rf immortalwrt*-x86-64-generic-kernel.bin
+        rm -rf immortalwrt*-x86-64-generic.manifest
+        rm -rf immortalwrt*-x86-64-generic-squashfs-rootfs.img.gz
         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
         echo "status=success" >> $GITHUB_OUTPUT
 
