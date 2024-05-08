@@ -17,7 +17,7 @@ chmod +x ${GITHUB_WORKSPACE}/immortalwrt/subscript.sh
 source ${GITHUB_WORKSPACE}/immortalwrt/subscript.sh
 
 # 修改x86内核到6.6版
-# sed -i 's/KERNEL_PATCHVER:=.*/KERNEL_PATCHVER:=6.6/g' ./target/linux/x86/Makefile
+sed -i 's/KERNEL_PATCHVER:=.*/KERNEL_PATCHVER:=6.6/g' ./target/linux/x86/Makefile
 
 # 默认IP由1.1修改为0.1
 # sed -i 's/192.168.1.1/192.168.0.1/g' package/base-files/files/bin/config_generate
@@ -81,7 +81,7 @@ sed -i 's/procd_set_param stderr 1/procd_set_param stderr 0/g' feeds/packages/ut
 
 # 同步 openwrt 仓库 openssl
 rm -rf package/libs/openssl
-merge_package openwrt-23.05 https://github.com/openwrt/openwrt package/libs package/libs/openssl
+merge_package master https://github.com/openwrt/openwrt package/libs package/libs/openssl
 
 # openssl - quictls
 export mirror=raw.githubusercontent.com/sbwml/r4s_build_script/master
