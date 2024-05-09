@@ -28,15 +28,15 @@ fw_iptv_id=$(uci show firewall | grep 'Allow-IPTV-igmpproxy' | grep -oE '\[.*?\]
 }
 
 # 添加防火墙自定义规则
-fw_user_id=$(uci show firewall | grep '/etc/firewall4.user' | grep -oE '\[.*?\]' | sed 's/[][]//g')
-[ -z "${fw_user_id}" ] && {
-	uci add firewall include
-	uci set firewall.@include[-1].enabled=1
-	uci set firewall.@include[-1].type='script'
-	uci set firewall.@include[-1].path='/etc/firewall4.user'
-	uci set firewall.@include[-1].fw4_compatible=1
-	uci commit firewall
-}
+# fw_user_id=$(uci show firewall | grep '/etc/firewall4.user' | grep -oE '\[.*?\]' | sed 's/[][]//g')
+# [ -z "${fw_user_id}" ] && {
+# 	uci add firewall include
+# 	uci set firewall.@include[-1].enabled=1
+# 	uci set firewall.@include[-1].type='script'
+# 	uci set firewall.@include[-1].path='/etc/firewall4.user'
+# 	uci set firewall.@include[-1].fw4_compatible=1
+# 	uci commit firewall
+# }
 
 # 劫持DNS端口到路由（已存在相关设置则不修改）
 [ "$(grep -c 'nft add rule inet fw4 dstnat tcp dport 53' /etc/firewall4.user)" = "0" ] && {
