@@ -43,10 +43,9 @@ merge_package v5 https://github.com/sbwml/openwrt_helloworld package/passwall-pa
 rm -rf feeds/luci/applications/{luci-app-passwall,luci-app-ssr-libev-server}
 git clone -b luci-smartdns-dev --single-branch https://github.com/lwb1978/openwrt-passwall package/passwall-luci
 # git clone https://github.com/xiaorouji/openwrt-passwall package/passwall-luci
-# 补丁—延时启动时先创建smartdns配置文件，以免smartdns启动失败
+# 修改：延时启动时先创建smartdns配置文件，以免smartdns启动失败
 pushd package/passwall-luci
-	cp -rf ${GITHUB_WORKSPACE}/patch/passwall/01_boot_touch_smartdns_conf.patch .
- 	patch -p1 01_boot_touch_smartdns_conf.patch
+	patch -p1 ${GITHUB_WORKSPACE}/patch/passwall/01_boot_touch_smartdns_conf.patch
 popd
 # ------------------------------------------------------------
 
