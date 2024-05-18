@@ -68,7 +68,8 @@ git clone https://github.com/sirpdboy/luci-app-lucky package/lucky-packages
 
 # 添加主题
 rm -rf feeds/luci/themes/luci-theme-argon
-git clone --depth=1 https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
+# git clone --depth=1 https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
+merge_package main https://github.com/sbwml/luci-theme-argon feeds/luci/themes luci-theme-argon
 
 # unzip
 rm -rf feeds/packages/utils/unzip
