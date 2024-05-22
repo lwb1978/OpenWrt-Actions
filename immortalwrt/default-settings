@@ -48,7 +48,7 @@ fw_iptv_id=$(uci show firewall | grep 'Allow-IPTV-igmpproxy' | grep -oE '\[.*?\]
 [ "$(grep -c 'nft add rule inet fw4 dstnat ip6 tcp dport 53' /etc/firewall4.user)" = "0" ] && {
 	echo 'nft add rule inet fw4 dstnat ip6 tcp dport 53 counter redirect to :53' >> /etc/firewall4.user
 }
-[ "$(grep -c nft add rule inet fw4 dstnat ip6 udp dport 53' /etc/firewall4.user)" = "0" ] && {
+[ "$(grep -c 'nft add rule inet fw4 dstnat ip6 udp dport 53' /etc/firewall4.user)" = "0" ] && {
 	echo 'nft add rule inet fw4 dstnat ip6 udp dport 53 counter redirect to :53' >> /etc/firewall4.user
 }
 
