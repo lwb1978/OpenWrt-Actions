@@ -33,10 +33,10 @@ unlock() {
 }
 
 boot() {
-+	local smartdns=$(uci -q get ${CONFIG}.@global[0].dns_shunt || echo "")
-+	if [ "$smartdns" == "smartdns" ]; then
-+		touch  /tmp/etc/smartdns/passwall.conf
-+	fi
+	local smartdns=$(uci -q get ${CONFIG}.@global[0].dns_shunt || echo "")
+	if [ "$smartdns" == "smartdns" ]; then
+		touch  /tmp/etc/smartdns/passwall.conf
+	fi
 	local delay=$(uci -q get ${CONFIG}.@global_delay[0].start_delay || echo 1)
 	if [ "$delay" -gt 0 ]; then
 		$APP_FILE echolog "执行启动延时 $delay 秒后再启动!"
