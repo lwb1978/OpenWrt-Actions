@@ -87,5 +87,5 @@ jobs:
     - name: 删除旧的 workflow 运行记录
       uses: Mattraks/delete-workflow-runs@main
       with:
-        retain_days: 1
-        keep_minimum_runs: 5
+        retain_days: 30
+        keep_minimum_runs: 6
