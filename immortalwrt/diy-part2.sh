@@ -165,11 +165,14 @@ curl -s https://$mirror/openwrt/patch/firewall4/100-openwrt-firewall4-add-custom
 # Shortcut Forwarding Engine
 # git clone https://git.cooluc.com/sbwml/shortcut-fe package/shortcut-fe
 
+# IPv6 NAT
+# git clone https://github.com/sbwml/packages_new_nat6 package/nat6
+
 # firewall4 Patch Luci add nft_fullcone/bcm_fullcone & shortcut-fe & ipv6-nat & custom nft command option
 pushd feeds/luci
 	# curl -s https://$mirror/openwrt/patch/firewall4/01-luci-app-firewall_add_nft-fullcone-bcm-fullcone_option.patch | patch -p1
 	# curl -s https://$mirror/openwrt/patch/firewall4/02-luci-app-firewall_add_shortcut-fe.patch | patch -p1
-	curl -s https://$mirror/openwrt/patch/firewall4/03-luci-app-firewall_add_ipv6-nat.patch | patch -p1
+	# curl -s https://$mirror/openwrt/patch/firewall4/03-luci-app-firewall_add_ipv6-nat.patch | patch -p1
 	curl -s https://$mirror/openwrt/patch/firewall4/04-luci-add-firewall4-nft-rules-file.patch | patch -p1
 	# 状态-防火墙页面去掉iptables警告，并添加nftables、iptables标签页
 	curl -s https://$mirror/openwrt/patch/luci/luci-nftables.patch | patch -p1
