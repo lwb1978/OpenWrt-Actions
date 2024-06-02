@@ -33,8 +33,8 @@ unlock() {
 }
 
 boot() {
-	local smartdns=$(uci -q get ${CONFIG}.@global[0].dns_shunt || echo "")
-	if [ "$smartdns" == "smartdns" ]; then
+	local dns=$(uci -q get ${CONFIG}.@global[0].dns_shunt)
+	if [ "$dns" == "smartdns" ]; then
 		touch  /tmp/etc/smartdns/passwall.conf
 	fi
 	local delay=$(uci -q get ${CONFIG}.@global_delay[0].start_delay || echo 1)
