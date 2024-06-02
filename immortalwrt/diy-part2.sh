@@ -44,7 +44,7 @@ rm -rf feeds/luci/applications/{luci-app-passwall,luci-app-ssr-libev-server}
 git clone -b luci-smartdns-dev --single-branch https://github.com/lwb1978/openwrt-passwall package/passwall-luci
 # git clone https://github.com/xiaorouji/openwrt-passwall package/passwall-luci
 # 延时启动时先创建smartdns配置文件，以免smartdns启动失败
-cp -rf ${GITHUB_WORKSPACE}/patch/passwall/root/etc/init.d/passwall package/passwall-luci/luci-app-passwall/root/etc/init.d/
+# cp -rf ${GITHUB_WORKSPACE}/patch/passwall/root/etc/init.d/passwall package/passwall-luci/luci-app-passwall/root/etc/init.d/
 # ------------------------------------------------------------
 
 # 优化socat中英翻译
