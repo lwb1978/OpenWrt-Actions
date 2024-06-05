@@ -38,20 +38,6 @@ fw_iptv_id=$(uci show firewall | grep 'Allow-IPTV-igmpproxy' | grep -oE '\[.*?\]
 # 	uci commit firewall
 # }
 
-# 劫持DNS端口到路由（已存在相关设置则不修改）
-[ "$(grep -c 'nft add rule inet fw4 dstnat tcp dport 53' /etc/firewall4.user)" = "0" ] && {
-	echo 'nft add rule inet fw4 dstnat tcp dport 53 counter redirect to :53' >> /etc/firewall4.user
-}
-[ "$(grep -c 'nft add rule inet fw4 dstnat udp dport 53' /etc/firewall4.user)" = "0" ] && {
-	echo 'nft add rule inet fw4 dstnat udp dport 53 counter redirect to :53' >> /etc/firewall4.user
-}
-[ "$(grep -c 'nft add rule inet fw4 dstnat ip6 tcp dport 53' /etc/firewall4.user)" = "0" ] && {
-	echo 'nft add rule inet fw4 dstnat ip6 tcp dport 53 counter redirect to :53' >> /etc/firewall4.user
-}
-[ "$(grep -c 'nft add rule inet fw4 dstnat ip6 udp dport 53' /etc/firewall4.user)" = "0" ] && {
-	echo 'nft add rule inet fw4 dstnat ip6 udp dport 53 counter redirect to :53' >> /etc/firewall4.user
-}
-
 # 设置ttyd免帐号登录
 # uci set ttyd.@ttyd[0].command='/bin/login -f root'
 # uci commit ttyd
