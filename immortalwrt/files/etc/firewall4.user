@@ -4,5 +4,5 @@
 
 nft add rule inet fw4 dstnat tcp dport 53 counter redirect to :53
 nft add rule inet fw4 dstnat udp dport 53 counter redirect to :53
-nft add rule inet fw4 dstnat ip6 tcp dport 53 counter redirect to :53
-nft add rule inet fw4 dstnat ip6 udp dport 53 counter redirect to :53
+nft add rule inet fw4 dstnat meta nfproto {ipv6} tcp dport 53 counter redirect to :53
+nft add rule inet fw4 dstnat meta nfproto {ipv6} udp dport 53 counter redirect to :53
