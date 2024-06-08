@@ -124,7 +124,7 @@ sed -i 's/#aio write size = 0/aio write size = 1/g' feeds/packages/net/samba4/fi
 # ddns-go动态域名
 # git clone https://github.com/sirpdboy/luci-app-ddns-go package/ddns-go
 # lukcy大吉
-# git clone https://github.com/sirpdboy/luci-app-lucky package/lucky
+git clone https://github.com/sirpdboy/luci-app-lucky package/lucky-packages
 # 分区扩容
 # git clone https://github.com/sirpdboy/luci-app-partexp package/luci-app-partexp
 
