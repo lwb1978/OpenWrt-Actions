@@ -28,18 +28,18 @@ iptvid=$(uci show firewall | grep 'Allow-IPTV-igmpproxy' | grep -oE '\[.*?\]' | 
 }
 
 # 劫持DNS端口到路由（已存在相关设置则不修改）
-[ "$(grep -c 'iptables -t nat -A PREROUTING -p udp --dport 53' /etc/firewall.user)" = "0" ] && {
-	echo 'iptables -t nat -A PREROUTING -p udp --dport 53 -j REDIRECT --to-ports 53' >> /etc/firewall.user
-}
-[ "$(grep -c 'iptables -t nat -A PREROUTING -p tcp --dport 53' /etc/firewall.user)" = "0" ] && {
-	echo 'iptables -t nat -A PREROUTING -p tcp --dport 53 -j REDIRECT --to-ports 53' >> /etc/firewall.user
-}
-[ "$(grep -c 'ip6tables -t nat -A PREROUTING -p udp --dport 53' /etc/firewall.user)" = "0" ] && {
-	echo '[ -n "$(command -v ip6tables)" ] && ip6tables -t nat -A PREROUTING -p udp --dport 53 -j REDIRECT --to-ports 53' >> /etc/firewall.user
-}
-[ "$(grep -c 'ip6tables -t nat -A PREROUTING -p tcp --dport 53' /etc/firewall.user)" = "0" ] && {
-	echo '[ -n "$(command -v ip6tables)" ] && ip6tables -t nat -A PREROUTING -p tcp --dport 53 -j REDIRECT --to-ports 53' >> /etc/firewall.user
-}
+#[ "$(grep -c 'iptables -t nat -A PREROUTING -p udp --dport 53' /etc/firewall.user)" = "0" ] && {
+#	echo 'iptables -t nat -A PREROUTING -p udp --dport 53 -j REDIRECT --to-ports 53' >> /etc/firewall.user
+#}
+#[ "$(grep -c 'iptables -t nat -A PREROUTING -p tcp --dport 53' /etc/firewall.user)" = "0" ] && {
+#	echo 'iptables -t nat -A PREROUTING -p tcp --dport 53 -j REDIRECT --to-ports 53' >> /etc/firewall.user
+#}
+#[ "$(grep -c 'ip6tables -t nat -A PREROUTING -p udp --dport 53' /etc/firewall.user)" = "0" ] && {
+#	echo '[ -n "$(command -v ip6tables)" ] && ip6tables -t nat -A PREROUTING -p udp --dport 53 -j REDIRECT --to-ports 53' >> /etc/firewall.user
+#}
+#[ "$(grep -c 'ip6tables -t nat -A PREROUTING -p tcp --dport 53' /etc/firewall.user)" = "0" ] && {
+#	echo '[ -n "$(command -v ip6tables)" ] && ip6tables -t nat -A PREROUTING -p tcp --dport 53 -j REDIRECT --to-ports 53' >> /etc/firewall.user
+#}
 
 # 设置ttyd免帐号登录
 # uci set ttyd.@ttyd[0].command='/bin/login -f root'
