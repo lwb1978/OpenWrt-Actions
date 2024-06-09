@@ -77,6 +77,8 @@ cp -rf ${GITHUB_WORKSPACE}/patch/smartdns feeds/packages/net
 # 替换udpxy为修改版
 rm -rf feeds/packages/net/udpxy/Makefile
 cp -f ${GITHUB_WORKSPACE}/patch/udpxy/Makefile feeds/packages/net/udpxy/
+# 修改 udpxy 菜单名称为大写
+sed -i 's#_(\"udpxy\")#_(\"UDPXY\")#g' feeds/luci/applications/luci-app-udpxy/luasrc/controller/udpxy.lua
 
 # 更新curl
 curl_ver=$(cat feeds/packages/net/curl/Makefile | grep -i "PKG_VERSION:=" | awk 'BEGIN{FS="="};{print $2}' | awk 'BEGIN{FS=".";OFS="."};{print $1,$2}')
