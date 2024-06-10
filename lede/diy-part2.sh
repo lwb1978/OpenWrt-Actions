@@ -74,18 +74,18 @@ cp -rf ${GITHUB_WORKSPACE}/patch/smartdns feeds/packages/net
 # sed -i 's/f50e4dd0813da9300580f7188e44ed72a27ae79c/1fd18601e7d8ac88e8557682be7de3dc56e69105/g' feeds/packages/net/smartdns/Makefile
 # sed -i 's/^PKG_MIRROR_HASH/#&/' feeds/packages/net/smartdns/Makefile
 
-# 替换udpxy为修改版
+# 替换udpxy为修改版，解决组播源数据有重复数据包导致的花屏和马赛克问题
 rm -rf feeds/packages/net/udpxy/Makefile
 cp -f ${GITHUB_WORKSPACE}/patch/udpxy/Makefile feeds/packages/net/udpxy/
 # 修改 udpxy 菜单名称为大写
 sed -i 's#_(\"udpxy\")#_(\"UDPXY\")#g' feeds/luci/applications/luci-app-udpxy/luasrc/controller/udpxy.lua
 
-# 更新curl
+# 替换curl修改版（无nghttp3、ngtcp2）
 curl_ver=$(cat feeds/packages/net/curl/Makefile | grep -i "PKG_VERSION:=" | awk 'BEGIN{FS="="};{print $2}' | awk 'BEGIN{FS=".";OFS="."};{print $1,$2}')
-if [ $curl_ver \< 8.8 ]; then
+if ((`expr $curl_ver \<= 8.8`)); then
 	echo "替换curl版本"
 	rm -rf feeds/packages/net/curl
-	cp -rf ${GITHUB_WORKSPACE}/patch/curl-lede feeds/packages/net/curl
+	cp -rf ${GITHUB_WORKSPACE}/patch/curl feeds/packages/net/curl
 fi
 
 # samba4

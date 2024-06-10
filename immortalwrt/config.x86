@@ -5483,8 +5483,8 @@ CONFIG_LIBCURL_COOKIES=y
 # CONFIG_LIBCURL_TELNET is not set
 CONFIG_LIBCURL_TFTP=y
 CONFIG_LIBCURL_NGHTTP2=y
-CONFIG_LIBCURL_NGHTTP3=y
-CONFIG_LIBCURL_NGTCP2=y
+# CONFIG_LIBCURL_NGHTTP3 is not set
+# CONFIG_LIBCURL_NGTCP2 is not set
 
 #
 # Miscellaneous
@@ -5653,8 +5653,8 @@ CONFIG_PACKAGE_libnettle=y
 CONFIG_PACKAGE_libnfnetlink=y
 CONFIG_PACKAGE_libnftnl=y
 CONFIG_PACKAGE_libnghttp2=y
-CONFIG_PACKAGE_libnghttp3=y
-CONFIG_PACKAGE_libngtcp2=y
+# CONFIG_PACKAGE_libnghttp3 is not set
+# CONFIG_PACKAGE_libngtcp2 is not set
 # CONFIG_PACKAGE_libnl is not set
 # CONFIG_PACKAGE_libnl-cli is not set
 # CONFIG_PACKAGE_libnl-core is not set
