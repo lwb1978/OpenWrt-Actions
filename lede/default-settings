@@ -62,4 +62,7 @@ fi
 sed -i 's#\\u@\\h:\\w\\\$#\\[\\e[32;1m\\][\\u@\\h\\[\\e[0m\\] \\[\\033[01;34m\\]\\W\\[\\033[00m\\]\\[\\e[32;1m\\]]\\[\\e[0m\\]\\\$#g' /etc/profile
 # sed -ri 's/(export PATH=")[^"]*/\1%PATH%:\/bin:\/sbin:\/usr\/bin:\/usr\/sbin/' /etc/profile
 
+# 解决vim报错 E1187: Failed to source defaults.vim
+touch /root/.vimrc
+
 exit 0
