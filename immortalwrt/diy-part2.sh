@@ -109,6 +109,8 @@ if ((`expr $curl_ver \<= 8.8`)); then
 	cp -rf ${GITHUB_WORKSPACE}/patch/curl feeds/packages/net/curl
 fi
 
+export mirror=raw.githubusercontent.com/sbwml/r4s_build_script/master
+
 # firewall4 add custom nft command support
 curl -s https://$mirror/openwrt/patch/firewall4/100-openwrt-firewall4-add-custom-nft-command-support.patch | patch -p1
 
