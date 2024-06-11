@@ -109,7 +109,7 @@ if ((`expr $curl_ver \<= 8.8`)); then
 	cp -rf ${GITHUB_WORKSPACE}/patch/curl feeds/packages/net/curl
 fi
 
-export mirror=raw.githubusercontent.com/sbwml/r4s_build_script/master
+local mirror=raw.githubusercontent.com/sbwml/r4s_build_script/master
 
 # firewall4 add custom nft command support
 curl -s https://$mirror/openwrt/patch/firewall4/100-openwrt-firewall4-add-custom-nft-command-support.patch | patch -p1
@@ -164,12 +164,13 @@ sed -i 's/services/network/g' feeds/luci/applications/luci-app-upnp/root/usr/sha
 sed -i 's/option timeout 30/option timeout 60/g' package/system/rpcd/files/rpcd.config
 sed -i 's#20) \* 1000#60) \* 1000#g' feeds/luci/modules/luci-base/htdocs/luci-static/resources/rpc.js
 
-# Luci diagnostics.js
-sed -i "s/openwrt.org/www.qq.com/g" feeds/luci/modules/luci-mod-network/htdocs/luci-static/resources/view/network/diagnostics.js
-
 # vim - fix E1187: Failed to source defaults.vim
 pushd feeds/packages
-	curl -s https://github.com/openwrt/packages/commit/699d3fbee266b676e21b7ed310471c0ed74012c9.patch | patch -p1
+	vim_ver=$(cat utils/vim/Makefile | grep -i "PKG_VERSION:=" | awk 'BEGIN{FS="="};{print $2}' | awk 'BEGIN{FS=".";OFS="."};{print $1,$2}')
+	[ "$vim_ver" = "9.0" ] && {
+		echo "修复 vim E1187 的错误"
+		curl -s https://github.com/openwrt/packages/commit/699d3fbee266b676e21b7ed310471c0ed74012c9.patch | patch -p1
+	}
 popd
 
 # 修正部分从第三方仓库拉取的软件 Makefile 路径问题
