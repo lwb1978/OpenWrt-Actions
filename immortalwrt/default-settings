@@ -37,6 +37,7 @@ fw_iptv_id=$(uci show firewall | grep 'Allow-IPTV-igmpproxy' | grep -oE '\[.*?\]
 # 	uci set firewall.@include[-1].fw4_compatible=1
 # 	uci commit firewall
 # }
+touch /etc/firewall4.user
 
 # 设置ttyd免帐号登录
 # uci set ttyd.@ttyd[0].command='/bin/login -f root'
