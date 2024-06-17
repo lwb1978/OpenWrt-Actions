@@ -64,6 +64,9 @@ sed -i 's#\"title\": \"udpxy\"#\"title\": \"UDPXY\"#g' feeds/luci/applications/l
 # lukcy大吉
 git clone https://github.com/sirpdboy/luci-app-lucky package/lucky-packages
 
+# 集客AC控制器
+git clone https://github.com/lwb1978/openwrt-gecoosac package/openwrt-gecoosac
+
 # 添加主题
 rm -rf feeds/luci/themes/luci-theme-argon
 git clone --depth=1 https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
