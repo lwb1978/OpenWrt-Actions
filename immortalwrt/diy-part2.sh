@@ -59,7 +59,7 @@ cp -rf ${GITHUB_WORKSPACE}/patch/smartdns feeds/packages/net
 rm -rf feeds/packages/net/udpxy/Makefile
 cp -rf ${GITHUB_WORKSPACE}/patch/udpxy/Makefile feeds/packages/net/udpxy/
 # 修改 udpxy 菜单名称为大写
-sed -i 's#\"title\": \"udpxy\"#\"title\": \"UDPXY\"#g' feeds/luci/applications/luci-app-udpxy/root/usr/share/luci/menu.d/luci-app-udpxy.json
+# sed -i 's#\"title\": \"udpxy\"#\"title\": \"UDPXY\"#g' feeds/luci/applications/luci-app-udpxy/root/usr/share/luci/menu.d/luci-app-udpxy.json
 
 # lukcy大吉
 git clone https://github.com/sirpdboy/luci-app-lucky package/lucky-packages
@@ -159,7 +159,6 @@ EOF
 
 # 精简 UPnP 菜单名称
 sed -i 's#\"title\": \"UPnP IGD \& PCP/NAT-PMP\"#\"title\": \"UPnP\"#g' feeds/luci/applications/luci-app-upnp/root/usr/share/luci/menu.d/luci-app-upnp.json
-
 # 移动 UPnP 到 “网络” 子菜单
 sed -i 's/services/network/g' feeds/luci/applications/luci-app-upnp/root/usr/share/luci/menu.d/luci-app-upnp.json
 
