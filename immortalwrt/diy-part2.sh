@@ -13,8 +13,8 @@
 echo "开始 DIY2 配置……"
 echo "========================="
 
-chmod +x ${GITHUB_WORKSPACE}/immortalwrt/subscript.sh
-source ${GITHUB_WORKSPACE}/immortalwrt/subscript.sh
+chmod +x ${GITHUB_WORKSPACE}/immortalwrt/function.sh
+source ${GITHUB_WORKSPACE}/immortalwrt/function.sh
 
 # 修改x86内核到6.6版
 sed -i 's/KERNEL_PATCHVER:=.*/KERNEL_PATCHVER:=6.6/g' ./target/linux/x86/Makefile
@@ -105,12 +105,12 @@ sed -i 's/procd_set_param stderr 1/procd_set_param stderr 0/g' feeds/packages/ut
 # git clone https://github.com/sbwml/feeds_packages_net_curl feeds/packages/net/curl
 
 # 替换curl修改版（无nghttp3、ngtcp2）
-curl_ver=$(cat feeds/packages/net/curl/Makefile | grep -i "PKG_VERSION:=" | awk 'BEGIN{FS="="};{print $2}' | awk 'BEGIN{FS=".";OFS="."};{print $1,$2}')
-if ((`expr $curl_ver \<= 8.8`)); then
+curl_ver=$(cat feeds/packages/net/curl/Makefile | grep -i "PKG_VERSION:=" | awk 'BEGIN{FS="="};{print $2}')
+[ $(compare_version "$curl_ver" "8.8.0") != 0 ] && {
 	echo "替换curl版本"
 	rm -rf feeds/packages/net/curl
 	cp -rf ${GITHUB_WORKSPACE}/patch/curl feeds/packages/net/curl
-fi
+}
 
 mirror=raw.githubusercontent.com/sbwml/r4s_build_script/master
 
