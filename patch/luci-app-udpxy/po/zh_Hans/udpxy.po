@@ -1,0 +1,76 @@
+msgid ""
+msgstr ""
+"openwrt/luciapplicationsudpxy/zh_Hans/>\n"
+"Language: zh_Hans\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 5.5-dev\n"
+
+msgid "HTTP Listen interface"
+msgstr "监听绑定 IP/接口"
+
+msgid "Buffer message amount"
+msgstr "缓冲区消息量"
+
+msgid "-1 is all."
+msgstr "-1 表示全部。"
+
+msgid "Ingress buffer size"
+msgstr "缓冲区大小"
+
+msgid "Unit: bytes, Kb, Mb; Max 2097152 bytes"
+msgstr "单位：字节，Kb，Mb；最大 2097152 字节"
+
+msgid "Buffer time limit"
+msgstr "缓冲时间限制"
+
+msgid "-1 is unlimited."
+msgstr "-1 表示无限制。"
+
+msgid "Default"
+msgstr "默认"
+
+msgid "Enabled"
+msgstr "已启用"
+
+msgid "Grant UCI access for luci-app-udpxy"
+msgstr "授予UCI访问luci-app-udpxy的权限"
+
+msgid "Log file"
+msgstr "日志文件"
+
+msgid "Client amount upper limit"
+msgstr "最大客户端数量"
+
+msgid "Renew multicast subscription periodicity"
+msgstr "组播订阅续订周期"
+
+msgid "Unit: seconds; 0 is skip."
+msgstr "单位：秒；0 表示不续订。"
+
+msgid "Nice increment"
+msgstr "优先级增量"
+
+msgid "Port"
+msgstr "端口"
+
+msgid "Respawn"
+msgstr "刷新"
+
+msgid "Multicast subscribe source interface"
+msgstr "组播源 IP/接口"
+
+msgid "Client statistics"
+msgstr "客户端状态信息"
+
+msgid "Verbose logging"
+msgstr "记录详细日志"
+
+msgid "udpxy"
+msgstr "UDPXY"
+
+msgid ""
+"udpxy is an IPTV stream relay, a UDP-to-HTTP multicast traffic relay daemon "
+"which forwards multicast UDP streams to HTTP clients."
+msgstr "udpxy 是 UDP 到 HTTP 的组播流量中继守护程序，它将组播 UDP 流转发到 HTTP 客户端。"

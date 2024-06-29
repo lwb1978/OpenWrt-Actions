@@ -60,6 +60,9 @@ rm -rf feeds/packages/net/udpxy/Makefile
 cp -rf ${GITHUB_WORKSPACE}/patch/udpxy/Makefile feeds/packages/net/udpxy/
 # 修改 udpxy 菜单名称为大写
 # sed -i 's#\"title\": \"udpxy\"#\"title\": \"UDPXY\"#g' feeds/luci/applications/luci-app-udpxy/root/usr/share/luci/menu.d/luci-app-udpxy.json
+# 修复 immortalwrt udpxy luci 汉化错误
+rm -rf feeds/luci/applications/luci-app-udpxy/po
+cp -rf ${GITHUB_WORKSPACE}/patch/luci-app-udpxy/po feeds/luci/applications/luci-app-udpxy/po
 
 # lukcy大吉
 git clone https://github.com/sirpdboy/luci-app-lucky package/lucky-packages
