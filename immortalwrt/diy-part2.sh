@@ -70,6 +70,10 @@ git clone https://github.com/sirpdboy/luci-app-lucky package/lucky-packages
 # 集客AC控制器
 git clone https://github.com/lwb1978/openwrt-gecoosac package/openwrt-gecoosac
 
+# 多线多拨
+rm -rf feeds/luci/applications/luci-app-syncdial
+git clone https://github.com/lwb1978/luci-app-syncdial package/luci-app-syncdial
+
 # 添加主题
 rm -rf feeds/luci/themes/luci-theme-argon
 git clone --depth=1 https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
