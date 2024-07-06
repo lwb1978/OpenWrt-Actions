@@ -12,8 +12,8 @@
 echo "开始 DIY2 配置……"
 echo "========================="
 
-chmod +x ${GITHUB_WORKSPACE}/lede/subscript.sh
-source ${GITHUB_WORKSPACE}/lede/subscript.sh
+chmod +x ${GITHUB_WORKSPACE}/lede/function.sh
+source ${GITHUB_WORKSPACE}/lede/function.sh
 
 # 修改Rockchip内核到6.6版
 sed -i 's/KERNEL_PATCHVER:=.*/KERNEL_PATCHVER:=6.6/g' ./target/linux/rockchip/Makefile
@@ -39,7 +39,7 @@ sed -i 's/${g}.*/${a}${b}${c}${d}${e}${f}${hydrid}/g' package/lean/autocore/file
 
 # ------------------PassWall 科学上网--------------------------
 # 移除 openwrt feeds 自带的核心库
-rm -rf feeds/packages/net/{xray-core,v2ray-core,v2ray-geodata,sing-box,pdnsd-alt}
+rm -rf feeds/packages/net/{xray-core,v2ray-core,v2ray-geodata,sing-box,pdnsd-alt,brook,chinadns-ng,dns2socks,dns2tcp,gn,hysteria,ipt2socks,microsocks,naiveproxy,shadowsocks-rust,shadowsocksr-libev,simple-obfs,tcping,trojan,trojan-go,trojan-plus,tuic-client,v2ray-plugin,xray-plugin}
 # 核心库
 git clone https://github.com/xiaorouji/openwrt-passwall-packages package/passwall-packages
 rm -rf package/passwall-packages/{chinadns-ng,naiveproxy,shadowsocks-rust,v2ray-geodata}
@@ -58,6 +58,7 @@ rm -rf feeds/packages/utils/ttyd
 merge_package master https://github.com/immortalwrt/packages feeds/packages/utils utils/ttyd
 
 # MSD组播转换luci
+rm -rf feeds/luci/applications/luci-app-msd_lite
 git clone https://github.com/lwb1978/luci-app-msd_lite package/luci-app-msd_lite
 
 # 优化socat中英翻译
@@ -81,12 +82,12 @@ cp -f ${GITHUB_WORKSPACE}/patch/udpxy/Makefile feeds/packages/net/udpxy/
 sed -i 's#_(\"udpxy\")#_(\"UDPXY\")#g' feeds/luci/applications/luci-app-udpxy/luasrc/controller/udpxy.lua
 
 # 替换curl修改版（无nghttp3、ngtcp2）
-curl_ver=$(cat feeds/packages/net/curl/Makefile | grep -i "PKG_VERSION:=" | awk 'BEGIN{FS="="};{print $2}' | awk 'BEGIN{FS=".";OFS="."};{print $1,$2}')
-if ! [ $curl_ver \> 8.8 ]; then
+curl_ver=$(cat feeds/packages/net/curl/Makefile | grep -i "PKG_VERSION:=" | awk 'BEGIN{FS="="};{print $2}')
+[ "$(compare_version "$curl_ver" "8.8.0")" != "0" ] && {
 	echo "替换curl版本"
 	rm -rf feeds/packages/net/curl
 	cp -rf ${GITHUB_WORKSPACE}/patch/curl feeds/packages/net/curl
-fi
+}
 
 # samba4
 rm -rf feeds/packages/net/samba4
@@ -97,22 +98,9 @@ sed -i '/enable multi-channel/a \\tserver multi channel support = yes' feeds/pac
 sed -i 's/#aio read size = 0/aio read size = 1/g' feeds/packages/net/samba4/files/smb.conf.template
 sed -i 's/#aio write size = 0/aio write size = 1/g' feeds/packages/net/samba4/files/smb.conf.template
 
-# 实时监控
-# rm -rf feeds/luci/applications/luci-app-netdata
-# git clone --depth=1 https://github.com/Jason6111/luci-app-netdata package/luci-app-netdata
-
-# 晶晨宝盒
-# merge_package main https://github.com/ophub/luci-app-amlogic package luci-app-amlogic
-
 # 应用商店iStore
 # merge_package main https://github.com/linkease/istore-ui package app-store-ui
 # git clone --depth=1 https://github.com/linkease/istore package/istore
-
-# 在线用户
-# merge_package main https://github.com/haiibo/packages.git package luci-app-onliner
-# sed -i '$i uci set nlbwmon.@nlbwmon[0].refresh_interval=2s' package/lean/default-settings/files/zzz-default-settings
-# sed -i '$i uci commit nlbwmon' package/lean/default-settings/files/zzz-default-settings
-# chmod 755 package/luci-app-onliner/root/usr/share/onliner/setnlbw.sh
 
 # 家长控制
 # git clone https://github.com/sirpdboy/luci-app-parentcontrol package/luci-app-parentcontrol
@@ -123,15 +111,8 @@ sed -i 's/#aio write size = 0/aio write size = 1/g' feeds/packages/net/samba4/fi
 # sed -i '/{"admin", "control"}/d' package/luci-app-autotimeset/luasrc/controller/autotimeset.lua
 # sed -i 's/"control"/"system"/g' package/luci-app-autotimeset/luasrc/controller/autotimeset.lua
 # sed -i 's/"control"/"system"/g' package/luci-app-autotimeset/luasrc/view/autotimeset/log.htm
-# ddns-go动态域名
-# git clone https://github.com/sirpdboy/luci-app-ddns-go package/ddns-go
 # lukcy大吉
 git clone https://github.com/sirpdboy/luci-app-lucky package/lucky-packages
-# 分区扩容
-# git clone https://github.com/sirpdboy/luci-app-partexp package/luci-app-partexp
-
-# AdGuardHome
-# git clone --depth=1 https://github.com/kongfl888/luci-app-adguardhome package/luci-app-adguardhome
 
 # 添加主题
 # git clone https://github.com/lwb1978/luci-theme-neobird package/luci-theme-neobird
