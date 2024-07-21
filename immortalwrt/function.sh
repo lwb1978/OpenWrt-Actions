@@ -38,21 +38,23 @@ function merge_feed(){
 }
 
 # 版本比较
-compare_version() {
-	version1="$1"
-	version2="$2"
+function chk_ver() {
+	local version1="$1"
+	local version2="$2"
+	local v1={}
+	local v2={}
 	# 将版本号字符串分割成数组
 	IFS='.' read -ra v1 <<< "$version1"
 	IFS='.' read -ra v2 <<< "$version2"
 	# 逐个比较数组中的元素
 	for i in "${!v1[@]}"; do
-	if [ "${v1[i]}" -gt "${v2[i]}" ]; then
-		# echo "版本 $version1 大于版本 $version2"
-		return 0
-	elif [ "${v1[i]}" -lt "${v2[i]}" ]; then
-		# echo "版本 $version1 小于版本 $version2"
-		return 1
-	fi
+		if [ "${v1[i]}" -gt "${v2[i]}" ]; then
+			# echo "版本 $version1 大于版本 $version2"
+			return 0
+		elif [ "${v1[i]}" -lt "${v2[i]}" ]; then
+			# echo "版本 $version1 小于版本 $version2"
+			return 1
+		fi
 	done
 	# echo "版本 $version1 等于版本 $version2"
 	return 255
