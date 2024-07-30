@@ -38,7 +38,7 @@ merge_feed(){
 }
 
 # 版本比较 sh
-chk_ver() {
+check_ver() {
 	local version1="$1"
 	local version2="$2"
 	# 分割版本号字符串并设置默认值
@@ -52,18 +52,20 @@ chk_ver() {
 		eval v2=\$v2_$i
 		if [ "$v1" -gt "$v2" ]; then
 			# echo "版本 $version1 大于版本 $version2"
-			return 0
+			echo 0
+			return
 		elif [ "$v1" -lt "$v2" ]; then
 			# echo "版本 $version1 小于版本 $version2"
-			return 1
+			echo 1
+			return
 		fi
 	done
 	# echo "版本 $version1 等于版本 $version2"
-	return 255
+	echo 255
 }
 
 # 版本比较 bash
-chk_ver2() {
+check_ver2() {
 	local version1="$1"
 	local version2="$2"
 	local v1={}
@@ -75,12 +77,14 @@ chk_ver2() {
 	for i in "${!v1[@]}"; do
 		if [ "${v1[i]}" -gt "${v2[i]}" ]; then
 			# echo "版本 $version1 大于版本 $version2"
-			return 0
+			echo 0
+			return
 		elif [ "${v1[i]}" -lt "${v2[i]}" ]; then
 			# echo "版本 $version1 小于版本 $version2"
-			return 1
+			echo 1
+			return
 		fi
 	done
 	# echo "版本 $version1 等于版本 $version2"
-	return 255
+	echo 255
 }
