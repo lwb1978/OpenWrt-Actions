@@ -91,10 +91,6 @@ git clone https://github.com/sbwml/package_network_services_ppp package/network/
 # TTYD设置
 sed -i 's/procd_set_param stdout 1/procd_set_param stdout 0/g' feeds/packages/utils/ttyd/files/ttyd.init
 sed -i 's/procd_set_param stderr 1/procd_set_param stderr 0/g' feeds/packages/utils/ttyd/files/ttyd.init
-
-# openssl 3.2
-# rm -rf package/libs/openssl
-# git clone https://github.com/sbwml/package_libs_openssl -b openssl-3.2 package/libs/openssl
 	  
 # nghttp3
 # rm -rf feeds/packages/libs/nghttp3
@@ -118,20 +114,11 @@ curl_ver=$(cat feeds/packages/net/curl/Makefile | grep -i "PKG_VERSION:=" | awk 
 
 mirror=raw.githubusercontent.com/sbwml/r4s_build_script/master
 
-# firewall4 add custom nft command support
+# 防火墙4添加自定义nft命令支持
 curl -s https://$mirror/openwrt/patch/firewall4/100-openwrt-firewall4-add-custom-nft-command-support.patch | patch -p1
 
-# Shortcut Forwarding Engine
-# git clone https://git.cooluc.com/sbwml/shortcut-fe package/shortcut-fe
-
-# IPv6 NAT
-# git clone https://github.com/sbwml/packages_new_nat6 package/nat6
-
-# firewall4 Patch Luci add nft_fullcone/bcm_fullcone & shortcut-fe & ipv6-nat & custom nft command option
 pushd feeds/luci
-	# curl -s https://$mirror/openwrt/patch/firewall4/01-luci-app-firewall_add_nft-fullcone-bcm-fullcone_option.patch | patch -p1
-	# curl -s https://$mirror/openwrt/patch/firewall4/02-luci-app-firewall_add_shortcut-fe.patch | patch -p1
-	# curl -s https://$mirror/openwrt/patch/firewall4/03-luci-app-firewall_add_ipv6-nat.patch | patch -p1
+	# 防火墙4添加自定义nft命令选项卡
 	curl -s https://$mirror/openwrt/patch/firewall4/04-luci-add-firewall4-nft-rules-file.patch | patch -p1
 	# 状态-防火墙页面去掉iptables警告，并添加nftables、iptables标签页
 	curl -s https://$mirror/openwrt/patch/luci/luci-nftables.patch | patch -p1
