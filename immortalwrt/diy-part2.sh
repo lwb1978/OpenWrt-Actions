@@ -119,7 +119,7 @@ curl -s https://$mirror/openwrt/patch/firewall4/100-openwrt-firewall4-add-custom
 
 pushd feeds/luci
 	# 防火墙4添加自定义nft命令选项卡
-	curl -s https://$mirror/openwrt/patch/firewall4/0004-luci-add-firewall-add-custom-nft-rule-support.patch | patch -p1
+	curl -s https://$mirror/openwrt/patch/firewall4/openwrt-24.10/0004-luci-add-firewall-add-custom-nft-rule-support.patch | patch -p1
 	# 状态-防火墙页面去掉iptables警告，并添加nftables、iptables标签页
 	curl -s https://$mirror/openwrt/patch/luci/0004-luci-mod-status-firewall-disable-legacy-firewall-rul.patch | patch -p1
 popd
