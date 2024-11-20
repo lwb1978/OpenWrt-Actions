@@ -41,7 +41,7 @@ rm -rf package/passwall-packages/{chinadns-ng,naiveproxy,shadowsocks-rust,v2ray-
 merge_package v5 https://github.com/sbwml/openwrt_helloworld package/passwall-packages chinadns-ng naiveproxy shadowsocks-rust v2ray-geodata
 # app
 rm -rf feeds/luci/applications/{luci-app-passwall,luci-app-ssr-libev-server}
-git clone -b luci-smartdns-dev --single-branch https://github.com/lwb1978/openwrt-passwall package/passwall-luci
+git clone https://github.com/lwb1978/openwrt-passwall package/passwall-luci
 # git clone https://github.com/xiaorouji/openwrt-passwall package/passwall-luci
 # ------------------------------------------------------------
 
