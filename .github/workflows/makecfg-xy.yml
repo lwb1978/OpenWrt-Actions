@@ -83,6 +83,7 @@ jobs:
       with:
         name: OpenWrt-${{ env.DEVICE_NAME }}-Config
         path: /tmp/upload
+        include-hidden-files: true
 
     - name: 删除旧的 workflow 运行记录
       uses: GitRML/delete-workflow-runs@main
