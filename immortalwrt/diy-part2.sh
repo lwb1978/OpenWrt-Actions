@@ -73,9 +73,9 @@ git clone https://github.com/gdy666/luci-app-lucky.git package/lucky-packages
 
 # 添加主题
 rm -rf feeds/luci/themes/luci-theme-argon
-git clone --depth=1 https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
-# merge_package main https://github.com/sbwml/luci-theme-argon feeds/luci/themes luci-theme-argon
-git clone --depth=1 -b js https://github.com/lwb1978/luci-theme-kucat package/luci-theme-kucat
+# git clone --depth=1 https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
+merge_package openwrt-24.10 https://github.com/sbwml/luci-theme-argon feeds/luci/themes luci-theme-argon
+# git clone --depth=1 -b js https://github.com/lwb1978/luci-theme-kucat package/luci-theme-kucat
 
 # unzip
 rm -rf feeds/packages/utils/unzip
@@ -114,7 +114,7 @@ curl_ver=$(cat feeds/packages/net/curl/Makefile | grep -i "PKG_VERSION:=" | awk 
 }
 
 # apk-tools APK管理器不再校验版本号的合法性
-# mkdir -p package/system/apk/patches && cp -f ${GITHUB_WORKSPACE}/patch/apk-tools/9999-hack-for-linux-pre-releases.patch package/system/apk/patches/
+mkdir -p package/system/apk/patches && cp -f ${GITHUB_WORKSPACE}/patch/apk-tools/9999-hack-for-linux-pre-releases.patch package/system/apk/patches/
 
 mirror=raw.githubusercontent.com/sbwml/r4s_build_script/master
 
