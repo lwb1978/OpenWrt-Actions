@@ -17,7 +17,7 @@ on:
 
 env:
   REPO_URL: https://github.com/immortalwrt/immortalwrt.git
-  REPO_BRANCH: master
+  REPO_BRANCH: openwrt-24.10
   DEVICE_NAME: X86-Im
   FILES: immortalwrt/files
   FEEDS_CONF: immortalwrt/feeds.conf.default
