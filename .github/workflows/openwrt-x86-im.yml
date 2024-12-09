@@ -21,7 +21,7 @@ env:
   DEVICE_NAME: X86-Im
   FILES: immortalwrt/files
   FEEDS_CONF: immortalwrt/feeds.conf.default
-  CONFIG_FILE: immortalwrt/config.x86
+  CONFIG_FILE: immortalwrt/config.x86.bak
   DIY_P1_SH: immortalwrt/diy-part1.sh
   DIY_P2_SH: immortalwrt/diy-part2.sh
   UPLOAD_BIN_DIR: false
