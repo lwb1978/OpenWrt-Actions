@@ -1,6 +1,0 @@
-
-config lucky
-	option enabled '0'
-	option logger '0'
-	option configdir '/etc/config/lucky'
-
