@@ -10,6 +10,9 @@
 # Description: OpenWrt DIY script part 1 (Before Update feeds)
 #
 
+echo "开始 DIY1 配置……"
+echo "========================="
+
 # Uncomment a feed source
 # sed -i 's/^#\(.*helloworld\)/\1/' feeds.conf.default
 
@@ -25,3 +28,7 @@ VERSION_TEXT=$(head -n 1 ${VERSION} | tr -d ' \r\n')
 if [ -n "$VERSION_TEXT" ]; then
 	sed -i "/^VERSION_NUMBER:=.*SNAPSHOT/s/SNAPSHOT/${VERSION_TEXT}/" include/version.mk
 fi
+
+
+echo "========================="
+echo " DIY1 配置完成……"
