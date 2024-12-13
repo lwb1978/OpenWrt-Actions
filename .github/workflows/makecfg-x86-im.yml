@@ -88,5 +88,7 @@ jobs:
     - name: 删除旧的 workflow 运行记录
       uses: Mattraks/delete-workflow-runs@main
       with:
-        retain_days: 30
-        keep_minimum_runs: 3
+        token: ${{ github.token }}
+        repository: ${{ github.repository }}
+        retain_days: 7
+        keep_minimum_runs: 1
