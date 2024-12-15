@@ -60,9 +60,6 @@ rm -rf feeds/packages/net/udpxy/Makefile
 cp -rf ${GITHUB_WORKSPACE}/patch/udpxy/Makefile feeds/packages/net/udpxy/
 # 修改 udpxy 菜单名称为大写
 sed -i 's#\"title\": \"udpxy\"#\"title\": \"UDPXY\"#g' feeds/luci/applications/luci-app-udpxy/root/usr/share/luci/menu.d/luci-app-udpxy.json
-# 修复 immortalwrt udpxy luci 汉化错误
-# rm -rf feeds/luci/applications/luci-app-udpxy/po
-# cp -rf ${GITHUB_WORKSPACE}/patch/luci-app-udpxy/po feeds/luci/applications/luci-app-udpxy/po
 
 # lukcy大吉
 git clone https://github.com/sirpdboy/luci-app-lucky package/lucky-packages
@@ -78,8 +75,8 @@ merge_package openwrt-24.10 https://github.com/sbwml/luci-theme-argon feeds/luci
 # git clone --depth=1 -b js https://github.com/lwb1978/luci-theme-kucat package/luci-theme-kucat
 
 # unzip
-#rm -rf feeds/packages/utils/unzip
-#git clone https://github.com/sbwml/feeds_packages_utils_unzip feeds/packages/utils/unzip
+rm -rf feeds/packages/utils/unzip
+git clone https://github.com/sbwml/feeds_packages_utils_unzip feeds/packages/utils/unzip
 
 # golang 1.23
 rm -rf feeds/packages/lang/golang
@@ -173,9 +170,6 @@ pushd feeds/packages
 		patch -p1 < ${GITHUB_WORKSPACE}/patch/vim/0001-vim-fix-renamed-defaults-config-file.patch
 	}
 popd
-
-# 修复编译时提示 freeswitch 缺少 libpcre 依赖
-#sed -i 's/+libpcre \\$/+libpcre2 \\/g' package/feeds/telephony/freeswitch/Makefile
 
 # 修正部分从第三方仓库拉取的软件 Makefile 路径问题
 find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/..\/..\/luci.mk/$(TOPDIR)\/feeds\/luci\/luci.mk/g' {}
