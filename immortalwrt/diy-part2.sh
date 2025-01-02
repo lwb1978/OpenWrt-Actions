@@ -66,6 +66,7 @@ git clone https://github.com/sirpdboy/luci-app-lucky package/lucky-packages
 # git clone https://github.com/gdy666/luci-app-lucky.git package/lucky-packages
 
 # 集客AC控制器
+git clone https://github.com/lwb1978/openwrt-gecoosac package/openwrt-gecoosac
 # git clone -b v1.0 https://github.com/lwb1978/openwrt-gecoosac package/openwrt-gecoosac
 
 # 添加主题
