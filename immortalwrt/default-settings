@@ -66,9 +66,9 @@ touch /root/.vimrc
 
 # 网络诊断
 if [ "$(uci -q get luci.diag.ping)" = "openwrt.org" ] || [ "$(uci -q get luci.diag.ping)" = "immortalwrt.org" ]; then
-	uci set luci.diag.dns='baidu.com'
-	uci set luci.diag.ping='baidu.com'
-	uci set luci.diag.route='baidu.com'
+	uci set luci.diag.dns='www.qq.com'
+	uci set luci.diag.ping='www.qq.com'
+	uci set luci.diag.route='www.qq.com'
 	uci commit luci
 fi
 
