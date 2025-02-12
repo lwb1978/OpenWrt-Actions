@@ -33,80 +33,49 @@ env:
 
 jobs:
   build:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
+    defaults:
+      run:
+        shell: bash
 
     steps:
-
-    - name: Free Disk Space (Ubuntu)
-      uses: jlumbroso/free-disk-space@main
-      with:
-        # this might remove tools that are actually needed,
-        # if set to "true" but frees about 6 GB
-        tool-cache: true
-        # all of these default to true, but feel free to set to
-        # "false" if necessary for your workflow
-        android: true
-        dotnet: true
-        haskell: true
-        large-packages: true
-        docker-images: true
-        swap-storage: true
 
     - name: Checkout
       uses: actions/checkout@main
 
-    - name: Check server configuration
+    - name: Setup variables
       run: |
-        echo "警告⚠"
-        echo "若分配的服务器性能不足，务必及时取消，重新运行！"
-        echo "已知编译成功CPU型号：8370C,8171M"
-        echo "已知性能不足CPU型号：8272CL"
-        echo -e "-------------- ------------CPU信息------------------------------------------\n"
-        echo "CPU物理数量:$(cat /proc/cpuinfo| grep "physical id"| sort| uniq| wc -l)"
-        echo -e "CPU核心及版本信息：$(cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c) \n"
-        echo "-------------------------------内存信息-------------------------------------------"
-        echo "已安装内存详细信息："
-        sudo lshw -short -C memory | grep GiB
-        echo -e "\n"
-        echo "-----------------------------硬盘信息---------------------------------------------"
-        echo -e  "硬盘数量：$(ls /dev/sd* | grep -v [1-9] | wc -l) \n"
-        echo "硬盘详情："
-        df -Th
-
-    - name: Initialization Environment
-      env:
-        DEBIAN_FRONTEND: noninteractive
-      run: |
-        sudo rm -rf /usr/share/dotnet/
-        sudo rm -rf /usr/local/graalvm/
-        sudo rm -rf /usr/local/.ghcup/
-        sudo rm -rf /usr/local/share/powershell
-        sudo rm -rf /usr/local/share/chromium
-        sudo rm -rf /usr/local/lib/android
-        sudo rm -rf /usr/local/lib/node_modules
-        df -h
-        sudo -E apt-get -qq update
-        sudo -E apt-get -yqq install $(cat $GITHUB_WORKSPACE/depends-ubuntu-2204)
-        sudo -E apt-get -yqq autoremove --purge
-        sudo -E apt-get -qq clean
         sudo timedatectl set-timezone "$TZ"
         echo "status=success" >> ${GITHUB_OUTPUT}
 
-    - name: Create simulated physical disk
+    - name: Show system
       run: |
-        mnt_size=$(expr $(df -h /mnt | tail -1 | awk '{print $4}' | sed 's/[[:alpha:]]//g' | sed 's/\..*//') - 1)
-        root_size=$(expr $(df -h / | tail -1 | awk '{print $4}' | sed 's/[[:alpha:]]//g' | sed 's/\..*//') - 4)
-        sudo truncate -s "${mnt_size}"G /mnt/mnt.img
-        sudo truncate -s "${root_size}"G /root.img
-        sudo losetup /dev/loop6 /mnt/mnt.img
-        sudo losetup /dev/loop7 /root.img
-        sudo pvcreate /dev/loop6
-        sudo pvcreate /dev/loop7
-        sudo vgcreate github /dev/loop6 /dev/loop7
-        sudo lvcreate -n runner -l 100%FREE github
-        sudo mkfs.xfs /dev/github/runner
-        sudo mkdir -p /builder
-        sudo mount /dev/github/runner /builder
-        sudo chown -R runner.runner /builder
-        df -Th
-   
+        echo -e "\n\e[1;32mCPU:\e[0m"
+        echo "$(grep 'model name' /proc/cpuinfo | head -1 | awk -F ': ' '{print $2}') ($(grep 'cpu MHz' /proc/cpuinfo | head -1 | awk -F ': ' '{print $2}')MHz) x $(grep processor /proc/cpuinfo  | wc -l)"
+        echo -e "\n\e[1;32mMemory:\e[0m"
+        free -h
+        echo -e "\n\e[1;32mStorage:\e[0m"
+        df -Th / /mnt
+        echo -e "\n\e[1;32mSystem:\e[0m"
+        lsb_release -a
+        echo -e "\n\e[1;32mKernel:\e[0m"
+        uname -a
+        echo
+
+    - name: Free disk space
+      uses: sbwml/actions@free-disk
+      with:
+        build-mount-path: /builder
+
+    - name: Build System Setup
+      uses: sbwml/actions@openwrt-build-setup
+
+    - name: Install LLVM
+      uses: sbwml/actions@install-llvm
+ 
+    - name: Clone source code
+      working-directory: /builder
+      run: |
+        df -hT $PWD
+        git clone -b $REPO_BRANCH --single-branch --filter=blob:none $REPO_URL openwrt
+        ln -sf /builder/openwrt $GITHUB_WORKSPACE/openwrt
