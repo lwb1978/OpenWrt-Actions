@@ -4,6 +4,12 @@
 
 name: OpenWrt X86 Im
 
+on:
+  repository_dispatch:
+  workflow_dispatch:
+#  schedule:
+#    - cron: 0 8 * * 5
+
 env:
   REPO_URL: https://github.com/immortalwrt/immortalwrt.git
   REPO_BRANCH: master
