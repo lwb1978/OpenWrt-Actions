@@ -72,8 +72,17 @@ git clone https://github.com/lwb1978/openwrt-gecoosac package/openwrt-gecoosac
 # 添加主题
 rm -rf feeds/luci/themes/luci-theme-argon
 # git clone --depth=1 https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
-merge_package openwrt-24.10 https://github.com/sbwml/luci-theme-argon feeds/luci/themes luci-theme-argon
+merge_package openwrt-24.10 https://github.com/sbwml/luci-theme-argon package luci-theme-argon
 git clone --depth=1 -b js https://github.com/lwb1978/luci-theme-kucat package/luci-theme-kucat
+
+# 取消自添加主题的默认设置
+find package/luci-theme-*/* -type f -print | grep '/root/etc/uci-defaults/' | while IFS= read -r file; do
+	sed -i '/set luci.main.mediaurlbase/d' "$file"
+done
+
+# 设置默认主题
+default_theme='argon'
+sed -i "s/bootstrap/$default_theme/g" feeds/luci/modules/luci-base/root/etc/config/luci
 
 # unzip
 rm -rf feeds/packages/utils/unzip
