@@ -83,11 +83,11 @@ sed -i 's#_(\"udpxy\")#_(\"UDPXY\")#g' feeds/luci/applications/luci-app-udpxy/lu
 
 # 替换curl修改版（无nghttp3、ngtcp2）
 curl_ver=$(cat feeds/packages/net/curl/Makefile | grep -i "PKG_VERSION:=" | awk 'BEGIN{FS="="};{print $2}')
-if [ "$(check_ver "$curl_ver" "8.12.0")" != "0" ] || [ "$curl_ver" = "8.12.1" ]; then
+[ "$(check_ver "$curl_ver" "8.12.0")" != "0" ] && {
 	echo "替换curl版本"
 	rm -rf feeds/packages/net/curl
 	cp -rf ${GITHUB_WORKSPACE}/patch/curl feeds/packages/net/curl
-fi
+}
 
 # samba4
 rm -rf feeds/packages/net/samba4
