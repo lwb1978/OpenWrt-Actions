@@ -1,0 +1,2 @@
+config global
+	option font_weight 'normal'
