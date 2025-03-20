@@ -168,8 +168,8 @@ sed -i 's#\"title\": \"UPnP IGD \& PCP\"#\"title\": \"UPnP\"#g' feeds/luci/appli
 sed -i 's/services/network/g' feeds/luci/applications/luci-app-upnp/root/usr/share/luci/menu.d/luci-app-upnp.json
 
 # rpcd - fix timeout
-sed -i 's/option timeout 30/option timeout 60/g' package/system/rpcd/files/rpcd.config
-sed -i 's#20) \* 1000#60) \* 1000#g' feeds/luci/modules/luci-base/htdocs/luci-static/resources/rpc.js
+# sed -i 's/option timeout 30/option timeout 60/g' package/system/rpcd/files/rpcd.config
+# sed -i 's#20) \* 1000#60) \* 1000#g' feeds/luci/modules/luci-base/htdocs/luci-static/resources/rpc.js
 
 # vim - fix E1187: Failed to source defaults.vim
 pushd feeds/packages
