@@ -42,8 +42,8 @@ sed -i 's/${g}.*/${a}${b}${c}${d}${e}${f}${hydrid}/g' package/lean/autocore/file
 rm -rf feeds/packages/net/{xray-core,v2ray-geodata,sing-box,chinadns-ng,dns2socks,hysteria,ipt2socks,microsocks,naiveproxy,shadowsocks-libev,shadowsocks-rust,shadowsocksr-libev,simple-obfs,tcping,trojan-plus,tuic-client,v2ray-plugin,xray-plugin,geoview}
 # 核心库
 git clone https://github.com/xiaorouji/openwrt-passwall-packages package/passwall-packages
-rm -rf package/passwall-packages/{chinadns-ng,naiveproxy,shadowsocks-rust,v2ray-geodata}
-merge_package v5 https://github.com/sbwml/openwrt_helloworld package/passwall-packages chinadns-ng naiveproxy shadowsocks-rust v2ray-geodata
+rm -rf package/passwall-packages/{shadowsocks-rust,v2ray-geodata}
+merge_package v5 https://github.com/sbwml/openwrt_helloworld package/passwall-packages shadowsocks-rust v2ray-geodata
 # app
 git clone -b luci-smartdns-dev --single-branch https://github.com/lwb1978/openwrt-passwall package/passwall-luci
 # git clone https://github.com/xiaorouji/openwrt-passwall package/passwall-luci
@@ -69,7 +69,8 @@ rm -rf feeds/luci/applications/luci-app-smartdns
 git clone -b lede --single-branch https://github.com/lwb1978/luci-app-smartdns package/luci-app-smartdns
 # 更新lean仓库的smartdns版本到最新
 rm -rf feeds/packages/net/smartdns
-cp -rf ${GITHUB_WORKSPACE}/patch/smartdns feeds/packages/net
+# cp -rf ${GITHUB_WORKSPACE}/patch/smartdns feeds/packages/net
+cp -rf ${GITHUB_WORKSPACE}/patch/smartdns package
 # 更新lean的内置的smartdns版本
 # sed -i 's/1.2021.35/2022.03.02/g' feeds/packages/net/smartdns/Makefile
 # sed -i 's/f50e4dd0813da9300580f7188e44ed72a27ae79c/1fd18601e7d8ac88e8557682be7de3dc56e69105/g' feeds/packages/net/smartdns/Makefile
