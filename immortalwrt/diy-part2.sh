@@ -70,6 +70,10 @@ git clone https://github.com/sirpdboy/luci-app-lucky package/lucky-packages
 git clone https://github.com/lwb1978/openwrt-gecoosac package/openwrt-gecoosac
 # git clone -b v1.0 https://github.com/lwb1978/openwrt-gecoosac package/openwrt-gecoosac
 
+# zerotier
+rm -rf feeds/luci/applications/luci-app-zerotier
+git clone https://github.com/lwb1978/luci-app-zerotier package/luci-app-zerotier
+
 # 添加主题
 rm -rf feeds/luci/themes/luci-theme-argon
 # git clone --depth=1 https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
@@ -89,7 +93,7 @@ sed -i "s/bootstrap/$default_theme/g" feeds/luci/modules/luci-base/root/etc/conf
 rm -rf feeds/packages/utils/unzip
 git clone https://github.com/sbwml/feeds_packages_utils_unzip feeds/packages/utils/unzip
 
-# golang 1.23
+# golang 1.24
 rm -rf feeds/packages/lang/golang
 git clone --depth=1 https://github.com/sbwml/packages_lang_golang feeds/packages/lang/golang
 
