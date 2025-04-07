@@ -74,6 +74,10 @@ git clone https://github.com/lwb1978/openwrt-gecoosac package/openwrt-gecoosac
 rm -rf feeds/luci/applications/luci-app-zerotier
 git clone https://github.com/lwb1978/luci-app-zerotier package/luci-app-zerotier
 
+# 定时网络唤醒
+rm -rf feeds/luci/applications/luci-app-timewol
+git clone https://github.com/lwb1978/luci-app-timewol package/luci-app-timewol
+
 # 添加主题
 rm -rf feeds/luci/themes/luci-theme-argon
 # git clone --depth=1 https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
