@@ -71,8 +71,8 @@ git clone https://github.com/lwb1978/openwrt-gecoosac package/openwrt-gecoosac
 # git clone -b v1.0 https://github.com/lwb1978/openwrt-gecoosac package/openwrt-gecoosac
 
 # zerotier
-rm -rf feeds/luci/applications/luci-app-zerotier
-git clone https://github.com/lwb1978/luci-app-zerotier package/luci-app-zerotier
+# rm -rf feeds/luci/applications/luci-app-zerotier
+# git clone https://github.com/lwb1978/luci-app-zerotier package/luci-app-zerotier
 
 # 定时网络唤醒
 rm -rf feeds/luci/applications/luci-app-timewol
