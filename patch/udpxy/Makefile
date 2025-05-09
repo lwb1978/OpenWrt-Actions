@@ -13,7 +13,7 @@ PKG_RELEASE:=$(AUTORELEASE)
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://www.github.com/lwb1978/udpxy.git
-PKG_SOURCE_VERSION:=62c79dd32795117e6afd79ad40c32ce67b74e490
+PKG_SOURCE_VERSION:=fdea894bf12f4e338adf65dbeda72a030793a3ef
 # PKG_MIRROR_HASH:=skip
 
 PKG_MAINTAINER:=Álvaro Fernández Rojas <noltari@gmail.com>
