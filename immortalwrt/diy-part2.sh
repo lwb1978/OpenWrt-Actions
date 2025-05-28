@@ -20,7 +20,7 @@ source ${GITHUB_WORKSPACE}/immortalwrt/function.sh
 # sed -i 's/KERNEL_PATCHVER:=.*/KERNEL_PATCHVER:=6.6/g' ./target/linux/x86/Makefile
 
 # 使用测试版内核
-echo "CONFIG_TESTING_KERNEL=y" >> .config
+# echo "CONFIG_TESTING_KERNEL=y" >> .config
 
 # 默认IP由1.1修改为0.1
 # sed -i 's/192.168.1.1/192.168.0.1/g' package/base-files/files/bin/config_generate
