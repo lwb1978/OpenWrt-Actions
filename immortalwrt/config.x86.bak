@@ -48,8 +48,8 @@ CONFIG_PACKAGE_kmod-txgbe=y
 ### Curl
 CONFIG_PACKAGE_curl=y
 CONFIG_PACKAGE_libcurl=y
-# CONFIG_LIBCURL_NGHTTP3 is not set
-# CONFIG_LIBCURL_NGTCP2 is not set
+CONFIG_LIBCURL_NGHTTP3=y
+CONFIG_LIBCURL_NGTCP2=y
 CONFIG_LIBCURL_OPENSSL=y
 # CONFIG_LIBCURL_GNUTLS is not set
 # CONFIG_LIBCURL_MBEDTLS is not set
@@ -151,8 +151,8 @@ CONFIG_PACKAGE_kmod-nft-socket=y
 CONFIG_PACKAGE_kmod-nft-tproxy=y
 CONFIG_PACKAGE_kmod-nls-cp936=y
 CONFIG_PACKAGE_kmod-nls-cp950=y
-CONFIG_PACKAGE_kmod-sched-cake=y
 CONFIG_PACKAGE_kmod-sched-bpf=y
+CONFIG_PACKAGE_kmod-sched-cake=y
 CONFIG_PACKAGE_kmod-sched-core=y
 CONFIG_PACKAGE_kmod-sched=y
 CONFIG_PACKAGE_kmod-tcp-bbr3=y

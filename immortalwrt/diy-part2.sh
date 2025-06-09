@@ -59,6 +59,10 @@ rm -rf feeds/packages/net/smartdns
 # cp -rf ${GITHUB_WORKSPACE}/patch/smartdns feeds/packages/net
 cp -rf ${GITHUB_WORKSPACE}/patch/smartdns package
 
+# 替换openssl
+rm -f package/libs/openssl/Makefile
+cp -f ${GITHUB_WORKSPACE}/patch/openssl/Makefile package/libs/openssl/Makefile
+
 # 替换udpxy为修改版，解决组播源数据有重复数据包导致的花屏和马赛克问题
 rm -rf feeds/packages/net/udpxy/Makefile
 cp -rf ${GITHUB_WORKSPACE}/patch/udpxy/Makefile feeds/packages/net/udpxy/
