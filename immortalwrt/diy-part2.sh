@@ -57,15 +57,14 @@ git clone https://github.com/lwb1978/luci-app-smartdns package/luci-app-smartdns
 # 替换immortalwrt 软件仓库smartdns版本为官方最新版
 rm -rf feeds/packages/net/smartdns
 # cp -rf ${GITHUB_WORKSPACE}/patch/smartdns feeds/packages/net
-cp -rf ${GITHUB_WORKSPACE}/patch/smartdns package
+cp -rf ${GITHUB_WORKSPACE}/patch/smartdns package/
 
-# 替换openssl
-rm -f package/libs/openssl/Makefile
-cp -f ${GITHUB_WORKSPACE}/patch/openssl/Makefile package/libs/openssl/Makefile
+# openssl Enable QUIC and KTLS support
+curl -s https://github.com/openwrt/openwrt/commit/bbdecdf4ed259ee8a60a866446dfc3c03e173c28.patch | patch -p1
 
 # 替换udpxy为修改版，解决组播源数据有重复数据包导致的花屏和马赛克问题
-rm -rf feeds/packages/net/udpxy/Makefile
-cp -rf ${GITHUB_WORKSPACE}/patch/udpxy/Makefile feeds/packages/net/udpxy/
+rm -f feeds/packages/net/udpxy/Makefile
+cp -f ${GITHUB_WORKSPACE}/patch/udpxy/Makefile feeds/packages/net/udpxy/Makefile
 # 修改 udpxy 菜单名称为大写
 sed -i 's#\"title\": \"udpxy\"#\"title\": \"UDPXY\"#g' feeds/luci/applications/luci-app-udpxy/root/usr/share/luci/menu.d/luci-app-udpxy.json
 
