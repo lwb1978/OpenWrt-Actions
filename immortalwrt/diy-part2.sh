@@ -60,7 +60,7 @@ rm -rf feeds/packages/net/smartdns
 cp -rf ${GITHUB_WORKSPACE}/patch/smartdns package/
 
 # openssl Enable QUIC and KTLS support
-curl -s https://github.com/openwrt/openwrt/commit/bbdecdf4ed259ee8a60a866446dfc3c03e173c28.patch | patch -p1
+curl -s https://github.com/openwrt/openwrt/commit/7a01d41a376a716179de12203b1e255a5618b4fa.patch | patch -p1
 
 # 替换udpxy为修改版，解决组播源数据有重复数据包导致的花屏和马赛克问题
 rm -f feeds/packages/net/udpxy/Makefile
