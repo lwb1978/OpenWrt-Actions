@@ -60,7 +60,7 @@ rm -rf feeds/packages/net/smartdns
 cp -rf ${GITHUB_WORKSPACE}/patch/smartdns package/
 
 # openssl Enable QUIC and KTLS support
-curl -s https://github.com/openwrt/openwrt/commit/c2e31f42ee0bc2ed8024afe99685c4cdf2677bf4.patch | patch -p1
+curl -s https://github.com/openwrt/openwrt/commit/362aea4649485ca7c31ce42c371d5051e7dead4d.patch | patch -p1
 echo "CONFIG_OPENSSL_WITH_QUIC=y" >> .config
 # echo "CONFIG_OPENSSL_WITH_KTLS=y" >> .config
 
