@@ -22,6 +22,9 @@ echo "========================="
 # rm -rf target/linux/ramips
 # svn export https://github.com/padavanonly/immortalwrt/trunk/target/linux/ramips target/linux/ramips
 
+# openssl Enable QUIC and KTLS support
+curl -s https://github.com/openwrt/openwrt/commit/362aea4649485ca7c31ce42c371d5051e7dead4d.patch | patch -p1
+
 # 修改系统版本（界面显示）
 VERSION=${GITHUB_WORKSPACE}/immortalwrt/version
 VERSION_TEXT=$(head -n 1 ${VERSION} | tr -d ' \r\n')
