@@ -56,8 +56,10 @@ rm -rf feeds/luci/applications/luci-app-smartdns
 git clone https://github.com/lwb1978/luci-app-smartdns package/luci-app-smartdns
 # 替换immortalwrt 软件仓库smartdns版本为官方最新版
 rm -rf feeds/packages/net/smartdns
-# cp -rf ${GITHUB_WORKSPACE}/patch/smartdns feeds/packages/net
-cp -rf ${GITHUB_WORKSPACE}/patch/smartdns package/
+# cp -rf ${GITHUB_WORKSPACE}/patch/smartdns package/
+git clone https://github.com/lwb1978/openwrt-smartdns package/smartdns
+# 添加 smartdns-ui
+echo "CONFIG_PACKAGE_smartdns-ui=y" >> .config
 
 # openssl Enable QUIC and KTLS support
 echo "CONFIG_OPENSSL_WITH_QUIC=y" >> .config
@@ -216,7 +218,7 @@ fi
 #./scripts/feeds update -a
 #./scripts/feeds install -a
 
-make defconfig
+#make defconfig
 
 echo "========================="
 echo " DIY2 配置完成……"
