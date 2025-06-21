@@ -62,11 +62,25 @@ jobs:
       with:
         build-mount-path: /builder
 
-    - name: Build System Setup
-      uses: sbwml/actions@openwrt-build-setup
+    #- name: Build System Setup
+      #uses: sbwml/actions@openwrt-build-setup
 
-    - name: Install LLVM
-      uses: sbwml/actions@install-llvm
+    #- name: Install LLVM
+      #uses: sbwml/actions@install-llvm
+
+    - name: Initialization environment
+      env:
+        DEBIAN_FRONTEND: noninteractive
+      run: |
+        sudo -E apt-get -qq update
+        sudo bash -c 'bash <(curl -sL https://build-scripts.immortalwrt.org/init_build_environment.sh)'
+        curl -fsSL https://deb.nodesource.com/setup_22.x -o nodesource_setup.sh | sudo -E bash -
+        sudo -E apt-get install -y nodejs
+        sudo -E apt-get -qq autoremove --purge
+        sudo -E apt-get -qq clean
+        sudo timedatectl set-timezone "$TZ"
+        #sudo mkdir -p /builder
+        sudo chown $USER:$(id -gn) /builder
 
     - name: Clone source code
       working-directory: /builder
