@@ -59,6 +59,7 @@ rm -rf feeds/packages/net/smartdns
 # cp -rf ${GITHUB_WORKSPACE}/patch/smartdns package/
 git clone https://github.com/lwb1978/openwrt-smartdns package/smartdns
 # 添加 smartdns-ui
+echo "CONFIG_PACKAGE_luci-app-smartdns_INCLUDE_smartdns_ui=y" >> .config
 echo "CONFIG_PACKAGE_smartdns-ui=y" >> .config
 
 # openssl Enable QUIC and KTLS support
