@@ -200,6 +200,19 @@ pushd feeds/packages
 	}
 popd
 
+# 更新 zerotier 到 1.14.2
+pushd feeds/packages/net/zerotier
+	zero_ver=$(cat Makefile | grep -i "PKG_VERSION:=" | awk 'BEGIN{FS="="};{print $2}')
+	[ "$(check_ver "$zero_ver" "1.14.2")" != "0" ] && {
+		echo "更新 zerotier 到 1.14.2"
+		for zero_f in *; do
+			[ "$zero_f" != "files" ] && rm -rf "$zero_f"
+		done
+		cp -a "${GITHUB_WORKSPACE}/patch/zerotier/." .
+	}
+popd
+
+
 # 修正部分从第三方仓库拉取的软件 Makefile 路径问题
 find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/..\/..\/luci.mk/$(TOPDIR)\/feeds\/luci\/luci.mk/g' {}
 find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/..\/..\/lang\/golang\/golang-package.mk/$(TOPDIR)\/feeds\/packages\/lang\/golang\/golang-package.mk/g' {}
