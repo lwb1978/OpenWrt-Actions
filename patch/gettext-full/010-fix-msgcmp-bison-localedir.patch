@@ -1,0 +1,9 @@
+--- a/gettext-tools/src/msgcmp.c
++++ b/gettext-tools/src/msgcmp.c
+@@ -109,7 +109,9 @@ main (int argc, char **argv)
+  bindtextdomain (PACKAGE, relocate (LOCALEDIR));
+  bindtextdomain ("gnulib", relocate (GNULIB_LOCALEDIR));
++#ifdef BISON_LOCALEDIR
+  bindtextdomain ("bison-runtime", relocate (BISON_LOCALEDIR));
++#endif
+  textdomain (PACKAGE);

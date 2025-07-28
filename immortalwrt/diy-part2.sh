@@ -221,6 +221,9 @@ git clone https://github.com/sbwml/feeds_packages_libs_liburing feeds/packages/l
 rm -rf feeds/packages/net/samba4
 git clone https://github.com/sbwml/feeds_packages_net_samba4 feeds/packages/net/samba4
 
+# 修复 BISON_LOCALEDIR 没有定义时 gettext-full 编译失败
+cp -f ${GITHUB_WORKSPACE}/patch/gettext-full/*.patch package/libs/gettext-full/patches/
+
 # 修正部分从第三方仓库拉取的软件 Makefile 路径问题
 find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/..\/..\/luci.mk/$(TOPDIR)\/feeds\/luci\/luci.mk/g' {}
 find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/..\/..\/lang\/golang\/golang-package.mk/$(TOPDIR)\/feeds\/packages\/lang\/golang\/golang-package.mk/g' {}
