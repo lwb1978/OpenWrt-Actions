@@ -62,11 +62,11 @@ rm -rf feeds/packages/net/smartdns
 # cp -rf ${GITHUB_WORKSPACE}/patch/smartdns package/
 git clone https://github.com/lwb1978/openwrt-smartdns package/smartdns
 # 添加 smartdns-ui
-echo "CONFIG_PACKAGE_luci-app-smartdns_INCLUDE_smartdns_ui=y" >> .config
-echo "CONFIG_PACKAGE_smartdns-ui=y" >> .config
+# echo "CONFIG_PACKAGE_luci-app-smartdns_INCLUDE_smartdns_ui=y" >> .config
+# echo "CONFIG_PACKAGE_smartdns-ui=y" >> .config
 
 # openssl Enable QUIC and KTLS support
-echo "CONFIG_OPENSSL_WITH_QUIC=y" >> .config
+# echo "CONFIG_OPENSSL_WITH_QUIC=y" >> .config
 # echo "CONFIG_OPENSSL_WITH_KTLS=y" >> .config
 
 # 替换udpxy为修改版，解决组播源数据有重复数据包导致的花屏和马赛克问题
@@ -214,16 +214,6 @@ pushd feeds/packages/net/zerotier
 		cp -a "${GITHUB_WORKSPACE}/patch/zerotier/." .
 	}
 popd
-
-# update samba4 to latest version
-rm -rf feeds/packages/libs/liburing
-git clone https://github.com/sbwml/feeds_packages_libs_liburing feeds/packages/libs/liburing
-rm -rf feeds/packages/net/samba4
-git clone https://github.com/sbwml/feeds_packages_net_samba4 feeds/packages/net/samba4
-
-# 降级 gettext-full 到 0.22.5
-rm -rf package/libs/gettext-full
-cp -rf ${GITHUB_WORKSPACE}/patch/gettext-full package/libs/gettext-full
 
 # 修正部分从第三方仓库拉取的软件 Makefile 路径问题
 find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/..\/..\/luci.mk/$(TOPDIR)\/feeds\/luci\/luci.mk/g' {}
