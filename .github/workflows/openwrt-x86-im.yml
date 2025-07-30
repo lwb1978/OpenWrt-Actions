@@ -7,6 +7,11 @@ name: OpenWrt X86 Im
 on:
   repository_dispatch:
   workflow_dispatch:
+    inputs:
+    repo_branch:
+      description: "Select the source code branch (e.g. 24.10 for openwrt-24.10)"
+      required: false
+      default: master
 #  schedule:
 #    - cron: 0 8 * * 5
 
@@ -28,7 +33,7 @@ env:
 
 jobs:
   build:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
     defaults:
       run:
         shell: bash
@@ -62,31 +67,36 @@ jobs:
       with:
         build-mount-path: /builder
 
-    - name: Build System Setup
-      uses: sbwml/actions@openwrt-build-setup
+#    - name: Build System Setup
+#      uses: sbwml/actions@openwrt-build-setup
 
-    - name: Install LLVM
-      uses: sbwml/actions@install-llvm
+#    - name: Install LLVM
+#      uses: sbwml/actions@install-llvm
 
-#    - name: Initialization environment
-#      env:
-#        DEBIAN_FRONTEND: noninteractive
-#      run: |
-#        sudo -E apt-get -qq update
-#        sudo bash -c 'bash <(curl -sL https://build-scripts.immortalwrt.org/init_build_environment.sh)'
-#        curl -fsSL https://deb.nodesource.com/setup_22.x -o nodesource_setup.sh | sudo -E bash -
-#        sudo -E apt-get install -y nodejs
-#        sudo -E apt-get -qq autoremove --purge
-#        sudo -E apt-get -qq clean
-#        sudo timedatectl set-timezone "$TZ"
-#        #sudo mkdir -p /builder
-#        sudo chown $USER:$(id -gn) /builder
+    - name: Initialization environment
+      env:
+        DEBIAN_FRONTEND: noninteractive
+      run: |
+        sudo -E apt-get -qq update
+        sudo bash -c 'bash <(curl -sL https://build-scripts.immortalwrt.org/init_build_environment.sh)'
+        curl -fsSL https://deb.nodesource.com/setup_22.x -o nodesource_setup.sh | sudo -E bash -
+        sudo -E apt-get install -y nodejs
+        sudo -E apt-get -qq autoremove --purge
+        sudo -E apt-get -qq clean
+        #sudo mkdir -p /builder
+        sudo chown $USER:$(id -gn) /builder
 
     - name: Clone source code
       working-directory: /builder
       run: |
         df -hT $PWD
-        git clone -b $REPO_BRANCH --single-branch --filter=blob:none $REPO_URL openwrt
+        input_branch="${{ github.event.inputs.repo_branch }}"
+        if [ -z "$input_branch" ] || [ "$input_branch" = "master" ]; then
+          branch="master"
+        else
+          branch="openwrt-$input_branch"
+        fi
+        git clone -b "$branch" --single-branch --filter=blob:none $REPO_URL openwrt
         ln -sf /builder/openwrt $GITHUB_WORKSPACE/openwrt
 
     - name: Load custom feeds
