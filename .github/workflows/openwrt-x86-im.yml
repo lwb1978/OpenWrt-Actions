@@ -8,10 +8,10 @@ on:
   repository_dispatch:
   workflow_dispatch:
     inputs:
-    repo_branch:
-      description: "Select the source code branch (e.g. 24.10 for openwrt-24.10)"
-      required: false
-      default: master
+      repo_branch:
+        description: 'Select the source code branch (e.g. 24.10 for openwrt-24.10)'
+        required: false
+        default: master
 #  schedule:
 #    - cron: 0 8 * * 5
 
