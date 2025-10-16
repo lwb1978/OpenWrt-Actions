@@ -75,6 +75,13 @@ cp -f ${GITHUB_WORKSPACE}/patch/udpxy/Makefile feeds/packages/net/udpxy/Makefile
 # 修改 udpxy 菜单名称为大写
 sed -i 's#\"title\": \"udpxy\"#\"title\": \"UDPXY\"#g' feeds/luci/applications/luci-app-udpxy/root/usr/share/luci/menu.d/luci-app-udpxy.json
 
+# 添加rtp2httpd
+merge_package main https://github.com/stackia/rtp2httpd package openwrt-support/rtp2httpd openwrt-support/luci-app-rtp2httpd
+rm -f package/rtp2httpd/Makefile
+cp -f ${GITHUB_WORKSPACE}/patch/rtp2httpd/Makefile package/rtp2httpd/Makefile
+echo "CONFIG_PACKAGE_luci-app-rtp2httpd=y" >> .config
+echo "CONFIG_PACKAGE_rtp2httpd=y" >> .config
+
 # lukcy大吉
 git clone https://github.com/sirpdboy/luci-app-lucky package/lucky-packages
 # git clone https://github.com/gdy666/luci-app-lucky.git package/lucky-packages
