@@ -91,9 +91,9 @@ if [ -n "$RTP2HTTPD_VERSION" ]; then
 	RTP2HTTPD_PKG_VERSION=$(echo "$RTP2HTTPD_VERSION" | sed -E 's/-([a-z]+)\.([0-9]+)/_\1\2/g')
 	echo "rtp2httpd获取到版本：$RTP2HTTPD_VERSION"
 	echo "rtp2httpd转换为包版本：$RTP2HTTPD_PKG_VERSION"
-	sed -i "s/^\(PKG_VERSION:=\).*/\1$RTP2HTTPD_PKG_VERSION/" package/rtp2httpd-openwrt/rtp2httpd/Makefile
-	sed -i "s/^\(PKG_VERSION:=\).*/\1$RTP2HTTPD_PKG_VERSION/" package/rtp2httpd-openwrt/luci-app-rtp2httpd/Makefile
-	sed -i "s/^[[:space:]]*AC_INIT([[:space:]]*\[rtp2httpd\][[:space:]]*,[[:space:]]*\[\)[^]]\+\(\]\)/\1$RTP2HTTPD_VERSION\2/" package/rtp2httpd-openwrt/rtp2httpd/src/configure.ac
+	sed -i "s|^\(PKG_VERSION:=\).*|\1$RTP2HTTPD_PKG_VERSION|" package/rtp2httpd-openwrt/rtp2httpd/Makefile
+	sed -i "s|^\(PKG_VERSION:=\).*|\1$RTP2HTTPD_PKG_VERSION|" package/rtp2httpd-openwrt/luci-app-rtp2httpd/Makefile
+	sed -i "s|^\([[:space:]]*AC_INIT([[:space:]]*\[rtp2httpd\][[:space:]]*,[[:space:]]*\[\)[^]]*\(\].*\)|\1$RTP2HTTPD_VERSION\2|" package/rtp2httpd-openwrt/rtp2httpd/src/configure.ac
 fi
 echo "CONFIG_PACKAGE_luci-app-rtp2httpd=y" >> .config
 echo "CONFIG_PACKAGE_rtp2httpd=y" >> .config
