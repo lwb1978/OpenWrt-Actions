@@ -86,7 +86,7 @@ rm -f package/rtp2httpd-openwrt/rtp2httpd/Makefile
 cp -f ${GITHUB_WORKSPACE}/patch/rtp2httpd/Makefile_core package/rtp2httpd-openwrt/rtp2httpd/Makefile
 rm -f package/rtp2httpd-openwrt/luci-app-rtp2httpd/Makefile
 cp -f ${GITHUB_WORKSPACE}/patch/rtp2httpd/Makefile_luci package/rtp2httpd-openwrt/luci-app-rtp2httpd/Makefile
-RTP2HTTPD_VERSION=$(curl -s https://api.github.com/repos/stackia/rtp2httpd/releases?per_page=1 | grep '"tag_name":' | sed -E 's/.*"v?([^"]+)".*/\1/')
+RTP2HTTPD_VERSION=$(curl -s https://api.github.com/repos/stackia/rtp2httpd/releases/latest | grep '"tag_name":' | sed -E 's/.*"v?([^"]+)".*/\1/')
 if [ -n "$RTP2HTTPD_VERSION" ]; then
 	RTP2HTTPD_PKG_VERSION=$(echo "$RTP2HTTPD_VERSION" | sed -E 's/-([a-z]+)\.([0-9]+)/_\1\2/g')
 	echo "rtp2httpd获取到版本：$RTP2HTTPD_VERSION"
