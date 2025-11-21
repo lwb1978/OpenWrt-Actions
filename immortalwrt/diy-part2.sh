@@ -114,6 +114,9 @@ git clone https://github.com/lwb1978/openwrt-gecoosac package/openwrt-gecoosac
 rm -rf feeds/luci/applications/luci-app-timewol
 git clone https://github.com/lwb1978/luci-app-timewol package/luci-app-timewol
 
+# 资源监控
+echo "CONFIG_PACKAGE_luci-app-statistics=y" >> .config
+
 # 添加主题
 rm -rf feeds/luci/themes/luci-theme-argon
 # git clone --depth=1 https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
