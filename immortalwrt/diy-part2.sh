@@ -120,7 +120,7 @@ echo "CONFIG_PACKAGE_luci-app-statistics=y" >> .config
 # 添加主题
 rm -rf feeds/luci/themes/luci-theme-argon
 # git clone --depth=1 https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
-merge_package openwrt-24.10 https://github.com/sbwml/luci-theme-argon package luci-theme-argon
+merge_package openwrt-25.12 https://github.com/sbwml/luci-theme-argon package luci-theme-argon
 git clone --depth=1 https://github.com/sirpdboy/luci-theme-kucat package/luci-theme-kucat
 
 # 取消自添加主题的默认设置
