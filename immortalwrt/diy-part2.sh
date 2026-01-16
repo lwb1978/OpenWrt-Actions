@@ -241,6 +241,15 @@ pushd feeds/packages/net/zerotier
 	}
 popd
 
+# Realtek driver - R8168 & R8125 & R8126 & R8152 & R8101 & r8127
+rm -rf package/kernel/{r8168,r8101,r8125,r8126,r8127}
+git clone https://github.com/sbwml/package_kernel_r8168 package/kernel/r8168
+git clone https://github.com/sbwml/package_kernel_r8152 package/kernel/r8152
+git clone https://github.com/sbwml/package_kernel_r8101 package/kernel/r8101
+git clone https://github.com/sbwml/package_kernel_r8125 package/kernel/r8125
+git clone https://github.com/sbwml/package_kernel_r8126 package/kernel/r8126
+git clone https://github.com/sbwml/package_kernel_r8127 package/kernel/r8127
+
 # 修正部分从第三方仓库拉取的软件 Makefile 路径问题
 find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/..\/..\/luci.mk/$(TOPDIR)\/feeds\/luci\/luci.mk/g' {}
 find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/..\/..\/lang\/golang\/golang-package.mk/$(TOPDIR)\/feeds\/packages\/lang\/golang\/golang-package.mk/g' {}
