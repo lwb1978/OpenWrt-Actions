@@ -168,9 +168,6 @@ curl_ver=$(cat feeds/packages/net/curl/Makefile | grep -i "PKG_VERSION:=" | awk 
 	cp -rf ${GITHUB_WORKSPACE}/patch/curl feeds/packages/net/curl
 }
 
-# apk-tools APK管理器不再校验版本号的合法性
-mkdir -p package/system/apk/patches && cp -f ${GITHUB_WORKSPACE}/patch/apk-tools/9999-hack-for-linux-pre-releases.patch package/system/apk/patches/
-
 mirror=raw.githubusercontent.com/sbwml/r4s_build_script/master
 
 # 防火墙4添加自定义nft命令支持
@@ -181,9 +178,13 @@ pushd feeds/luci
 	# 防火墙4添加自定义nft命令选项卡
 	# curl -s https://$mirror/openwrt/patch/firewall4/luci-24.10/0004-luci-add-firewall-add-custom-nft-rule-support.patch | patch -p1
 	patch -p1 < ${GITHUB_WORKSPACE}/patch/firewall4/0004-luci-add-firewall-add-custom-nft-rule-support.patch
+
 	# 状态-防火墙页面去掉iptables警告，并添加nftables、iptables标签页
 	# curl -s https://$mirror/openwrt/patch/luci/0004-luci-mod-status-firewall-disable-legacy-firewall-rul.patch | patch -p1
 	patch -p1 < ${GITHUB_WORKSPACE}/patch/firewall4/0004-luci-mod-status-firewall-disable-legacy-firewall-rul.patch
+
+	# luci-app-package-manager 支持安装上传的无签名APK
+	patch -p1 < ${GITHUB_WORKSPACE}/patch/luci-app-package-manager/0001-luci-app-package-manager-support-installing-uploaded.patch
 popd
 
 # 补充 firewall4 luci 中文翻译
