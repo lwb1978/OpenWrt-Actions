@@ -72,4 +72,8 @@ if [ "$(uci -q get luci.diag.ping)" = "openwrt.org" ] || [ "$(uci -q get luci.di
 	uci commit luci
 fi
 
+# 替换软件源
+cp -f /etc/apk/repositories.d/distfeeds.list /etc/apk/repositories.d/distfeeds.list.bak
+sed -i 's,https://downloads.immortalwrt.org,https://mirrors.pku.edu.cn/immortalwrt,g' /etc/apk/repositories.d/distfeeds.list
+
 exit 0
