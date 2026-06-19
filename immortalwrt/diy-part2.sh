@@ -135,10 +135,6 @@ git clone --depth=1 https://github.com/sbwml/packages_lang_golang -b 26.x feeds/
 rm -rf feeds/packages/lang/rust
 git clone https://github.com/sbwml/packages_lang_rust feeds/packages/lang/rust
 
-# luci-app-filemanager
-rm -rf feeds/luci/applications/luci-app-filemanager
-git clone https://github.com/sbwml/luci-app-filemanager package/luci-app-filemanager
-
 # TTYD设置
 sed -i 's/procd_set_param stdout 1/procd_set_param stdout 0/g' feeds/packages/utils/ttyd/files/ttyd.init
 sed -i 's/procd_set_param stderr 1/procd_set_param stderr 0/g' feeds/packages/utils/ttyd/files/ttyd.init
