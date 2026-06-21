@@ -77,6 +77,8 @@ cp -f ${GITHUB_WORKSPACE}/patch/udpxy/Makefile feeds/packages/net/udpxy/Makefile
 sed -i 's#\"title\": \"udpxy\"#\"title\": \"UDPXY\"#g' feeds/luci/applications/luci-app-udpxy/root/usr/share/luci/menu.d/luci-app-udpxy.json
 
 # 添加rtp2httpd
+rm -rf feeds/packages/net/rtp2httpd
+rm -rf feeds/luci/applications/luci-app-rtp2httpd
 git clone --depth=1 -b main https://github.com/stackia/rtp2httpd rtp2httpd_tmp
 rm -rf package/rtp2httpd-openwrt
 mv rtp2httpd_tmp/openwrt-support package/rtp2httpd-openwrt
