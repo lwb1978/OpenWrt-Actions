@@ -479,6 +479,19 @@ CONFIG_PACKAGE_luci-app-wol=y
 # CONFIG_PACKAGE_luci-app-yggdrasil is not set
 CONFIG_PACKAGE_luci-app-zerotier=y
 
+#
+# ucode
+#
+CONFIG_PACKAGE_ucode=y
+CONFIG_PACKAGE_ucode-mod-fs=y
+CONFIG_PACKAGE_ucode-mod-math=y
+CONFIG_PACKAGE_ucode-mod-nl80211=y
+CONFIG_PACKAGE_ucode-mod-rtnl=y
+CONFIG_PACKAGE_ucode-mod-ubus=y
+CONFIG_PACKAGE_ucode-mod-uci=y
+CONFIG_PACKAGE_ucode-mod-uloop=y
+# end of ucode
+
 # Themes
 CONFIG_PACKAGE_luci-theme-argon=y
 CONFIG_PACKAGE_luci-theme-bootstrap=y
