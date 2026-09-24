@@ -13,7 +13,7 @@ on:
   workflow_dispatch:
     inputs:
       repo_branch:
-        description: 'Select the source code branch (e.g. 24.10 for openwrt-24.10)'
+        description: 'Select the source code branch (e.g. 25.12 for openwrt-25.12)'
         required: false
         default: master
 #  schedule:
@@ -37,7 +37,7 @@ env:
 
 jobs:
   build:
-    runs-on: ubuntu-26.04
+    runs-on: ubuntu-24.04
     defaults:
       run:
         shell: bash
@@ -70,24 +70,25 @@ jobs:
       with:
         build-mount-path: /builder
 
-#    - name: Build System Setup
-#      uses: sbwml/actions@openwrt-build-setup
-#
-#    - name: Install LLVM
-#      uses: sbwml/actions@install-llvm
+    - name: Build System Setup
+      uses: sbwml/actions@openwrt-build-setup
 
-    - name: Initialization environment
-      env:
-        DEBIAN_FRONTEND: noninteractive
-      run: |
-        sudo -E apt-get -qq update
-        sudo bash -c 'bash <(curl -sL https://build-scripts.immortalwrt.org/init_build_environment.sh)'
-        curl -fsSL https://deb.nodesource.com/setup_22.x -o nodesource_setup.sh | sudo -E bash -
-        sudo -E apt-get install -y nodejs
-        sudo -E apt-get -qq autoremove --purge
-        sudo -E apt-get -qq clean
-        #sudo mkdir -p /builder
-        sudo chown $USER:$(id -gn) /builder
+    - name: Install LLVM
+      uses: sbwml/actions@install-llvm
+
+#    - name: Initialization environment
+#      env:
+#        DEBIAN_FRONTEND: noninteractive
+#      run: |
+#        sudo apt-get -qq update
+#        sudo bash -c 'bash <(curl -sL https://build-scripts.immortalwrt.org/init_build_environment.sh)'
+#        curl -fsSL https://deb.nodesource.com/setup_24.x | sudo -E bash -
+#        sudo apt-get install -y nodejs
+#        node -v
+#        sudo apt-get -qq autoremove --purge
+#        sudo apt-get -qq clean
+#        #sudo mkdir -p /builder
+#        sudo chown $USER:$(id -gn) /builder
 
     - name: Clone source code
       working-directory: /builder
