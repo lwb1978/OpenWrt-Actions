@@ -137,6 +137,10 @@ git clone --depth=1 https://github.com/sbwml/packages_lang_golang -b 27.x feeds/
 rm -rf feeds/packages/lang/rust
 git clone https://github.com/sbwml/packages_lang_rust feeds/packages/lang/rust
 
+# node - prebuilt
+rm -rf feeds/packages/lang/node
+git clone https://github.com/sbwml/feeds_packages_lang_node feeds/packages/lang/node -b packages-25.12
+
 # TTYD设置
 sed -i 's/procd_set_param stdout 1/procd_set_param stdout 0/g' feeds/packages/utils/ttyd/files/ttyd.init
 sed -i 's/procd_set_param stderr 1/procd_set_param stderr 0/g' feeds/packages/utils/ttyd/files/ttyd.init
