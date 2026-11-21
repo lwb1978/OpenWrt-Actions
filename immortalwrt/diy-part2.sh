@@ -111,10 +111,12 @@ echo "CONFIG_PACKAGE_luci-app-statistics=y" >> .config
 rm -rf feeds/luci/themes/luci-theme-argon
 # git clone --depth=1 https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
 merge_package openwrt-25.12 https://github.com/sbwml/luci-theme-argon package luci-theme-argon
-git clone --depth=1 https://github.com/sirpdboy/luci-theme-kucat package/luci-theme-kucat
 
 git clone --depth=1 https://github.com/eamonxg/luci-theme-aurora package/luci-theme-aurora
 echo "CONFIG_PACKAGE_luci-theme-aurora=y" >> .config
+
+merge_package main https://github.com/anothaDev/luci-theme-vantage package luci-theme-vantage
+echo "CONFIG_PACKAGE_luci-theme-vantage=y" >> .config
 
 # 取消自添加主题的默认设置
 find package/luci-theme-*/* -type f -print | grep '/root/etc/uci-defaults/' | while IFS= read -r file; do
