@@ -48,7 +48,7 @@ merge_package v5 https://github.com/sbwml/openwrt_helloworld package/passwall-pa
 cp -rf ${GITHUB_WORKSPACE}/patch/haproxy package/passwall-packages/
 # app
 rm -rf feeds/luci/applications/{luci-app-passwall,luci-app-ssr-libev-server}
-# git clone https://github.com/lwb1978/openwrt-passwall package/passwall-luci
+# git clone https://github.com/lwbwrt/openwrt-passwall package/passwall-luci
 git clone https://github.com/Openwrt-Passwall/openwrt-passwall package/passwall-luci
 # ------------------------------------------------------------
 
@@ -57,11 +57,11 @@ sed -i 's/仅IPv6/仅 IPv6/g' package/feeds/luci/luci-app-socat/po/zh_Hans/socat
 
 # SmartDNS
 rm -rf feeds/luci/applications/luci-app-smartdns
-git clone https://github.com/lwb1978/luci-app-smartdns package/luci-app-smartdns
+git clone https://github.com/lwbwrt/luci-app-smartdns package/luci-app-smartdns
 # 替换immortalwrt 软件仓库smartdns版本为官方最新版
 rm -rf feeds/packages/net/smartdns
 # cp -rf ${GITHUB_WORKSPACE}/patch/smartdns package/
-git clone https://github.com/lwb1978/openwrt-smartdns package/smartdns
+git clone https://github.com/lwbwrt/openwrt-smartdns package/smartdns
 # 添加 smartdns-ui
 # echo "CONFIG_PACKAGE_luci-app-smartdns_INCLUDE_smartdns_ui=y" >> .config
 # echo "CONFIG_PACKAGE_smartdns-ui=y" >> .config
@@ -93,16 +93,16 @@ git clone https://github.com/sirpdboy/luci-app-lucky package/lucky-packages
 # git clone https://github.com/gdy666/luci-app-lucky.git package/lucky-packages
 
 # 集客AC控制器
-# git clone https://github.com/lwb1978/openwrt-gecoosac package/openwrt-gecoosac
-# git clone -b v1.0 https://github.com/lwb1978/openwrt-gecoosac package/openwrt-gecoosac
+# git clone https://github.com/lwbwrt/openwrt-gecoosac package/openwrt-gecoosac
+# git clone -b v1.0 https://github.com/lwbwrt/openwrt-gecoosac package/openwrt-gecoosac
 
 # zerotier
 # rm -rf feeds/luci/applications/luci-app-zerotier
-# git clone https://github.com/lwb1978/luci-app-zerotier package/luci-app-zerotier
+# git clone https://github.com/lwbwrt/luci-app-zerotier package/luci-app-zerotier
 
 # 定时网络唤醒
 rm -rf feeds/luci/applications/luci-app-timewol
-git clone https://github.com/lwb1978/luci-app-timewol package/luci-app-timewol
+git clone https://github.com/lwbwrt/luci-app-timewol package/luci-app-timewol
 
 # 资源监控
 echo "CONFIG_PACKAGE_luci-app-statistics=y" >> .config

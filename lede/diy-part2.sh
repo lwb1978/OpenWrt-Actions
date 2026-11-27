@@ -45,7 +45,7 @@ git clone https://github.com/xiaorouji/openwrt-passwall-packages package/passwal
 rm -rf package/passwall-packages/{shadowsocks-rust,v2ray-geodata}
 merge_package v5 https://github.com/sbwml/openwrt_helloworld package/passwall-packages shadowsocks-rust v2ray-geodata
 # app
-git clone -b luci-smartdns-dev --single-branch https://github.com/lwb1978/openwrt-passwall package/passwall-luci
+git clone -b luci-smartdns-dev --single-branch https://github.com/lwbwrt/openwrt-passwall package/passwall-luci
 # git clone https://github.com/xiaorouji/openwrt-passwall package/passwall-luci
 # ------------------------------------------------------------
 
@@ -59,14 +59,14 @@ merge_package master https://github.com/immortalwrt/packages feeds/packages/util
 
 # MSD组播转换luci
 rm -rf feeds/luci/applications/luci-app-msd_lite
-git clone https://github.com/lwb1978/luci-app-msd_lite package/luci-app-msd_lite
+git clone https://github.com/lwbwrt/luci-app-msd_lite package/luci-app-msd_lite
 
 # 优化socat中英翻译
 sed -i 's/仅IPv6/仅 IPv6/g' package/feeds/luci/luci-app-socat/po/zh-cn/socat.po
 
 # SmartDNS
 rm -rf feeds/luci/applications/luci-app-smartdns
-git clone -b lede --single-branch https://github.com/lwb1978/luci-app-smartdns package/luci-app-smartdns
+git clone -b lede --single-branch https://github.com/lwbwrt/luci-app-smartdns package/luci-app-smartdns
 # 更新lean仓库的smartdns版本到最新
 rm -rf feeds/packages/net/smartdns
 # cp -rf ${GITHUB_WORKSPACE}/patch/smartdns feeds/packages/net
@@ -116,7 +116,7 @@ sed -i 's/#aio write size = 0/aio write size = 1/g' feeds/packages/net/samba4/fi
 git clone https://github.com/sirpdboy/luci-app-lucky package/lucky-packages
 
 # 添加主题
-# git clone https://github.com/lwb1978/luci-theme-neobird package/luci-theme-neobird
+# git clone https://github.com/lwbwrt/luci-theme-neobird package/luci-theme-neobird
 rm -rf feeds/luci/themes/luci-theme-argon
 # git clone --depth=1 -b 18.06 https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
 git clone --depth=1 -b 18.06 https://github.com/SpeedPartner/luci-theme-argon-18.06-patch package/luci-theme-argon
